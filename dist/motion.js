@@ -129,52 +129,51 @@
         { scale: '.96', opacity: .65 },
         { scale: '1.035', opacity: 1, offset: .45 },
         { scale: '1', opacity: 1 }
-      ], { duration: 3600, easing: 'cubic-bezier(.45, 0, .55, 1)' });
+      ], { duration: 2400, easing: 'cubic-bezier(.45, 0, .55, 1)' });
     });
-
-    function drawSignalChart(card, delay = 0) {
-      card.querySelectorAll('.signal-stroke').forEach((stroke, index) => {
-        const ring = stroke.classList.contains('signal-ring');
-        animate(stroke, [
-          { strokeDasharray: ring ? '0 1' : '1', strokeDashoffset: ring ? '0' : '1' },
-          { strokeDasharray: ring ? '.7 .3' : '1', strokeDashoffset: '0' }
-        ], { duration: 1200, delay: delay + index * 70 });
-      });
-      card.querySelectorAll('.signal-bar').forEach((bar, index) => {
-        animate(bar, [
-          { scale: card.dataset.signal === 'activity' ? '1 .28' : '.28 1' },
-          { scale: '1 1' }
-        ], { duration: 850, delay: delay + index * 45 });
-      });
-    }
 
     const signalPaths = [...document.querySelectorAll('.hero-connections .signal-path')];
     const signalPulses = [...document.querySelectorAll('.hero-connections .signal-pulse')];
-    document.querySelectorAll('.hero-data-card').forEach((card, index) => {
-      enterOnce(card, () => {
-        const delay = stackedSignals.matches ? (index % 3) * 65 : (index % 2) * 80;
-        const restingTranslate = getComputedStyle(card).translate;
-        const [restX, restY = 0] = restingTranslate === 'none'
-          ? [0, 0] : restingTranslate.split(' ').map(value => parseFloat(value) || 0);
-        const shiftX = stackedSignals.matches ? 0 : index % 2 ? -18 : 18;
-        animate(card, [
-          { translate: `${restX + shiftX}px ${restY + (stackedSignals.matches ? 12 : 8)}px` },
-          { translate: `${restX}px ${restY}px` }
-        ], { duration: 1050, delay });
-        drawSignalChart(card, delay + 150);
-        if (!stackedSignals.matches) {
-          animate(signalPaths[index], [
+    document.querySelectorAll('.hero-source-composition').forEach((source, index) => {
+      enterOnce(source, () => {
+        const delay = index === 0 ? 0 : 110;
+        // The illustrations retain their crisp static composition. A single
+        // small vertical settle introduces them without floating or tilting.
+        animate(source, [
+          { translate: '0 10px' },
+          { translate: '0 0' }
+        ], { duration: 800, delay });
+
+        source.querySelectorAll('.source-wave-line').forEach(wave => {
+          animate(wave, [
             { strokeDasharray: '1', strokeDashoffset: '1' },
             { strokeDasharray: '1', strokeDashoffset: '0' }
-          ], { duration: 950, delay: delay + 180 });
-          // Two finite light packets travel toward Orb. The static connection
-          // remains visible when these finish, even with JavaScript disabled.
+          ], { duration: 1400, delay: delay + 120 });
+        });
+
+        source.querySelectorAll('.source-orbit').forEach(edge => {
+          const resting = getComputedStyle(edge);
+          // Illuminate the existing rim once; its geometry never spins.
+          animate(edge, [
+            { strokeOpacity: .35, filter: resting.filter },
+            { strokeOpacity: 1, filter: 'drop-shadow(0 0 2px rgba(172, 213, 235, .7))', offset: .45 },
+            { strokeOpacity: resting.strokeOpacity, filter: resting.filter }
+          ], { duration: 1600, delay: delay + 120, easing: 'ease-in-out' });
+        });
+
+        if (!stackedSignals.matches) {
+          animate(signalPaths[index], [
+            { strokeOpacity: .3 },
+            { strokeOpacity: 1 }
+          ], { duration: 800, delay });
+          // Each source sends one restrained packet toward Orb. Its static
+          // connection is visible before, during, and after the animation.
           animate(signalPulses[index], [
             { strokeDashoffset: '1', opacity: 0 },
-            { opacity: .95, offset: .12 },
-            { opacity: .95, offset: .78 },
+            { opacity: .75, offset: .12 },
+            { opacity: .75, offset: .78 },
             { strokeDashoffset: '-.08', opacity: 0 }
-          ], { duration: 1750, iterations: 2, delay: delay + 400, easing: 'linear' });
+          ], { duration: 1700, delay: delay + 250, easing: 'linear' });
         }
       });
     });
