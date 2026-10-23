@@ -76,3 +76,6 @@ body:has(dialog[open]){overflow:hidden}
 }
 @media(max-width:374px){.hero-phone-shell{width:280px;height:auto}.hero-product{min-height:0}.hero-preview-dialog .chat-message{font-size:14px}.source-options{justify-content:flex-start}.source-options label{font-size:11px}.hero-preview-dialog .from-you{margin-left:auto!important}}
 @media(min-width:981px){.header-inner{width:min(1300px,calc(100% - 64px));min-height:112px}.hero-product{margin-top:102px}}
+/* Let the source background fade through the opening explanation, as in Figma. */
+#main{overflow:clip}.hero{overflow:visible}
+.how-section{position:relative;z-index:1}
