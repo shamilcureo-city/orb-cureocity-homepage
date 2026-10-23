@@ -136,7 +136,7 @@
 .orb-planning-showcase::before {
   inset: -640px 0 0;
   z-index: -1;
-  background: url('assets/figma-gradient.png') center / 100% 100% no-repeat;
+  background: url('assets/web/figma-gradient.webp') center / 100% 100% no-repeat;
   transform: rotate(180deg);
   opacity: 1;
   mix-blend-mode: normal;

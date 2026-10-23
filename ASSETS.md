@@ -2,11 +2,11 @@
 
 ## Original Figma assets used in the current design
 
-The original assets below were downloaded or exported on 2026-10-23 through the browser inspector in the user-supplied Figma file, `AwydaKZ3UdxjHtLi1rrhBX`, from the homepage beginning at node `6031:51867`. The Figma connector could not retrieve the view-only file, but the browser's inspect controls provided the source images and frame exports. Browser screenshots in `/private/tmp/orb-ref*.png` were used for visual comparison; the website now serves the untouched uploaded original files listed below, without file resizing or lossy conversion. Their rendered CSS dimensions are smaller in the v5 compact layout.
+The original assets below were downloaded or exported on 2026-10-23 through the browser inspector in the user-supplied Figma file, `AwydaKZ3UdxjHtLi1rrhBX`, from the homepage beginning at node `6031:51867`. The Figma connector could not retrieve the view-only file, but the browser's inspect controls provided the source images and frame exports. Browser screenshots in `/private/tmp/orb-ref*.png` were used for visual comparison. The uploaded originals below remain preserved without modification. Versions 5–7 served these originals directly at smaller CSS display sizes; the v8 Orb-only revision introduces separate web-delivery derivatives documented below.
 
-Paths below are relative to the project root. All 17 raster originals are preserved unchanged under `assets/figma-originals/` and copied byte-for-byte into `dist/assets/`. Their total size is 49,922,172 bytes. The logo SVG is also served unchanged. SHA-256/byte comparisons confirmed all served rasters match the preserved originals. Earlier WebP derivatives have been superseded.
+Paths below are relative to the project root. All 17 raster originals are preserved unchanged under `assets/figma-originals/` and copied byte-for-byte into `dist/assets/`. Their total size is 49,922,172 bytes. The logo SVG is unchanged. SHA-256/byte comparisons confirmed the PNG/JPEG copies in `dist/assets/` match the preserved originals. These copies remain available alongside the new derivatives; the table below records original-file provenance and dimensions.
 
-Dimensions below show the original and served pixel dimensions; the SVG dimensions are its declared view box. All original raster files were opened for visual inspection, and both original and served dimensions were checked.
+Dimensions below show the original and preserved PNG/JPEG-copy pixel dimensions; the SVG dimensions are its declared view box. All original raster files were opened for visual inspection, and both original and served dimensions were checked.
 
 | Preserved original | Served asset | Dimensions: original → served | Figma node | Source and use |
 | --- | --- | --- | --- | --- |
@@ -33,11 +33,29 @@ These files are reused from the design supplied by the user. This record documen
 
 `dist/compact.css` controls the smaller upper-page composition and sharp HTML hero screen. `dist/compact-lower.css` controls smaller lower-page typography, spacing, cards and artwork. These CSS adjustments change display dimensions only; they do not alter any original image bytes.
 
+## V8 web-delivery derivatives
+
+Created on 2026-10-24 for the Orb-only download journey. These are delivery copies of the supplied artwork, not newly generated or retouched images. Original PNG files and the preserved source copies remain byte-for-byte unchanged. Each derivative uses lossless WebP encoding; the report and cycle phones are resized to 700 pixels wide and the voice Orb to 720 pixels wide before encoding. The hero, food, meal, workout and daily phones retain their native dimensions, as does the gradient. No sharpening, cropping, compositing, recolouring or background removal is applied.
+
+| Original delivery copy | Web delivery derivative | Pixel dimensions | File size | Reduction |
+| --- | --- | --- | --- | --- |
+| `dist/assets/figma-hero-phone.png` | `dist/assets/web/figma-hero-phone.webp` | 390 × 794 → 390 × 794 | 248.1 → 157.3 KiB | 36.6% |
+| `dist/assets/figma-food-phone.png` | `dist/assets/web/figma-food-phone.webp` | 450 × 920 → 450 × 920 | 679.9 → 437.4 KiB | 35.7% |
+| `dist/assets/figma-meal-phone.png` | `dist/assets/web/figma-meal-phone.webp` | 450 × 920 → 450 × 920 | 261.1 → 165.2 KiB | 36.7% |
+| `dist/assets/figma-workout-phone.png` | `dist/assets/web/figma-workout-phone.webp` | 450 × 920 → 450 × 920 | 270.7 → 168.7 KiB | 37.7% |
+| `dist/assets/figma-daily-phone.png` | `dist/assets/web/figma-daily-phone.webp` | 450 × 920 → 450 × 920 | 176.9 → 105.7 KiB | 40.3% |
+| `dist/assets/figma-cycle-phone.png` | `dist/assets/web/figma-cycle-phone.webp` | 1560 × 3174 → 700 × 1424 | 2099.3 → 319.7 KiB | 84.8% |
+| `dist/assets/figma-report-phone.png` | `dist/assets/web/figma-report-phone.webp` | 2014 × 4096 → 700 × 1424 | 7079.2 → 536.5 KiB | 92.4% |
+| `dist/assets/figma-voice-orb.png` | `dist/assets/web/figma-voice-orb.webp` | 964 × 964 → 720 × 720 | 1731.9 → 750.2 KiB | 56.7% |
+| `dist/assets/figma-gradient.png` | `dist/assets/web/figma-gradient.webp` | 1760 × 2352 → 1760 × 2352 | 3477.1 → 2860.8 KiB | 17.7% |
+
+Together these nine files decrease from 16,408,736 bytes to 5,633,684 bytes (65.7% smaller). This describes the selected asset payload only, not a measured page-load speed. The native-size conversions were decoded and checked: every visible pixel and alpha value matched the original. Resized derivatives were decoded and their dimensions and alpha channels verified. Source hashes, dimensions and byte sizes are recorded in `dist/assets/web/manifest.json`.
+
 ## V7 source illustrations and motion
 
 Two decorative source illustrations are authored in `parts/main.html` using HTML, CSS and inline SVG. A layered report folio carries labels for blood reports, health history and everyday habits. An open wave field with a fine circular rim is captioned with sleep, activity and meal sources. The navy and icy-blue illustrations contain no real measurements, patient data or live integrations; their rules and waves are schematic marks. `dist/graphics.css`, loaded after the compact stylesheets and before motion styles, places them on either side of the desktop phone and in a compact two-column composition beneath it at widths of 900 pixels and below. Two fine desktop connector paths are also authored SVG. These illustrations replace the six matching v6 signal cards. They do not replace or modify any original raster files or the sharp HTML conversation inside the original handset frame, which remains 350 pixels wide on desktop.
 
-The original coral voice-Orb PNG is retained, with a decorative waveform and glow supplied by HTML/CSS. `dist/motion.js` and `dist/motion.css` introduce the source illustrations with a small vertical settle, trace the wave field once, briefly illuminate its rim and send one light packet along each desktop connection. These finite hero sequences finish within 2.4 seconds and do not continuously float, rotate or flash. The existing product-phone settling, slight pointer-hover/focus lift, and voice-Orb waveform response remain. Motion respects reduced-motion preferences and cancels when the tab is hidden; the static artwork and content remain visible.
+The original coral voice-Orb artwork is retained, with a decorative waveform and glow supplied by HTML/CSS. `dist/motion.js` and `dist/motion.css` introduce the source illustrations with a small vertical settle, trace the wave field once, briefly illuminate its rim and send one light packet along each desktop connection. These finite hero sequences finish within 2.4 seconds and do not continuously float, rotate or flash. The existing product-phone settling, slight pointer-hover/focus lift, and voice-Orb waveform response remain. Motion respects reduced-motion preferences and cancels when the tab is hidden; the static artwork and content remain visible.
 
 ## Superseded generated replacements
 
@@ -76,5 +94,5 @@ Constraints: no text, no words, no labels, no logos, no watermark, no diagnoses,
 
 Original generated output: `/Users/mohammedshamil/.codex/generated_images/01a166e3-775f-7c72-8477-666e9c979bfa/exec-446915f3-833d-4343-b721-59ca6c884015.png`.
 
-The generated source outputs were copied into the project and left intact at their original locations. The current homepage serves untouched Figma originals and the unchanged logo SVG from `dist/assets/`; source copies also remain in `assets/figma-originals/`.
+The generated source outputs were copied into the project and left intact at their original locations. The original Figma files remain untouched in `dist/assets/` and `assets/figma-originals/`. The unchanged logo SVG is used directly, while the v8 delivery derivatives below preserve the original artwork at sizes appropriate to the page.
 

@@ -14,7 +14,7 @@
 .source-brand{display:block;width:177px;height:35px;max-width:none;object-fit:contain}
 .header-inner{min-height:120px;gap:24px}.desktop-nav{gap:22px}.desktop-nav a{font-size:14px}.header-actions .btn{font-size:16px;min-height:49px;padding:13px 23px}
 .hero{position:relative;padding-top:215px;background:#fff;isolation:isolate;padding-bottom:65px}
-.hero::before{content:'';position:absolute;z-index:-1;inset:0;background:url('assets/figma-gradient.png') center top/100% 100% no-repeat}
+.hero::before{content:'';position:absolute;z-index:-1;inset:0;background:url('assets/web/figma-gradient.webp') center top/100% 100% no-repeat}
 .hero-top{grid-template-columns:1.45fr 1fr;gap:68px;align-items:center}
 .hero h1{font-size:66px;line-height:1.08;letter-spacing:0;white-space:normal}.hero h1 span{color:#d0d5df}
 .hero-brand{font-size:15px}.hero-category{font-size:18px}.hero-description{font-size:20px;line-height:1.5}.hero .button-row{gap:18px}.hero .btn{font-size:16px;min-height:56px;padding:16px 25px}

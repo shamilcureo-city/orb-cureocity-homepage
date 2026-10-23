@@ -275,7 +275,7 @@
       return true;
     }
     function showDownloads(trigger) {
-      if (!openDialog('Choose your app store', 'Get Orb on the device you use every day.', trigger)) return;
+      if (!openDialog('Choose your app store', 'Download Orb, then compare plans and choose your subscription inside the app.', trigger)) return;
       const actions = make('div', undefined, 'dialog-actions');
       [['App Store', config.appStoreUrl], ['Google Play', config.googlePlayUrl]].forEach(([label, value]) => {
         const href = destination(value);

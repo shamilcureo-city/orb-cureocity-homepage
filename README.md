@@ -1,12 +1,25 @@
 # Orb homepage
 
-A standalone responsive homepage for Orb by Cureocity, using the supplied homepage copy and implementing the original Figma design from its browser-visible reference. The user approved this browser-reference rebuild. Original image assets and frame exports were subsequently obtained through Figma's browser inspector: the brand lockup, hero background and handset, six feature phones, voice orb, device-brand panel, Blueprint, programme artwork, gym and guide imagery now come from the supplied design. The v5 layout reduces the overall scale and overlays the original hero handset's screen with sharp HTML text using the supplied illustrative conversation and today's-focus copy. The original handset file remains unchanged, with its frame visible around the overlay. See Orb in Action also retains the accessible conversation-replay modal.
+A standalone Orb-only product website. The sales journey is download Orb, then compare plans and subscribe inside the app. This is separate from the Cureocity Mind application.
 
-The design follows the reference’s dark navy-to-white hero, centered handset, visible phone feature cards, black pill buttons and pale-blue-to-navy ending. The compact layout uses a 960-pixel maximum content width with smaller headings, images, cards and section spacing; it does not scale the page with browser zoom or a global transform. The v7 graphics layer replaces the six matching signal cards with two distinct illustrations in navy and icy blue: a layered report folio on the left and an open wave field on the right. Fine lines connect the two compositions to the desktop phone. At 900 pixels and below, they form a compact two-column composition beneath the phone. Their lines and waves are illustrative marks, not actual measurements. The site is plain HTML, CSS and browser JavaScript; it has no runtime framework or package dependencies.
+## Current experience
 
-## Run locally
+The homepage retains the original compact navy-to-white hero, clear HTML conversation in the original handset, and two restrained supporting illustrations. The new page order is:
 
-Use Node.js 20 or newer from this directory:
+1. Benefit-led hero with Download Orb and a conversation demonstration.
+2. Four visitor-controlled moments in a day with Orb.
+3. Meal and workout planning, plus a voice logging example.
+4. Health context with report, recovery, cycle and glucose explanations.
+5. Permission-based family sharing and eligible-plan professional follow-up.
+6. Three getting-started steps, with wearable optional.
+7. One Orb plan overview, with plan selection inside the app.
+8. FAQs, final download action and compact Orb footer.
+
+Broader Cureocity care programmes, Blueprint, hubs, guide cards and the unverified device selector are excluded from this sales page. Earlier fragments are retained as source references but are not included by the build.
+
+## Run and build
+
+Use Node.js 20 or newer:
 
 ```sh
 npm run build
@@ -14,62 +27,40 @@ npm run check
 npm run dev
 ```
 
-Open `http://127.0.0.1:4178`. Stop the local server with Ctrl+C. Build again after editing an HTML part; CSS, JavaScript and configuration are served directly from `dist/`.
+Preview: http://127.0.0.1:4178. `build.mjs` assembles the HTML fragments into `dist/index.html`. CSS and JavaScript are served directly from `dist/`. The check script verifies JavaScript syntax; browser checks verify layout and interactions separately.
 
-`npm run check` checks JavaScript syntax. It does not replace browser checks of layout, keyboard operation or links.
+## Active source
 
-## Source structure
+- `parts/head.html`: metadata, navigation, shared icons and style/script references.
+- `parts/main.html`: original compact hero with the new sales copy.
+- `parts/sales-day.html`, `dist/sales-day.css`, `dist/sales-day.js`: progressive-enhancement day tabs, keyboard controls and illustrative examples.
+- `parts/sales-features.html`: nutrition, fitness, voice demo and health context.
+- `parts/sales-lower.html`, `dist/sales-lower.css`: support, onboarding, plan overview, FAQs and footer.
+- `parts/foot.html`: accessible preview/download dialogs and mobile download bar.
+- `dist/sales.css`: common sales layout, product compositions, responsive rules and hero refinements.
+- `dist/sales.js`: context illustrations and the mobile download bar.
+- `dist/app.js`: navigation, conversation replay, voice entry review and configured destinations. Earlier selector/guide logic is inert when those elements are absent.
+- `dist/motion.js`: finite hero entrance and connector/wave sequence, with reduced-motion and hidden-tab cancellation.
+- Original styles remain for the established hero, dialogs and reusable controls; sales styles load after them.
 
-- `parts/head.html`: document metadata, shared SVG icons, header and navigation.
-- `parts/main.html`: hero, how it works and connection selector.
-- `parts/guides.html`: guide cards and their horizontal navigation.
-- `parts/features.html`: four visible product cards for reports, cycle tracking, meal logging and the daily view.
-- `parts/devices.html`: original supported-device brand panel and link to the connection selector.
-- `parts/voice.html`: illustrative voice workout logging demo.
-- `parts/planning.html`: visible meal planning and workout planning cards.
-- `parts/lower.html`: care, Blueprint, programmes, plans, FAQs, privacy, hubs, final call to action and footer.
-- `parts/foot.html`: shared detail dialog and closing document markup.
-- `dist/styles.css`: shared styles and upper-page layouts.
-- `dist/features.css`: original phone artwork and layouts for all six visible product cards.
-- `dist/lower.css`: lower-page layouts.
-- `dist/app.js`: browser-local interactions.
-- `dist/config.js`: external destinations, pending real URLs.
-- `dist/fidelity*.css`: measured composition adjustments from the uploaded desktop reference.
-- `dist/compact.css`: v5 compact navigation, hero, upper-page sections and product-card layouts, including the HTML hero conversation overlay.
-- `dist/compact-lower.css`: v5 compact care, Blueprint, programmes, plans, FAQs, privacy, hubs, final call to action and footer layouts. Both compact stylesheets load after the fidelity styles.
-- `dist/graphics.css`: v7 layered report folio, open wave field and connections, responsive two-column source composition, voice waveform and supporting-text contrast. It loads after the compact stylesheets and before motion styles.
-- `dist/motion.css` and `dist/motion.js`: finite source-illustration, waveform and connector sequences, product-phone settling and pointer hover lift, original Orb and waveform response, interaction feedback, and continuous ending-background alignment.
-- `assets/figma-originals/`: the 17 exact PNG/JPEG downloads and exports from Figma, preserved unchanged.
-- `assets/gym.png` and `assets/blueprint.png`: superseded generated replacements retained for provenance.
-- `dist/assets/`: the 17 untouched original PNG/JPEG images and original logo SVG used by the homepage.
-- `ASSETS.md`: original Figma source nodes, inspected asset dimensions, provenance, illustrative-use notes and superseded generation prompts.
-- `build.mjs`: joins the nine HTML parts, in the order listed above, into `dist/index.html`.
-- `server.mjs`: local static preview server.
+## Original artwork and delivery
 
-Edit the HTML parts rather than the generated `dist/index.html`. The build joins HTML only; `dist/assets/` contains the images the preview serves. Preserve the untouched originals in both `assets/figma-originals/` and `dist/assets/`. This version serves the full original PNG/JPEG files at the user's request for clarity, without lossy conversion or file resizing. These raster assets total 49,922,172 bytes; below-fold product imagery uses lazy loading. The 390 × 794-pixel source hero phone renders at 350 pixels wide on desktop, 300 pixels on mobile and 280 pixels on the narrowest screens. Its conversation is rendered as HTML above the original screen area, keeping the text sharp without inventing additional raster detail. Image provenance is recorded in [ASSETS.md](ASSETS.md).
+Original PNG/JPEG files remain unchanged in `assets/figma-originals/` and `dist/assets/`. The active page serves WebP derivatives in `dist/assets/web/`; these are lossless encodings of native or appropriately sized source pixels. The nine selected assets are 65.7% smaller in aggregate. Report/cycle phones are 700px wide for high-density delivery; other phone art retains native dimensions. Full details and provenance are in `ASSETS.md` and the generated image manifest.
 
-## Add live destinations later
+The hero phone remains 350px wide on desktop, 300px on mobile and 280px on narrow screens. The conversation is HTML above the original handset to keep its text sharp.
 
-The user deferred App Store, Google Play and enquiry URLs. They remain `null` in `dist/config.js`:
+## Interactions and content boundaries
 
-```js
-window.ORB_CONFIG = {
-  appStoreUrl: null,
-  googlePlayUrl: null,
-  enquiryUrl: null
-};
-```
+Day tabs support arrows, Home and End; all examples remain readable without JavaScript. Native FAQ disclosures and health-tool explanations remain usable without animation. Context scenes and day changes animate only after a visitor action. All motion respects reduced-motion settings. The mobile download bar appears after the hero and hides at the final download section.
 
-Replace these values with the approved HTTPS destinations when available. Until then, download and enquiry controls clearly identify their unavailable destinations in the preview. Full guide, plan, service and policy pages are not supplied; their controls open explanatory preview dialogs rather than invented URLs or documents.
+Product examples are illustrative. Voice logging never requests microphone access or saves a workout. The page does not connect devices, collect health information, provide live AI responses or process subscriptions. PDF-described family/professional features are presented with plan and availability qualifications. No prices, trials, user numbers or testimonials are invented.
 
-## Illustrative interactions
+## Pending live destinations
 
-The navigation, guide-card rail, FAQ disclosures, dialogs, conversation replay, voice-entry review and information selector operate locally in the browser. The hero handset and its sharp HTML conversation settle once. The two surrounding illustrations enter with a small vertical settle; the wave field traces once and its rim briefly illuminates. A single light packet travels along each desktop connection toward Orb. These finite hero effects finish within 2.4 seconds, without continuous spinning, floating or flashing. On smaller screens the connections are omitted and the two illustrations animate as they enter view. Product phones settle once and lift slightly on pointer hover or keyboard focus. The original coral Orb has a short breathing effect and a waveform response, with another response when the voice demo is played. Effects finish at their resting layout positions, cancel when the tab is hidden, and respect changes to reduced-motion preferences. Content remains visible without animation, and no effect intercepts scrolling. All six product cards are visible; there is no feature tab switcher. Their phone screens use illustrative artwork from the original design, while the Explore buttons open preview details. The hero conversation and its input placeholder are illustrative, and the separate modal supports replay. The voice demo uses the supplied example text; it does not request microphone access, call an AI service or save a workout. The information selector does not connect a device, upload reports or store health information. Device compatibility is explicitly unconfirmed until a supported-integration mapping is provided; the original device-brand panel is design artwork, not an independently verified compatibility list.
+The user deferred App Store and Google Play URLs. Both remain null in `dist/config.js`; download buttons show an honest store-selection preview with disabled unavailable destinations. Once approved HTTPS store links are added, the existing controls link to them. The website does not add a separate checkout because plans are selected inside Orb.
 
-Product examples and hub illustrations are labelled as illustrative. The gym image is now the original source artwork from Figma; its location has not been verified as an actual Cureocity facility. App availability, professional services, integrations and clinical workflows have not been validated by this design preview. Fonts load from Google Fonts, with system fallbacks if unavailable.
+Privacy, terms and data-request destinations have not been supplied. Their dialogs explicitly state that the full destination is not yet connected. Real plan pricing, exact inclusions, integration compatibility and product availability require confirmation before a public sales launch.
 
-## Deployment boundary
+## Hosting
 
-This directory is separate from the Cureocity Mind clinical application checkout. The `.openai/hosting.json` manifest identifies this standalone Sites project. Running `build`, `check` or `dev` does not deploy it, publish changes to the clinical application, run migrations or alter clinical data.
-
-Sites publication is a separate operation performed against the exact checked source version. Store-link configuration, private preview deployment and any later public launch are distinct steps.
+`.openai/hosting.json` retains the existing Sites project and static `dist` output. Publication is a separate Sites operation, with existing private audience preserved. Local build/browser verification does not establish app availability, purchase success or clinical readiness.

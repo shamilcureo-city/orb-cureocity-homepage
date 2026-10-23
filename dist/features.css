@@ -23,7 +23,7 @@
 .orb-source-workout .orb-source-phone{left:32%;width:81.39%}
 /* The planning pair retains the reference's white-to-midnight texture. */
 .orb-planning-showcase{position:relative;isolation:isolate;background:linear-gradient(180deg,#fff 0,#dfe8f3 110px,#95accd 200px,#435777 300px,#111a2e 550px,#080f1c 100%);padding:95px 0 150px;overflow:hidden;color:#08090b}
-.orb-planning-showcase::before{content:'';position:absolute;z-index:-2;inset:0;background:url('assets/figma-gradient.png') center/100% 100% no-repeat;transform:rotate(180deg);mix-blend-mode:multiply;opacity:.7}
+.orb-planning-showcase::before{content:'';position:absolute;z-index:-2;inset:0;background:url('assets/web/figma-gradient.webp') center/100% 100% no-repeat;transform:rotate(180deg);mix-blend-mode:multiply;opacity:.7}
 .orb-planning-showcase::after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,#fff 0,transparent 160px,#0b122127 430px,transparent 700px)}
 .orb-planning-intro{margin-bottom:82px}
 .orb-planning-intro h2{font-size:52px}
