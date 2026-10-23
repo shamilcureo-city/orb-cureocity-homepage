@@ -52,57 +52,6 @@
       });
     }
 
-    // One visible product panel, with keyboard-operable tabs.
-    const tabs = $$('button[data-feature]');
-    const panels = $$('[data-feature-panel]');
-    const compactTabs = window.matchMedia('(max-width: 980px)');
-    const tabList = tabs[0]?.closest('[role="tablist"]');
-    const updateTabOrientation = () => tabList?.setAttribute('aria-orientation', compactTabs.matches ? 'horizontal' : 'vertical');
-    updateTabOrientation();
-    compactTabs.addEventListener('change', updateTabOrientation);
-    function activateFeature(value, focus = false) {
-      const selected = tabs.find(tab => tab.dataset.feature === value);
-      if (!selected) return;
-      tabs.forEach(tab => {
-        const active = tab === selected;
-        tab.setAttribute('role', 'tab');
-        tab.setAttribute('aria-selected', String(active));
-        tab.tabIndex = active ? 0 : -1;
-        tab.classList.toggle('is-active', active);
-      });
-      panels.forEach(panel => {
-        const active = panel.dataset.featurePanel === value;
-        panel.hidden = !active;
-        panel.classList.toggle('is-active', active);
-      });
-      if (focus) selected.focus();
-    }
-    tabs.forEach((tab, index) => {
-      const panel = panels.find(item => item.dataset.featurePanel === tab.dataset.feature);
-      tab.id ||= `feature-tab-${tab.dataset.feature}`;
-      if (panel) {
-        panel.id ||= `feature-panel-${tab.dataset.feature}`;
-        panel.setAttribute('role', 'tabpanel');
-        panel.setAttribute('aria-labelledby', tab.id);
-        panel.tabIndex = 0;
-        tab.setAttribute('aria-controls', panel.id);
-      }
-      tab.addEventListener('click', () => activateFeature(tab.dataset.feature));
-      tab.addEventListener('keydown', (event) => {
-        let next;
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabs.length;
-        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + tabs.length) % tabs.length;
-        if (event.key === 'Home') next = 0;
-        if (event.key === 'End') next = tabs.length - 1;
-        if (next !== undefined) {
-          event.preventDefault();
-          activateFeature(tabs[next].dataset.feature, true);
-        }
-      });
-    });
-    if (tabs.length) activateFeature(tabs.find(tab => tab.getAttribute('aria-selected') === 'true')?.dataset.feature || tabs[0].dataset.feature);
-    $$('[data-select-feature]').forEach(link => link.addEventListener('click', () => activateFeature(link.dataset.selectFeature)));
-
     // Replay only the labelled illustrative conversation already on the page.
     const conversation = $('#orb-conversation');
     const demoButtons = $$('[data-demo-play]');
