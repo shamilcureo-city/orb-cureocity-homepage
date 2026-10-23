@@ -1,5 +1,9 @@
 /* Motion is an enhancement: every image and all copy are visible without JS.
    Entrance effects run once in motion.js, then release their styles entirely. */
+.signal-chart .signal-bar { transform-box: fill-box; transform-origin: left center; }
+[data-signal="activity"] .signal-bar { transform-origin: center bottom; }
+.voice-wave-bar { transform-origin: center; }
+.hero-connections .signal-pulse { opacity: 0; stroke-dasharray: .08 .92; }
 @media (prefers-reduced-motion: no-preference) {
   .btn,
   .orb-feature-button,
@@ -26,6 +30,10 @@
     transition: translate 240ms cubic-bezier(.22, 1, .36, 1);
   }
 
+  .orb-source-phone {
+    transition: translate 550ms cubic-bezier(.22, 1, .36, 1);
+  }
+
   .lower-faq-list summary > span {
     transition: transform 200ms ease;
   }
@@ -33,6 +41,11 @@
 
 /* Hover effects are restricted to actual pointing devices, never sticky taps. */
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .orb-feature-card:hover .orb-source-phone,
+  .orb-feature-card:focus-within .orb-source-phone {
+    translate: 0 -7px;
+  }
+
   .text-link:hover > span[aria-hidden] {
     translate: 2px -2px;
   }
@@ -48,7 +61,8 @@
   .orb-feature-button,
   .store-links button,
   .device-options label,
-  .source-options label {
+  .source-options label,
+  .orb-source-phone {
     transition: none;
   }
 

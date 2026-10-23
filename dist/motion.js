@@ -39,6 +39,7 @@
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const compact = window.matchMedia('(max-width: 720px)');
+    const stackedSignals = window.matchMedia('(max-width: 900px)');
     const active = new Map();
     const entrances = new Map();
     const easeOut = 'cubic-bezier(.22, 1, .36, 1)';
@@ -118,44 +119,120 @@
 
     const heroPhone = document.querySelector('.hero-phone-shell');
     enterOnce(heroPhone, () => {
+      // The phone stays at native CSS resolution. Only its position settles.
       animate(heroPhone, [
-        { translate: `0 ${compact.matches ? 18 : 28}px` },
+        { translate: `0 ${compact.matches ? 16 : 24}px` },
         { translate: '0 0' }
-      ], { duration: 1300 });
+      ], { duration: 1250 });
+      const aura = document.querySelector('.hero-aura');
+      animate(aura, [
+        { scale: '.96', opacity: .65 },
+        { scale: '1.035', opacity: 1, offset: .45 },
+        { scale: '1', opacity: 1 }
+      ], { duration: 3600, easing: 'cubic-bezier(.45, 0, .55, 1)' });
+    });
 
-      document.querySelectorAll('.hero-data-card').forEach((card, index) => {
+    function drawSignalChart(card, delay = 0) {
+      card.querySelectorAll('.signal-stroke').forEach((stroke, index) => {
+        const ring = stroke.classList.contains('signal-ring');
+        animate(stroke, [
+          { strokeDasharray: ring ? '0 1' : '1', strokeDashoffset: ring ? '0' : '1' },
+          { strokeDasharray: ring ? '.7 .3' : '1', strokeDashoffset: '0' }
+        ], { duration: 1200, delay: delay + index * 70 });
+      });
+      card.querySelectorAll('.signal-bar').forEach((bar, index) => {
+        animate(bar, [
+          { scale: card.dataset.signal === 'activity' ? '1 .28' : '.28 1' },
+          { scale: '1 1' }
+        ], { duration: 850, delay: delay + index * 45 });
+      });
+    }
+
+    const signalPaths = [...document.querySelectorAll('.hero-connections .signal-path')];
+    const signalPulses = [...document.querySelectorAll('.hero-connections .signal-pulse')];
+    document.querySelectorAll('.hero-data-card').forEach((card, index) => {
+      enterOnce(card, () => {
+        const delay = stackedSignals.matches ? (index % 3) * 65 : (index % 2) * 80;
+        const restingTranslate = getComputedStyle(card).translate;
+        const [restX, restY = 0] = restingTranslate === 'none'
+          ? [0, 0] : restingTranslate.split(' ').map(value => parseFloat(value) || 0);
+        const shiftX = stackedSignals.matches ? 0 : index % 2 ? -18 : 18;
         animate(card, [
-          { opacity: .25 },
-          { opacity: 1 }
-        ], { duration: 850, delay: 120 + index * 65 });
+          { translate: `${restX + shiftX}px ${restY + (stackedSignals.matches ? 12 : 8)}px` },
+          { translate: `${restX}px ${restY}px` }
+        ], { duration: 1050, delay });
+        drawSignalChart(card, delay + 150);
+        if (!stackedSignals.matches) {
+          animate(signalPaths[index], [
+            { strokeDasharray: '1', strokeDashoffset: '1' },
+            { strokeDasharray: '1', strokeDashoffset: '0' }
+          ], { duration: 950, delay: delay + 180 });
+          // Two finite light packets travel toward Orb. The static connection
+          // remains visible when these finish, even with JavaScript disabled.
+          animate(signalPulses[index], [
+            { strokeDashoffset: '1', opacity: 0 },
+            { opacity: .95, offset: .12 },
+            { opacity: .95, offset: .78 },
+            { strokeDashoffset: '-.08', opacity: 0 }
+          ], { duration: 1750, iterations: 2, delay: delay + 400, easing: 'linear' });
+        }
       });
     });
 
-    // Only the product artwork moves. Card edges, copy, and buttons hold their
-    // reference positions, making paired cards feel coordinated without a
-    // generic whole-page reveal treatment.
+    // Only the original product artwork settles. Card edges, copy, and buttons
+    // hold their positions; independent rotate/translate preserve source crops.
     document.querySelectorAll('.orb-phone-stage').forEach((stage, index) => {
       const phone = stage.querySelector('.orb-source-phone');
       if (!phone) return;
       enterOnce(phone, () => animate(phone, [
-        { translate: `0 ${compact.matches ? 22 : 34}px` },
-        { translate: '0 0' }
-      ], { duration: 1050, delay: compact.matches ? 0 : (index % 2) * 95 }));
+        {
+          translate: `0 ${compact.matches ? 22 : 32}px`,
+          rotate: `${(index % 2 ? 1 : -1) * (compact.matches ? .35 : .75)}deg`
+        },
+        { translate: '0 0', rotate: '0deg' }
+      ], { duration: 1250, delay: compact.matches ? 0 : (index % 2) * 100 }));
     });
 
     const voiceOrb = document.querySelector('.voice-visual img');
+    const voiceWaveform = document.querySelector('.voice-waveform');
+    let wavePlayed = false;
+    function pulseWaveform(interactive = false) {
+      if (!voiceWaveform || !enabled() || !onScreen(voiceWaveform)) return;
+      if (!interactive && wavePlayed) return;
+      wavePlayed = true;
+      voiceWaveform.querySelectorAll('.voice-wave-bar').forEach((bar, index) => {
+        animate(bar, [
+          { scale: '1 .45' },
+          { scale: '1 1', offset: .25 },
+          { scale: `1 ${index % 3 === 0 ? '.35' : '.6'}`, offset: .55 },
+          { scale: '1 1' }
+        ], {
+          duration: interactive ? 700 : 900,
+          delay: index * 30,
+          iterations: interactive ? 1 : 3,
+          easing: 'ease-in-out'
+        });
+      });
+    }
+    enterOnce(voiceWaveform, () => pulseWaveform());
     function breatheOrb(interactive = false) {
       if (!voiceOrb || !onScreen(voiceOrb)) return;
+      pulseWaveform(interactive);
+      const restFilter = getComputedStyle(voiceOrb).filter;
       animate(voiceOrb, [
-        { scale: '1', translate: '0 0', filter: 'drop-shadow(0 0 0 rgba(255, 83, 112, 0))' },
+        { scale: '1', translate: '0 0', filter: restFilter },
         {
-          scale: interactive ? '1.04' : '1.025',
-          translate: `0 ${interactive ? -4 : -8}px`,
-          filter: 'drop-shadow(0 0 24px rgba(255, 83, 112, .15))',
+          scale: interactive ? '1.045' : '1.035',
+          translate: `0 ${interactive ? -4 : -7}px`,
+          filter: 'drop-shadow(0 0 28px rgba(255, 83, 112, .3))',
           offset: .48
         },
-        { scale: '1', translate: '0 0', filter: 'drop-shadow(0 0 0 rgba(255, 83, 112, 0))' }
-      ], { duration: interactive ? 1100 : 3200, easing: 'cubic-bezier(.45, 0, .55, 1)' });
+        { scale: '1', translate: '0 0', filter: restFilter }
+      ], {
+        duration: interactive ? 1100 : 1800,
+        iterations: interactive ? 1 : 2,
+        easing: 'cubic-bezier(.45, 0, .55, 1)'
+      });
     }
     enterOnce(voiceOrb, () => breatheOrb());
 

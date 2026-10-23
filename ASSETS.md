@@ -33,6 +33,12 @@ These files are reused from the design supplied by the user. This record documen
 
 `dist/compact.css` controls the smaller upper-page composition and sharp HTML hero screen. `dist/compact-lower.css` controls smaller lower-page typography, spacing, cards and artwork. These CSS adjustments change display dimensions only; they do not alter any original image bytes.
 
+## V6 vector graphics and motion
+
+Six decorative health-signal illustrations are authored inline as SVG in `parts/main.html`, with labels for reports, sleep, meals, heart-rate trends, activity and health history. These are schematic charts without real measurements, patient data or live integrations. `dist/graphics.css`, loaded after the compact stylesheets and before motion styles, gives the cards clear contrast beside the desktop phone and arranges them in a compact three-column, two-row grid beneath it at widths of 900 pixels and below. The fine desktop connector paths are also authored SVG. None of these additions replaces or modifies the original raster files or the sharp HTML conversation inside the original handset frame.
+
+The original coral voice-Orb PNG is retained, with a decorative waveform and glow supplied by HTML/CSS. `dist/motion.js` and `dist/motion.css` animate the signal cards, chart strokes and connectors in finite sequences shorter than 4.5 seconds, settle the original product phones, add a slight pointer-hover/focus lift, and provide the Orb and waveform response. Motion respects reduced-motion preferences and cancels when the tab is hidden; the static artwork and content remain visible.
+
 ## Superseded generated replacements
 
 Before the browser inspector source downloads became available, the two replacement illustrations below were generated on 2026-10-23 with the built-in `image_gen.imagegen` tool. They remain documented for provenance and are superseded by the corresponding `figma-` source assets. No external image API or CLI fallback was used.
