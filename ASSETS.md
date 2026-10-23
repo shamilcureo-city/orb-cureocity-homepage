@@ -2,7 +2,7 @@
 
 ## Original Figma assets used in the current design
 
-The original assets below were downloaded or exported on 2026-10-23 through the browser inspector in the user-supplied Figma file, `AwydaKZ3UdxjHtLi1rrhBX`, from the homepage beginning at node `6031:51867`. The Figma connector could not retrieve the view-only file, but the browser's inspect controls provided the source images and frame exports. Browser screenshots in `/private/tmp/orb-ref*.png` were used for visual comparison; the website now serves the untouched uploaded originals listed below, without resizing or lossy conversion.
+The original assets below were downloaded or exported on 2026-10-23 through the browser inspector in the user-supplied Figma file, `AwydaKZ3UdxjHtLi1rrhBX`, from the homepage beginning at node `6031:51867`. The Figma connector could not retrieve the view-only file, but the browser's inspect controls provided the source images and frame exports. Browser screenshots in `/private/tmp/orb-ref*.png` were used for visual comparison; the website now serves the untouched uploaded original files listed below, without file resizing or lossy conversion. Their rendered CSS dimensions are smaller in the v5 compact layout.
 
 Paths below are relative to the project root. All 17 raster originals are preserved unchanged under `assets/figma-originals/` and copied byte-for-byte into `dist/assets/`. Their total size is 49,922,172 bytes. The logo SVG is also served unchanged. SHA-256/byte comparisons confirmed all served rasters match the preserved originals. Earlier WebP derivatives have been superseded.
 
@@ -12,7 +12,7 @@ Dimensions below show the original and served pixel dimensions; the SVG dimensio
 | --- | --- | --- | --- | --- |
 | `dist/assets/figma-logo.svg` | Unchanged SVG | 178 × 36 | `6120:105584` | Exported `Logo SVG` brand lockup. |
 | `assets/figma-originals/figma-gradient.png` | `dist/assets/figma-gradient.png` | 1760 × 2352 (unchanged) | `6129:106084` | Original navy-to-white background artwork. |
-| `assets/figma-originals/figma-hero-phone.png` | `dist/assets/figma-hero-phone.png` | 390 × 794 (unchanged) | `6117:105402` | Original `Mask group 1` handset, displayed untouched. Revised conversation copy is in a separate accessible demo dialog. |
+| `assets/figma-originals/figma-hero-phone.png` | `dist/assets/figma-hero-phone.png` | 390 × 794 (unchanged file) | `6117:105402` | Original `Mask group 1` handset frame, rendered at 350px wide on desktop, 300px on mobile and 280px on the narrowest screens. An HTML screen overlay displays the supplied conversation and today's focus sharply. The separate accessible replay dialog is retained. |
 | `assets/figma-originals/figma-report-phone.png` | `dist/assets/figma-report-phone.png` | 2014 × 4096 (unchanged) | `6129:105847` | Original Biomarkers product preview. |
 | `assets/figma-originals/figma-daily-phone.png` | `dist/assets/figma-daily-phone.png` | 450 × 920 (unchanged) | `6129:105879` | Original Readiness product preview. |
 | `assets/figma-originals/figma-food-phone.png` | `dist/assets/figma-food-phone.png` | 450 × 920 (unchanged) | `6129:105866` | Original meal-scanning product preview. |
@@ -29,7 +29,9 @@ Dimensions below show the original and served pixel dimensions; the SVG dimensio
 | `assets/figma-originals/figma-gym.png` | `dist/assets/figma-gym.png` | 896 × 1200 (unchanged) | `6095:104999` | Original warm wooden gym artwork with rowers and exercise bikes. |
 | `assets/figma-originals/figma-guide.png` | `dist/assets/figma-guide.png` | 3058 × 4096 (unchanged) | `6129:105812` | Original split wearable-band and ring artwork for the guides area. |
 
-These files are reused from the design supplied by the user. This record documents their source, not their ownership or licence. It does not verify the pictured facility as a real Cureocity location, the images as photographs, device compatibility, clinical claims, or product availability. Phone screens are illustrative source artwork; the revised conversation and today's-focus content are implemented in a separate HTML dialog and identified as an illustrative example.
+These files are reused from the design supplied by the user. This record documents their source, not their ownership or licence. It does not verify the pictured facility as a real Cureocity location, the images as photographs, device compatibility, clinical claims, or product availability. The six feature-phone screens remain illustrative source artwork. The hero instead displays the supplied revised conversation and today's-focus content as HTML over the source screen area, leaving the original handset frame visible and the source file unchanged. The hero and retained replay dialog identify the conversation as an illustrative example.
+
+`dist/compact.css` controls the smaller upper-page composition and sharp HTML hero screen. `dist/compact-lower.css` controls smaller lower-page typography, spacing, cards and artwork. These CSS adjustments change display dimensions only; they do not alter any original image bytes.
 
 ## Superseded generated replacements
 
