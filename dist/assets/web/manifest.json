@@ -127,6 +127,20 @@
       "bytes": 2929470,
       "savingsPercent": 17.7,
       "sha256Original": "5af94dbb56577fb73ea1eed4447a92e0c86ee395dcb0c6b2ba14321c5c666064"
+    },
+    {
+      "name": "guide",
+      "original": "assets/figma-originals/figma-guide.png",
+      "source": "dist/assets/figma-guide.png",
+      "output": "dist/assets/web/figma-guide.webp",
+      "sourceWidth": 3058,
+      "sourceHeight": 4096,
+      "width": 900,
+      "height": 1205,
+      "sourceBytes": 21187705,
+      "bytes": 975882,
+      "savingsPercent": 95.4,
+      "sha256Original": "0f800c017b5d8b550250d92606655ff2e8e462af439058107dd93e1f99e82b63"
     }
   ]
 }

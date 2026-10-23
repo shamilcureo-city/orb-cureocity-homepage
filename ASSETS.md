@@ -96,3 +96,9 @@ Original generated output: `/Users/mohammedshamil/.codex/generated_images/01a166
 
 The generated source outputs were copied into the project and left intact at their original locations. The original Figma files remain untouched in `dist/assets/` and `assets/figma-originals/`. The unchanged logo SVG is used directly, while the v8 delivery derivatives below preserve the original artwork at sizes appropriate to the page.
 
+
+## V9 product detail and wearable-owner story
+
+The original wearable lifestyle photograph `dist/assets/figma-guide.png` is now used in the Orb value section. Its derivative `dist/assets/web/figma-guide.webp` is 900×1205 pixels, 975,882 bytes, a lossless WebP encoding after proportional Lanczos resizing from the unchanged 3058×4096, 21,187,705-byte PNG. Original hash and delivery dimensions are recorded in the manifest. CSS crops its composition responsively. The artwork is not regenerated.
+
+New HTML/CSS illustrations explain preferences and equipment informing plans, a food log moving into the daily record, report sources/history, glucose context without numeric readings, and dietitian plan-to-follow-up continuity. They are labelled illustrative; they contain no live personal records or fabricated clinical outcomes. Existing original phones and the coral Orb artwork are reused.
