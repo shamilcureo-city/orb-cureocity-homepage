@@ -1,0 +1,235 @@
+/* Original Figma composition with the approved, expanded homepage copy. */
+.orb-showcase-wrap,
+.lower-guides > .container {
+  width: min(1035px, calc(100% - 64px));
+}
+.orb-showcase-grid { gap: 26px; }
+.orb-feature-card {
+  position: relative;
+  height: 883px;
+  border-radius: 24px;
+  background: #f0f0f0;
+}
+.orb-feature-copy {
+  padding: 50px 42px 0;
+}
+.orb-feature-copy h3 {
+  font-size: 37.85px;
+  line-height: 1.08;
+}
+.orb-feature-copy > p,
+.orb-plan-card .orb-feature-copy > p {
+  max-width: 415px;
+  margin-top: 18px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.orb-feature-button {
+  min-height: 54px;
+  margin-top: 22px;
+  padding: 14px 25px;
+  font-size: 17px;
+}
+/* Pin images to the artboard rather than the varying text block height. */
+.orb-phone-stage {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+  --phone-top: 374px;
+}
+.orb-source-phone { top: var(--phone-top); }
+.orb-screen-caption {
+  top: calc(var(--phone-top) - 25px);
+  font-size: 11px;
+}
+.orb-source-report { --phone-top: 414px; }
+.orb-source-cycle { --phone-top: 364px; }
+.orb-source-food { --phone-top: 374.6px; }
+.orb-source-daily { --phone-top: 370.83px; }
+.orb-source-meal { --phone-top: 354.71px; }
+.orb-source-workout { --phone-top: 352.61px; }
+.orb-source-report .orb-source-phone { left: 22.4%; width: 56.1%; }
+.orb-source-cycle .orb-source-phone { left: 38.9%; width: 87.8%; }
+.orb-source-food .orb-source-phone { left: 15%; width: 70.8%; }
+.orb-source-daily .orb-source-phone { left: 28.9%; width: 91.4%; }
+.orb-source-meal .orb-source-phone { left: 13.5%; width: 72.86%; }
+.orb-source-workout .orb-source-phone { left: 32%; width: 81.39%; }
+
+/* The source guide rail shows two full cards and part of the third. */
+.lower-guides .lower-section-intro { margin-bottom: 48px; }
+.lower-guides .lower-section-intro > .section-heading { max-width: 650px; }
+.lower-guides .lower-section-intro > p { max-width: 300px; font-size: 18px; }
+.lower-guide-grid {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: 35.2%;
+  gap: 28px;
+}
+.lower-guide {
+  padding: 32px 24px 0;
+  border-radius: 30px;
+  background: #f5f4f3;
+}
+.lower-guide h3 {
+  min-height: 65px;
+  margin-bottom: 14px;
+  font-size: 27px;
+  line-height: 1.2;
+}
+.lower-guide p {
+  min-height: 108px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.lower-guide > .text-link {
+  align-self: flex-end;
+  min-height: 40px;
+  margin-top: auto;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.lower-guide > .text-link > span {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d4d3d3;
+  border-radius: 50%;
+  font-size: 23px;
+}
+.lower-guide-art {
+  width: calc(100% + 48px);
+  height: 195px;
+  margin: 0 0 0 -24px;
+}
+.lower-guide-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+.lower-guide-pagination { margin-top: 26px; }
+
+/* One continuous original navy texture starts behind the coral voice orb. */
+.voice-section {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding-bottom: 0;
+}
+.voice-section .section-heading { position: relative; }
+.voice-demo-panel { margin-top: 55px; }
+.voice-visual { width: min(530px, 100%); height: auto; aspect-ratio: 1; }
+.voice-example { margin-top: 16px; color: #29374d; }
+.voice-caption { color: #42516a; }
+.voice-result { position: relative; z-index: 2; }
+.orb-planning-showcase {
+  position: relative;
+  z-index: 0;
+  overflow: visible;
+  background: transparent;
+  padding-top: 95px;
+  padding-bottom: 150px;
+}
+.orb-planning-showcase::before {
+  inset: -640px 0 0;
+  z-index: -1;
+  background: url('assets/figma-gradient.png') center / 100% 100% no-repeat;
+  transform: rotate(180deg);
+  opacity: 1;
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+.orb-planning-showcase::after { display: none; }
+.orb-planning-intro { margin-bottom: 82px; }
+.orb-plan-card {
+  height: 875px;
+  border: 1px solid #ffffff40;
+  background: linear-gradient(145deg, #ffffff24, #ffffff12 65%, #ffffff1f);
+  box-shadow: inset 0 1px 1px #ffffff20;
+}
+.orb-plan-card .orb-feature-copy { padding-top: 48px; }
+.orb-plan-card .orb-feature-copy > p { color: #dce1eb; }
+
+@media (max-width: 1100px) {
+  .orb-feature-copy,
+  .orb-plan-card .orb-feature-copy { padding: 44px 28px 0; }
+  .orb-feature-copy h3 { font-size: 34px; }
+  .orb-feature-copy > p,
+  .orb-plan-card .orb-feature-copy > p { font-size: 17px; }
+  .orb-feature-button { font-size: 15px; padding-inline: 21px; }
+  .lower-guide-grid { grid-auto-columns: 36%; gap: 24px; }
+  .lower-guide { padding: 27px 22px 0; }
+  .lower-guide h3 { font-size: 25px; min-height: 60px; }
+  .lower-guide p { font-size: 16px; min-height: 96px; }
+  .lower-guide-art { width: calc(100% + 44px); margin-left: -22px; }
+}
+@media (min-width: 581px) and (max-width: 800px) {
+  .orb-feature-card { height: 820px; }
+  .orb-feature-copy,
+  .orb-plan-card .orb-feature-copy { padding: 38px 22px 0; }
+  .orb-feature-copy h3 { font-size: 28px; }
+  .orb-feature-copy > p,
+  .orb-plan-card .orb-feature-copy > p { font-size: 16px; line-height: 1.5; }
+  .orb-feature-button { min-height: 49px; font-size: 13px; padding: 12px 16px; gap: 8px; }
+  .orb-phone-stage { --phone-top: 385px; }
+  .orb-source-report { --phone-top: 414px; }
+  .orb-source-meal,
+  .orb-source-workout { --phone-top: 405px; }
+  .orb-planning-showcase::before { inset-block-start: -575px; }
+  .lower-guide-grid { grid-auto-columns: 46%; gap: 20px; }
+  .lower-guide h3 { min-height: 60px; font-size: 24px; }
+  .lower-guide p { font-size: 16px; }
+}
+@media (max-width: 580px) {
+  .orb-showcase-wrap,
+  .lower-guides > .container { width: calc(100% - 32px); }
+  .orb-showcase-grid { grid-template-columns: 1fr; gap: 24px; }
+  .orb-feature-card { height: 790px; border-radius: 24px; }
+  .orb-plan-card { height: 830px; }
+  .orb-feature-copy,
+  .orb-plan-card .orb-feature-copy { padding: 39px 24px 0; }
+  .orb-feature-copy h3 { font-size: 32px; }
+  .orb-feature-copy > p,
+  .orb-plan-card .orb-feature-copy > p { max-width: 345px; font-size: 17px; line-height: 1.55; margin-top: 18px; }
+  .orb-feature-button { font-size: 14px; min-height: 51px; margin-top: 22px; padding: 14px 20px; }
+  .orb-phone-stage { --phone-top: 365px; }
+  .orb-source-report { --phone-top: 385px; }
+  .orb-source-meal,
+  .orb-source-workout { --phone-top: 395px; }
+  .orb-source-report .orb-source-phone { left: 15%; width: 70%; }
+  .orb-source-food .orb-source-phone,
+  .orb-source-meal .orb-source-phone { left: 12%; width: 77%; }
+  .orb-screen-caption { font-size: 10px; }
+  .voice-demo-panel { margin-top: 40px; }
+  .voice-visual { width: min(390px, 100%); }
+  .voice-example { font-size: 16px; }
+  .voice-caption { font-size: 11px; }
+  .orb-planning-showcase { padding-top: 66px; padding-bottom: 95px; }
+  .orb-planning-showcase::before { inset-block-start: -490px; }
+  .orb-planning-intro { margin-bottom: 60px; }
+  .lower-guides .lower-section-intro { margin-bottom: 32px; }
+  .lower-guides .lower-section-intro > p { max-width: 100%; font-size: 16px; }
+  .lower-guide-grid { grid-auto-columns: 86%; gap: 18px; }
+  .lower-guide { padding: 25px 24px 0; border-radius: 26px; }
+  .lower-guide h3 { min-height: 60px; font-size: 25px; }
+  .lower-guide p { min-height: 96px; font-size: 16px; }
+  .lower-guide > .text-link { font-size: 13px; margin-bottom: 18px; }
+  .lower-guide-art { width: calc(100% + 48px); margin-left: -24px; height: 190px; }
+}
+@media (max-width: 360px) {
+  .orb-feature-copy,
+  .orb-plan-card .orb-feature-copy { padding-inline: 18px; }
+  .orb-feature-copy h3 { font-size: 29px; }
+  .orb-feature-copy > p,
+  .orb-plan-card .orb-feature-copy > p { font-size: 16px; }
+  .orb-feature-button { font-size: 13px; padding-inline: 17px; }
+  .orb-phone-stage { --phone-top: 375px; }
+  .orb-source-meal,
+  .orb-source-workout { --phone-top: 414px; }
+  .lower-guide h3 { font-size: 23px; }
+  .lower-guide p { font-size: 15px; }
+  .orb-planning-showcase::before { inset-block-start: -430px; }
+}

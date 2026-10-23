@@ -1,0 +1,65 @@
+/* Motion is an enhancement: every image and all copy are visible without JS.
+   Entrance effects run once in motion.js, then release their styles entirely. */
+@media (prefers-reduced-motion: no-preference) {
+  .btn,
+  .orb-feature-button,
+  .store-links button {
+    transition: background-color 180ms ease, border-color 180ms ease,
+      box-shadow 220ms ease, transform 220ms ease, scale 160ms ease;
+  }
+
+  .btn:active,
+  .orb-feature-button:active,
+  .store-links button:active {
+    scale: .97;
+  }
+
+  .device-options label,
+  .source-options label {
+    transition: background-color 180ms ease, color 180ms ease,
+      border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .text-link > span[aria-hidden],
+  .btn .icon:has(use[href="#i-arrow"]),
+  .orb-feature-button .icon:has(use[href="#i-arrow"]) {
+    transition: translate 240ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .lower-faq-list summary > span {
+    transition: transform 200ms ease;
+  }
+}
+
+/* Hover effects are restricted to actual pointing devices, never sticky taps. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .text-link:hover > span[aria-hidden] {
+    translate: 2px -2px;
+  }
+
+  .btn:hover .icon:has(use[href="#i-arrow"]),
+  .orb-feature-button:hover .icon:has(use[href="#i-arrow"]) {
+    translate: 3px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .orb-feature-button,
+  .store-links button,
+  .device-options label,
+  .source-options label {
+    transition: none;
+  }
+
+  .btn:active,
+  .orb-feature-button:active,
+  .store-links button:active {
+    scale: none;
+  }
+
+  .btn:hover,
+  .orb-feature-button:hover {
+    transform: none;
+  }
+}

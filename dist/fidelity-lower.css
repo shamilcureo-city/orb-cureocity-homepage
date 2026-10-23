@@ -1,0 +1,224 @@
+/* Match the uploaded desktop composition while allowing the revised copy to flow. */
+.lower-blueprint { padding-block: 100px 80px; }
+.lower-blueprint-grid {
+  grid-template-columns: minmax(0, 1fr) 352px;
+  gap: 64px;
+  align-items: start;
+}
+.lower-blueprint-grid .lower-copy .section-heading h2 {
+  font-size: 40px;
+  line-height: 1.15;
+  max-width: 640px;
+}
+.lower-blueprint .lower-copy p {
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+.lower-blueprint .lower-copy .lower-lead { font-size: 18px; margin-top: 24px; }
+.lower-blueprint .lower-list-title { margin: 22px 0 10px; }
+.lower-blueprint .lower-benefits { gap: 7px; }
+.lower-blueprint .lower-benefits li { font-size: 15px; }
+.lower-blueprint .lower-actions { margin-top: 26px; gap: 18px; }
+.lower-blueprint .lower-actions .btn { min-height: 48px; padding: 12px 24px; font-size: 15px; }
+.lower-blueprint-visual { max-width: 352px; }
+.lower-blueprint-visual img {
+  height: auto;
+  aspect-ratio: 704 / 950;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* The reference uses shallow, side-by-side programme tiles. */
+.lower-programs { padding-bottom: 88px; }
+.lower-programs .lower-section-intro { gap: 48px; margin-bottom: 30px; }
+.lower-programs .lower-section-intro h2 { font-size: 38px; line-height: 1.15; }
+.lower-programs .lower-section-intro > p { font-size: 16px; max-width: 350px; }
+.lower-program-grid { gap: 20px; }
+.lower-program {
+  grid-template-columns: minmax(0, 1fr) 44%;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 16px;
+  padding: 20px 0 20px 22px;
+  min-height: 236px;
+  border: 1px solid #dedede;
+  border-radius: 20px;
+  background: #fff;
+}
+.lower-program-media { margin: -20px 0; }
+.lower-program h3 { font-size: 22px; line-height: 1.2; margin-bottom: 9px; }
+.lower-program p { font-size: 14px; line-height: 1.45; margin-bottom: 16px; }
+.lower-program .text-link { min-height: 42px; font-size: 12px; padding: 10px 13px; }
+.lower-program-media-weight img { height: 160%; top: -60%; object-position: 50% 80%; }
+.lower-program-media-glucose img { object-position: 61% 50%; }
+.lower-program-media-glp img { object-position: 50% 50%; }
+.lower-program-media-longevity img { object-position: 53% 50%; }
+
+/* Additional supplied sections retain the same quiet typography and white space. */
+.lower-care { padding-block: 88px; }
+.lower-care .lower-split { gap: 64px; }
+.lower-care .lower-copy .section-heading h2 { font-size: 42px; line-height: 1.15; }
+.lower-care .lower-copy p { font-size: 17px; margin-top: 20px; }
+.lower-care .lower-copy .lower-lead { font-size: 18px; }
+.lower-care-window { border-radius: 16px; background: #f6f6f6; box-shadow: none; }
+.lower-care-step strong { font-size: 14px; }
+.lower-mini-label { font-size: 11px; }
+.lower-small-pill { font-size: 10px; }
+.lower-example p { font-size: 14px; line-height: 1.5; }
+.lower-example > span { font-size: 12px; }
+.lower-plans { padding-block: 80px; }
+.lower-plan { min-height: 300px; padding: 26px; border-radius: 16px; }
+.lower-plan-icon { margin-bottom: 20px; }
+.lower-plan h3 { font-size: 25px; }
+.lower-faq { padding-block: 80px; }
+.lower-faq .section-heading h2 { font-size: 42px; }
+.lower-faq-grid { gap: 64px; }
+.lower-faq-list summary { padding-block: 21px; }
+.lower-privacy { padding-block: 35px; }
+
+/* The original gym image is 896 x 1200; never stretch or crop its full composition. */
+.lower-hubs { padding-top: 110px !important; padding-bottom: 100px !important; }
+.lower-hubs .lower-split {
+  grid-template-columns: 365px minmax(0, 1fr);
+  gap: 95px;
+  align-items: center;
+}
+.lower-hub-visual { max-width: 365px; align-self: center; }
+.lower-hub-visual img {
+  height: auto;
+  aspect-ratio: 896 / 1200;
+  object-fit: contain;
+  border-radius: 16px;
+}
+.lower-hubs .lower-copy .section-heading h2 { font-size: 42px; line-height: 1.15; }
+.lower-hubs .lower-copy p { font-size: 18px; line-height: 1.5; margin-top: 22px; }
+.lower-hubs .lower-actions { gap: 16px; margin-top: 27px; }
+.lower-hubs .lower-actions .btn { font-size: 15px; min-height: 48px; padding: 12px 23px; }
+.lower-hub-link { font-size: 13px; }
+
+/* One textured image continues across all three ending panels.
+   motion.js measures actual panel heights, so longer mobile copy cannot break the joins. */
+.lower-hubs, .lower-final-cta, .lower-footer {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  --ending-height: 2700px;
+  --ending-offset: 0px;
+}
+.lower-final-cta { --ending-offset: 700px; }
+.lower-footer { --ending-offset: 1220px; }
+.lower-hubs::before, .lower-final-cta::before, .lower-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("assets/figma-gradient.png");
+  background-repeat: no-repeat;
+  background-size: 100% var(--ending-height);
+  background-position: center calc(100% + var(--ending-offset));
+  transform: scaleY(-1);
+}
+.lower-final-cta { padding-top: 85px !important; padding-bottom: 105px !important; }
+.lower-final-cta h2 { font-size: 56px; line-height: 1.08; }
+.lower-final-cta p { color: #182b45; }
+.lower-footer { padding: 82px 0 54px; border-top-color: #ffffff29; }
+.lower-footer-brand { max-width: 700px; }
+.lower-footer-brand > p { max-width: 700px; font-size: 19px; line-height: 1.55; }
+.lower-footer-nav { gap: 36px; }
+.lower-footer-nav h3 { font-size: 17px; }
+.lower-footer-nav a, .lower-footer-nav button { font-size: 16px; }
+.lower-footer-bottom { margin-top: 42px; }
+
+@media (max-width: 1100px) {
+  .lower-blueprint-grid { grid-template-columns: minmax(0, 1fr) 32%; gap: 44px; }
+  .lower-blueprint-grid .lower-copy .section-heading h2 { font-size: 36px; }
+  .lower-blueprint .lower-copy p { font-size: 16px; }
+  .lower-blueprint .lower-copy .lower-lead { font-size: 17px; }
+  .lower-program { grid-template-columns: minmax(0, 1fr) 40%; column-gap: 14px; padding-left: 20px; }
+  .lower-program h3 { font-size: 21px; }
+  .lower-program p { font-size: 14px; }
+  .lower-program .text-link { font-size: 11px; }
+  .lower-hubs .lower-split { grid-template-columns: 34% minmax(0, 1fr); gap: 64px; }
+  .lower-hubs .lower-copy .section-heading h2 { font-size: 38px; }
+  .lower-hubs .lower-copy p { font-size: 17px; }
+}
+
+@media (max-width: 800px) {
+  .lower-blueprint, .lower-care, .lower-plans, .lower-faq { padding-block: 70px; }
+  .lower-care .lower-split { gap: 36px; }
+  .lower-care .lower-copy .section-heading h2 { font-size: 36px; }
+  .lower-blueprint-grid { grid-template-columns: minmax(0, 1fr) 32%; gap: 30px; }
+  .lower-blueprint-grid .lower-copy .section-heading h2 { font-size: 33px; }
+  .lower-blueprint .lower-actions { gap: 14px; }
+  .lower-blueprint .lower-actions .text-link { font-size: 13px; }
+  .lower-program-grid { gap: 16px; }
+  .lower-program { grid-template-columns: minmax(0, 1fr) 33%; padding-left: 17px; column-gap: 12px; }
+  .lower-program h3 { font-size: 20px; }
+  .lower-program .text-link { font-size: 11px; padding: 10px; }
+  .lower-plan { padding: 22px 19px; }
+  .lower-plan h3 { font-size: 22px; }
+  .lower-faq-grid { gap: 30px; }
+  .lower-faq .section-heading h2 { font-size: 36px; }
+  .lower-hubs { padding-top: 80px !important; padding-bottom: 75px !important; }
+  .lower-hubs .lower-split { grid-template-columns: 34% minmax(0, 1fr); gap: 36px; }
+  .lower-hubs .lower-copy .section-heading h2 { font-size: 33px; }
+  .lower-hubs .lower-copy p { font-size: 16px; }
+  .lower-hubs .lower-actions { gap: 12px; }
+  .lower-final-cta h2 { font-size: 48px; }
+  .lower-footer-brand > p { font-size: 17px; }
+  .lower-footer-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .lower-blueprint, .lower-care, .lower-plans, .lower-faq { padding-block: 62px; }
+  .lower-blueprint-grid { grid-template-columns: 1fr; gap: 34px; }
+  .lower-blueprint-grid .lower-copy .section-heading h2,
+  .lower-care .lower-copy .section-heading h2,
+  .lower-faq .section-heading h2 { font-size: 32px; }
+  .lower-blueprint-visual { width: min(100%, 320px); justify-self: center; }
+  .lower-blueprint .lower-copy p, .lower-care .lower-copy p { font-size: 15px; }
+  .lower-blueprint .lower-copy .lower-lead, .lower-care .lower-copy .lower-lead { font-size: 16px; }
+  .lower-blueprint .lower-benefits li { font-size: 14px; }
+  .lower-blueprint .lower-actions .btn { font-size: 14px; }
+  .lower-programs { padding-bottom: 62px; }
+  .lower-programs .lower-section-intro h2 { font-size: 32px; }
+  .lower-programs .lower-section-intro > p { font-size: 15px; }
+  .lower-program-grid { grid-template-columns: 1fr; gap: 16px; }
+  .lower-program { grid-template-columns: minmax(0, 1fr) 40%; min-height: 240px; padding: 20px 0 20px 18px; column-gap: 13px; }
+  .lower-program h3 { font-size: 22px; }
+  .lower-program p { font-size: 14px; }
+  .lower-program .text-link { font-size: 11px; padding: 10px 12px; }
+  .lower-care-step strong { font-size: 13px; }
+  .lower-mini-label { font-size: 10px; }
+  .lower-small-pill { font-size: 9px; }
+  .lower-example p { font-size: 14px; }
+  .lower-plan { min-height: 0; padding: 25px; }
+  .lower-hubs { padding-top: 66px !important; padding-bottom: 65px !important; }
+  .lower-hubs .lower-split { grid-template-columns: 1fr; gap: 34px; }
+  .lower-hub-visual { width: min(100%, 320px); justify-self: center; }
+  .lower-hubs .lower-copy .section-heading h2 { font-size: 32px; }
+  .lower-hubs .lower-copy p { font-size: 15px; }
+  .lower-hubs .lower-actions .btn { font-size: 14px; }
+  .lower-final-cta { padding-top: 65px !important; padding-bottom: 80px !important; }
+  .lower-final-cta h2 { font-size: 38px; }
+  .lower-final-cta p { font-size: 15px; line-height: 1.5; }
+  .lower-footer { padding: 58px 0 32px; }
+  .lower-footer-brand > p { font-size: 15px; }
+  .lower-footer-nav { gap: 34px 24px; }
+  .lower-footer-nav h3 { font-size: 14px; }
+  .lower-footer-nav a, .lower-footer-nav button { font-size: 13px; }
+}
+
+@media (max-width: 360px) {
+  .lower-program { grid-template-columns: minmax(0, 1fr) 34%; padding-left: 15px; column-gap: 11px; }
+  .lower-program h3 { font-size: 20px; }
+  .lower-program .text-link { font-size: 11px; padding: 10px; }
+  .lower-care-window { padding: 18px 12px; }
+  .lower-care-step { gap: 8px; }
+  .lower-care-step strong { font-size: 12px; }
+  .lower-small-pill { padding: 4px 6px; font-size: 8px; }
+  .lower-footer-nav { gap: 30px 20px; }
+  .lower-footer-nav h3 { font-size: 13px; }
+  .lower-footer-nav a, .lower-footer-nav button { font-size: 12px; }
+}

@@ -68,8 +68,10 @@
       guideControls.forEach((control, index) => control.setAttribute('aria-current', String(index === nearest)));
     }, { passive: true });
 
-    // Replay only the labelled illustrative conversation already on the page.
+    // Keep the original hero artwork untouched; replay revised copy in an accessible modal.
     const conversation = $('#orb-conversation');
+    const previewDialog = $('#hero-preview-dialog');
+    let previewTrigger = null;
     const demoButtons = $$('[data-demo-play]');
     const demoMessages = conversation ? $$('[data-message]', conversation) : [];
     let demoTimers = [];
@@ -96,7 +98,8 @@
       demoTimers.forEach(clearTimeout);
       demoTimers = [];
       conversation.tabIndex = -1;
-      scrollTo(conversation);
+      previewTrigger = button;
+      if (previewDialog && !previewDialog.open) previewDialog.showModal();
       conversation.focus({ preventScroll: true });
       demoMessages.forEach(message => message.classList.remove('demo-highlight', 'demo-read'));
       if (reducedMotion.matches) {
@@ -116,6 +119,18 @@
       });
       demoTimers.push(setTimeout(finishDemo, demoMessages.length * 850 + 600));
     }));
+
+    $('#hero-preview-close')?.addEventListener('click', () => previewDialog.close());
+    previewDialog?.addEventListener('close', () => {
+      finishDemo();
+      previewTrigger?.focus({ preventScroll: true });
+    });
+    previewDialog?.addEventListener('click', event => {
+      if (event.target !== previewDialog) return;
+      const rect = previewDialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) previewDialog.close();
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) finishDemo(); });
 
     // A local demonstration: no microphone access and no saved workout record.
     const voiceButton = $('[data-voice-demo]');
