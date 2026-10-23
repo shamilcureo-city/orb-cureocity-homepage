@@ -52,6 +52,22 @@
       });
     }
 
+    const guideRail = $('#guide-rail');
+    const guideCards = $$('[data-guide-card]');
+    const guideControls = $$('[data-guide-index]');
+    const guideTarget = card => Math.max(0, Math.min(card.offsetLeft - guideCards[0].offsetLeft - (guideRail.clientWidth - card.clientWidth) / 2, guideRail.scrollWidth - guideRail.clientWidth));
+    guideControls.forEach(button => button.addEventListener('click', () => {
+      const index = Number(button.dataset.guideIndex);
+      const card = guideCards[index];
+      if (!guideRail || !card) return;
+      guideRail.scrollTo({ left: guideTarget(card), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+      guideControls.forEach((control, i) => control.setAttribute('aria-current', String(i === index)));
+    }));
+    guideRail?.addEventListener('scroll', () => {
+      const nearest = guideCards.reduce((best, card, index) => Math.abs(guideTarget(card) - guideRail.scrollLeft) < Math.abs(guideTarget(guideCards[best]) - guideRail.scrollLeft) ? index : best, 0);
+      guideControls.forEach((control, index) => control.setAttribute('aria-current', String(index === nearest)));
+    }, { passive: true });
+
     // Replay only the labelled illustrative conversation already on the page.
     const conversation = $('#orb-conversation');
     const demoButtons = $$('[data-demo-play]');
