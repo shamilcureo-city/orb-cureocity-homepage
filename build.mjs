@@ -10,7 +10,7 @@ if (publicBuild) {
 for (const [key, value] of Object.entries(content.destinations)) {
   if (value !== null && (typeof value !== 'string' || !value.startsWith('https://'))) throw new Error(`${key} must be null or an approved HTTPS destination.`);
 }
-const parts = await Promise.all(['head','main','value-week','value-product','value-offer','foot'].map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
+const parts = await Promise.all(['head','main','complete-overview','complete-routine','complete-health','value-week','complete-care','value-offer','foot'].map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
 const annualPrice = new Intl.NumberFormat('en-IN', {style:'currency',currency:content.commerce.currency,maximumFractionDigits:0}).format(content.commerce.annualPrice);
 const monthlyPrice = new Intl.NumberFormat('en-IN', {style:'currency',currency:content.commerce.currency,maximumFractionDigits:0}).format(content.commerce.annualPrice / 12);
 let html = parts.join('\n').replace(/(data-orb-price="annual">)[^<]+/g, (_, prefix) => prefix + annualPrice).replace(/(data-orb-price="monthly">)[^<]+/g, (_, prefix) => prefix + monthlyPrice);

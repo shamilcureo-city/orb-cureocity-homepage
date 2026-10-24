@@ -102,7 +102,7 @@
       "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
       "ctaDestination": null,
       "claimApproval": "pending-owner-review",
-      "showInDesignPreview": false
+      "showInDesignPreview": true
     },
     {
       "id": "family-circle",
@@ -115,13 +115,39 @@
       "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
       "ctaDestination": null,
       "claimApproval": "pending-owner-review",
-      "showInDesignPreview": false
+      "showInDesignPreview": true
     },
     {
       "id": "trust",
       "publicName": "Information and AI controls",
       "description": "Data status, sharing controls and professional boundaries.",
       "source": "Brief pp. 5, 13, 16-18",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "cycle-journal",
+      "publicName": "Cycle tracking and smart journal",
+      "description": "Optional cycle estimates, symptoms, mood and personal routine notes.",
+      "source": "Brief pp. 8-9; PRDs 26, 30",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "connections",
+      "publicName": "Connected information",
+      "description": "Supported device signals and self-added reports and daily logs with data freshness context.",
+      "source": "Brief pp. 5, 8, 13; PRDs 11, 21-28",
       "availability": "unverified",
       "markets": [],
       "planEligibility": [],
