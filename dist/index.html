@@ -9,8 +9,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;550;600;650;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="journey.css"><link rel="stylesheet" href="complete.css"><link rel="stylesheet" href="complete-routine.css"><link rel="stylesheet" href="complete-health.css"><link rel="stylesheet" href="complete-care.css"><link rel="stylesheet" href="value-week.css"><link rel="stylesheet" href="value-offer.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="free-tools.css"><link rel="stylesheet" href="ai-fitness.css"><link rel="stylesheet" href="connected-orb.css"><link rel="stylesheet" href="premium-motion.css">
-<script src="config.js" defer></script><script src="app.js" defer></script><script src="complete.js" defer></script><script src="complete-routine.js" defer></script><script src="complete-health.js" defer></script><script src="complete-care.js" defer></script><script src="value-week.js" defer></script><script src="value-offer.js" defer></script><script src="journey.js" defer></script><script src="ai-fitness.js" defer></script><script src="connected-orb.js" defer></script><script src="premium-motion.js" defer></script>
+<link rel="stylesheet" href="journey.css"><link rel="stylesheet" href="complete.css"><link rel="stylesheet" href="complete-routine.css"><link rel="stylesheet" href="complete-health.css"><link rel="stylesheet" href="complete-care.css"><link rel="stylesheet" href="value-week.css"><link rel="stylesheet" href="value-offer.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="free-tools.css"><link rel="stylesheet" href="ai-fitness.css"><link rel="stylesheet" href="connected-orb.css"><link rel="stylesheet" href="premium-motion.css"><link rel="stylesheet" href="feature-atlas.css"><link rel="stylesheet" href="priority-studio.css"><link rel="stylesheet" href="mesh-orb.css">
+<script src="config.js" defer></script><script src="app.js" defer></script><script src="complete.js" defer></script><script src="complete-routine.js" defer></script><script src="complete-health.js" defer></script><script src="complete-care.js" defer></script><script src="value-week.js" defer></script><script src="value-offer.js" defer></script><script src="journey.js" defer></script><script src="ai-fitness.js" defer></script><script src="connected-orb.js" defer></script><script src="premium-motion.js" defer></script><script src="feature-atlas.js" defer></script><script src="priority-studio.js" defer></script><script src="mesh-orb.js" defer></script>
 </head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -100,48 +100,116 @@
  </div>
 </section>
 
-<section class="cp-atlas" id="features" aria-labelledby="cp-atlas-title">
+<section class="cp-atlas fa-section" id="features" aria-labelledby="cp-atlas-title">
   <div class="cp-wrap">
     <div class="cp-atlas-intro"><h2 id="cp-atlas-title">One place for the different<br> parts of your health.</h2><p>Go deeper into what matters to you. See how each part connects with your everyday life.</p></div>
-    <nav class="cp-capabilities" aria-label="Explore Orb features">
-      <a href="#your-week"><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg>Daily guidance</a>
-      <a href="#nutrition"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg>Food & nutrition</a>
-      <a href="#movement"><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg>Training & movement</a>
-      <a href="#health-vault"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg>Health Vault</a>
-      <a href="#insights"><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg>Recovery & insights</a>
-      <a href="#cycle-journal"><svg class="icon" aria-hidden="true"><use href="#i-cycle"></use></svg>Cycle & journal</a>
-      <a href="#care"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>Care & assessments</a>
-      <a href="#family"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Family Circle</a>
+    <figure class="fa-canvas" aria-label="An illustrative overview of Orb's daily plan, food logging, health reports and movement tools">
+      <div class="fa-ambient" aria-hidden="true"></div>
+      <div class="fa-meal fa-layer">
+        <div class="fa-meal-heading"><span class="fa-swatch fa-swatch-food"></span><span>Food, with context.</span></div>
+        <img src="assets/web/figma-food-phone.webp" width="450" height="920" alt="Orb meal-scanning screen showing a plate of food" loading="lazy" decoding="async">
+        <div class="fa-meal-label"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><span><strong>Log it. Learn from it.</strong><small>Your meals, in your day.</small></span></div>
+      </div>
+      <div class="fa-day fa-layer">
+        <div class="fa-day-top"><span class="fa-wordmark">orb<span>Daily view</span></span><span class="fa-day-date">Today</span></div>
+        <div class="fa-day-greeting"><p>A little direction.<br>A day that’s yours.</p><div class="fa-day-orbit" aria-hidden="true"><img src="assets/web/figma-voice-orb.webp" width="720" height="720" alt="" loading="lazy" decoding="async"></div></div>
+        <div class="fa-day-note"><span class="fa-note-dot" aria-hidden="true"></span>Your plans, with your everyday context.</div>
+        <div class="fa-agenda">
+          <div class="fa-agenda-row"><span class="fa-agenda-icon fa-icon-meal"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg></span><span><strong>Make room for a good meal</strong><small>Your food preferences. Your plan.</small></span><span class="fa-agenda-mark" aria-hidden="true">↗</span></div>
+          <div class="fa-agenda-row"><span class="fa-agenda-icon fa-icon-move"><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg></span><span><strong>Move at your own pace</strong><small>A workout that fits your starting point.</small></span><span class="fa-agenda-mark" aria-hidden="true">↗</span></div>
+          <div class="fa-agenda-row"><span class="fa-agenda-icon fa-icon-moon"><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg></span><span><strong>Make time to wind down</strong><small>Bring recovery into your routine.</small></span><span class="fa-agenda-mark" aria-hidden="true">↗</span></div>
+        </div>
+        <div class="fa-day-input"><span>Ask Orb about your day…</span><svg class="icon" aria-hidden="true"><use href="#i-mic"></use></svg></div>
+      </div>
+      <div class="fa-vault fa-layer">
+        <div class="fa-vault-back" aria-hidden="true"></div>
+        <div class="fa-vault-paper">
+          <div class="fa-vault-top"><span>Health Vault</span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></div>
+          <h3>Your history.<br>A clearer picture.</h3>
+          <div class="fa-vault-file"><span class="fa-file-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></span><span><strong>Blood report</strong><small>Original report &amp; context</small></span></div>
+          <div class="fa-vault-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="fa-vault-foot"><span>Reports</span><span>History</span><span>Notes</span></div>
+        </div>
+      </div>
+      <div class="fa-training fa-layer">
+        <img src="assets/web/figma-longevity.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+        <div class="fa-training-sheen" aria-hidden="true"></div>
+        <div class="fa-training-copy"><span><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg>Training &amp; movement</span><strong>Built around you.</strong></div>
+      </div>
+      <figcaption>Illustrative product views</figcaption>
+    </figure>
+    <nav class="fa-navigation" aria-label="Explore Orb features">
+      <a href="#your-week"><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg><span>Daily guidance</span></a>
+      <a href="#nutrition"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><span>Food &amp; nutrition</span></a>
+      <a href="#movement"><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg><span>Training &amp; movement</span></a>
+      <a href="#health-vault"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><span>Health Vault</span></a>
+      <a href="#insights"><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg><span>Recovery &amp; insights</span></a>
+      <a href="#cycle-journal"><svg class="icon" aria-hidden="true"><use href="#i-cycle"></use></svg><span>Cycle &amp; journal</span></a>
+      <a href="#care"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Care &amp; assessments</span></a>
+      <a href="#family"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg><span>Family Circle</span></a>
     </nav>
     <div class="cp-feature-spotlights"><a href="#ai-fitness">Explore AI fitness assessment &amp; trainer <span aria-hidden="true">↗</span></a><a href="#connections">Discover devices, CGM &amp; connected information <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
-<section class="cp-you" id="for-you" aria-labelledby="cp-you-title">
+
+<section class="cp-you ps-section" id="for-you" aria-labelledby="cp-you-title">
   <div class="cp-wrap">
     <div class="cp-heading"><h2 id="cp-you-title">Start with what matters to you.</h2><p>Your priorities don’t have to look like anyone else’s. Explore a few ways Orb can fit into your life.</p></div>
     <div class="cp-you-layout">
       <div class="cp-needs" aria-label="Choose your area of interest">
-        <a id="cp-tab-energy" href="#cp-panel-energy" data-need="energy">Understand my day</a>
-        <a id="cp-tab-food" href="#cp-panel-food" data-need="food">Make food work for me</a>
-        <a id="cp-tab-strength" href="#cp-panel-strength" data-need="strength">Build my fitness</a>
-        <a id="cp-tab-care" href="#cp-panel-care" data-need="care">Stay connected to care</a>
+        <a id="cp-tab-energy" href="#cp-panel-energy" data-need="energy"><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg>Understand my day</a>
+        <a id="cp-tab-food" href="#cp-panel-food" data-need="food"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg>Make food work for me</a>
+        <a id="cp-tab-strength" href="#cp-panel-strength" data-need="strength"><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg>Build my fitness</a>
+        <a id="cp-tab-care" href="#cp-panel-care" data-need="care"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>Stay connected to care</a>
       </div>
       <div class="cp-need-panels">
-        <div class="cp-need-panel" id="cp-panel-energy" data-need-panel="energy">
+        <div class="cp-need-panel ps-energy" id="cp-panel-energy" data-need-panel="energy">
           <div class="cp-need-copy"><h3>Make sense of how<br> your days fit together.</h3><p>Look at sleep and activity alongside your meals, symptoms and notes. Ask questions with that context, then review a next step that fits today.</p><a href="#insights">Explore your insights <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
-          <div class="cp-need-output"><p>A more useful daily view</p><div><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg><span><strong>What changed?</strong><small>Review recent sleep and recovery trends.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><span><strong>What else was happening?</strong><small>Bring in your own notes and routine.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg><span><strong>What fits today?</strong><small>Review an option you can act on.</small></span></div></div>
+          <div class="ps-scene ps-day-scene" aria-label="Illustrative daily view bringing sleep, activity and your own notes into context">
+            <div class="ps-scene-label"><span>A day, in context</span><small>Illustrative view</small></div>
+            <div class="ps-day-grid" aria-hidden="true"></div>
+            <div class="ps-sleep-sheet ps-motion" aria-hidden="true"><span><svg class="icon"><use href="#i-moon"></use></svg>Last night</span><strong>Sleep & recovery</strong><svg viewBox="0 0 250 64" class="ps-sleep-line"><path class="ps-path" d="M2 20H25V43H45V13H63V43H97V26H130V48H161V19H192V36H219V12H248"/></svg><div class="ps-sheet-caption"><span>Sleep</span><span>Wake</span></div></div>
+            <img class="ps-day-orb ps-motion" src="assets/web/figma-voice-orb.webp" alt="" width="720" height="720" loading="lazy" decoding="async">
+            <div class="ps-note-sheet ps-motion" aria-hidden="true"><span><svg class="icon"><use href="#i-doc"></use></svg>Your notes</span><p>“A busy day. A later dinner.<br>A little time to unwind.”</p><div class="ps-note-tags"><span>Meals</span><span>Routine</span></div></div>
+            <div class="ps-day-thread" aria-hidden="true"><svg viewBox="0 0 500 45" preserveAspectRatio="none"><path class="ps-path" d="M8 21C90 21 110 6 168 15S254 34 330 20S424 19 492 21"/><circle cx="8" cy="21" r="4"/><circle cx="250" cy="23" r="4"/><circle cx="492" cy="21" r="4"/></svg><div><span>Morning</span><span>Your day</span><span>Evening</span></div></div>
+          </div>
+          <div class="ps-support"><p>A more useful daily view</p><div class="ps-support-items"><div><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg><span><strong>What changed?</strong><small>Review recent sleep and recovery trends.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><span><strong>What else was happening?</strong><small>Bring in your own notes and routine.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg><span><strong>What fits today?</strong><small>Review an option you can act on.</small></span></div></div></div>
         </div>
-        <div class="cp-need-panel" id="cp-panel-food" data-need-panel="food">
+        <div class="cp-need-panel ps-food" id="cp-panel-food" data-need-panel="food">
           <div class="cp-need-copy"><h3>A plan with your<br> real life in it.</h3><p>Your familiar foods, preparation time and preferences help shape the plan. Log what you actually eat and carry that feedback into your next week.</p><a href="#nutrition">Explore nutrition <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
-          <div class="cp-need-output"><p>From planning to practice</p><div><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><span><strong>Food you recognise</strong><small>Preferences, cuisine and preparation time.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span><strong>Room for the unexpected</strong><small>Log portions and review the details.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span><strong>A week you can refine</strong><small>Keep useful options; change what didn’t fit.</small></span></div></div>
+          <div class="ps-scene ps-food-scene" aria-label="Illustrative food and meal planning view using original Orb product screens">
+            <div class="ps-scene-label"><span>From your plate to your plan</span><small>Illustrative view</small></div>
+            <div class="ps-food-table" aria-hidden="true"></div>
+            <div class="ps-food-plate ps-motion" aria-hidden="true"></div>
+            <div class="ps-food-tag ps-motion" aria-hidden="true"><svg class="icon"><use href="#i-meal"></use></svg><span>Food that fits<br><strong>your everyday life.</strong></span></div>
+            <div class="ps-meal-phone ps-motion" aria-hidden="true"><img src="assets/web/figma-meal-phone.webp" alt="" width="450" height="920" loading="lazy" decoding="async"><div class="ps-meal-overlay"><span>A plan that feels like you</span><strong>Familiar food.<br>A little less guesswork.</strong><i></i><p>Your usual foods</p><p>Your preparation time</p><p>Your preferences</p></div></div>
+            <div class="ps-food-note ps-motion" aria-hidden="true"><span>Your plan, with room for you</span><div><i></i>Familiar foods<i></i>Your preferences</div></div>
+          </div>
+          <div class="ps-support"><p>From planning to practice</p><div class="ps-support-items"><div><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><span><strong>Food you recognise</strong><small>Preferences, cuisine and preparation time.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span><strong>Room for the unexpected</strong><small>Log portions and review the details.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span><strong>A week you can refine</strong><small>Keep useful options; change what didn’t fit.</small></span></div></div></div>
         </div>
-        <div class="cp-need-panel" id="cp-panel-strength" data-need-panel="strength">
+        <div class="cp-need-panel ps-fitness" id="cp-panel-strength" data-need-panel="strength">
           <div class="cp-need-copy"><h3>Train from where<br> you are today.</h3><p>Bring your experience, equipment and available days into your workout plan. Record sessions and review your progress as your routine develops.</p><a href="#movement">Explore movement <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
-          <div class="cp-need-output"><p>A routine that has context</p><div><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg><span><strong>Your starting point</strong><small>Experience, goals and movement assessment.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg><span><strong>Your available time</strong><small>Plan around the days you can make.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-mic"></use></svg><span><strong>Your actual sessions</strong><small>Review exercises, weights and repetitions.</small></span></div></div>
+          <div class="ps-scene ps-fitness-scene" aria-label="Illustrative movement assessment and training scene, with a weekly schedule">
+            <img class="ps-fitness-photo" src="assets/web/figma-longevity.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <div class="ps-fitness-shade" aria-hidden="true"></div>
+            <div class="ps-scene-label"><span>Your movement. Your next step.</span><small>Illustrative view</small></div>
+            <div class="ps-fitness-scan" aria-hidden="true"></div>
+            <div class="ps-fitness-badge ps-motion" aria-hidden="true"><span><i></i>Movement in focus</span><strong>Start where you are.</strong></div>
+            <div class="ps-week-card ps-motion" aria-hidden="true"><div><span>Make space for movement</span><small>Your routine, your pace</small></div><div class="ps-week-days"><span>M<i></i></span><span>T<i></i></span><span>W<i></i></span><span>T<i></i></span><span>F<i></i></span><span>S<i></i></span><span>S<i></i></span></div></div>
+          </div>
+          <div class="ps-support"><p>A routine that has context</p><div class="ps-support-items"><div><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg><span><strong>Your starting point</strong><small>Experience, goals and movement assessment.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-day"></use></svg><span><strong>Your available time</strong><small>Plan around the days you can make.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-mic"></use></svg><span><strong>Your actual sessions</strong><small>Review exercises, weights and repetitions.</small></span></div></div></div>
         </div>
-        <div class="cp-need-panel" id="cp-panel-care" data-need-panel="care">
+        <div class="cp-need-panel ps-care" id="cp-panel-care" data-need-panel="care">
           <div class="cp-need-copy"><h3>Make the days between<br> appointments count.</h3><p>Keep your reports, plans and everyday logs together. With an eligible care service, give your assigned professional a clearer view of how your routine is going.</p><a href="#care">Explore connected care <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
-          <div class="cp-need-output"><p>Optional professional care</p><div><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><span><strong>Your information, organised</strong><small>Original reports and relevant history.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span><strong>Your plan, followed through</strong><small>Bring daily feedback into follow-up.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg><span><strong>Your sharing, chosen by you</strong><small>Permissions for relevant care and family views.</small></span></div></div>
+          <div class="ps-scene ps-care-scene" aria-label="Illustrative care continuity view joining original reports, everyday logs and follow-up notes">
+            <div class="ps-scene-label"><span>The story between appointments</span><small>Illustrative view</small></div>
+            <div class="ps-care-orbit" aria-hidden="true"></div>
+            <div class="ps-record ps-record-back ps-motion" aria-hidden="true"><svg class="icon"><use href="#i-doc"></use></svg><span>Original reports</span><div class="ps-record-lines"><i></i><i></i><i></i><i></i></div><div class="ps-record-bottom"><span>Health Vault</span><svg class="icon"><use href="#i-check"></use></svg></div></div>
+            <div class="ps-record ps-record-front ps-motion" aria-hidden="true"><div class="ps-record-title"><svg class="icon"><use href="#i-day"></use></svg><span>Your everyday<br><strong>comes with you.</strong></span></div><div class="ps-record-log"><span><i></i>Meals & movement</span><span><i></i>Notes & symptoms</span><span><i></i>Plans & progress</span></div><div class="ps-record-bottom"><span>Ready to review together</span><svg class="icon"><use href="#i-arrow"></use></svg></div></div>
+            <div class="ps-care-link ps-motion" aria-hidden="true"><span class="ps-care-avatar"><svg class="icon"><use href="#i-heart"></use></svg></span><div><strong>More context for your care.</strong><span>With your assigned professional</span></div></div>
+            <span class="ps-care-permission" aria-hidden="true"><svg class="icon"><use href="#i-shield"></use></svg>Shared with your permission</span>
+          </div>
+          <div class="ps-support"><p>Optional professional care</p><div class="ps-support-items"><div><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><span><strong>Your information, organised</strong><small>Original reports and relevant history.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span><strong>Your plan, followed through</strong><small>Bring daily feedback into follow-up.</small></span></div><div><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg><span><strong>Your sharing, chosen by you</strong><small>Permissions for relevant care and family views.</small></span></div></div></div>
         </div>
       </div>
     </div>
@@ -287,8 +355,10 @@
 <section class="cp-section cr-voice-section" id="voice-logging" aria-labelledby="cr-voice-title">
   <div class="cp-wrap cr-voice-grid">
     <div class="cr-voice-copy"><p class="cr-kicker">Less interruption, more momentum</p><h2 id="cr-voice-title">Finish your set.<br> Say what you did.</h2><p class="cr-lead">Record your exercise, weight and repetitions by voice between sets. Review the entry, then get back to your workout.</p><p class="cr-voice-quote">“Log bench press:<br> 40 kilograms, 10 reps.”</p><p class="cr-small-note">Interactive illustration. This demo does not use your microphone.</p></div>
-    <div class="cr-voice-demo" data-cr-voice>
-      <div class="cr-voice-top"><img src="assets/web/figma-voice-orb.webp" width="720" height="720" loading="lazy" alt="" class="cr-voice-orb"><div><span>Orb voice logging</span><h3>A quick way to keep your record.</h3></div></div>
+    <div class="cr-voice-demo mo-voice-demo" data-cr-voice data-mo-scene="voice logging">
+      <div class="cr-voice-top"><div><span>Orb voice logging</span><h3>A quick way to keep your record.</h3></div></div>
+      <div class="mo-voice-stage" aria-hidden="true"><div class="mo-orb-shadow"></div><img src="assets/figma-voice-orb.png" width="964" height="964" loading="lazy" alt="" class="mo-voice-image" data-mo-breath></div>
+      <button class="mo-motion-control" type="button" data-mo-toggle hidden aria-pressed="false"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path class="mo-pause-symbol" d="M4 3v6M8 3v6"/><path class="mo-play-symbol" d="m4 2.5 5 3.5-5 3.5z"/></svg><span data-mo-label>Pause motion</span></button>
       <div class="cr-waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="cr-voice-entry" data-cr-entry><div class="cr-entry-top"><h4>Bench press</h4><span>Example entry</span></div><div class="cr-entry-values"><div><span>Weight</span><strong>40 <small>kg</small></strong></div><div><span>Repetitions</span><strong>10 <small>reps</small></strong></div><div><span>Set</span><strong>1</strong></div></div><p>Check the details before saving your workout log.</p></div>
       <div class="cr-voice-controls" data-cr-controls hidden><button class="cr-voice-trigger" type="button" data-cr-play><svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg>Try the voice-log demo</button><button class="cr-voice-review" type="button" data-cr-review hidden>Confirm example entry <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button><button class="cr-voice-reset" type="button" data-cr-reset hidden>Play again</button></div>
@@ -607,7 +677,7 @@
 <section class="vo-final" id="get-orb" aria-labelledby="vo-final-title">
   <div class="sales-wrap vo-final-inner">
     <div class="vo-final-copy"><h2 id="vo-final-title">More of your story.<br> A clearer next step.</h2><p>Bring your goals, your routine and what you already know.<br> Start connecting them with Orb.</p><div class="vo-final-action"><button type="button" class="btn btn-light" data-download>Get Orb</button><span><strong><span data-orb-price="annual">₹7,500</span> / year</strong><small>Choose your subscription in the app.</small></span></div><div class="vo-stores" aria-label="App stores"><button type="button" data-store="apple">App Store</button><span aria-hidden="true">·</span><button type="button" data-store="google">Google Play</button></div></div>
-    <div class="vo-final-art" aria-hidden="true"><img src="assets/web/figma-voice-orb.webp" width="720" height="720" alt="" loading="lazy"><span>orb</span></div>
+    <div class="vo-final-art mo-final" data-mo-scene="the closing Orb graphic"><div class="mo-final-stage" aria-hidden="true"><img src="assets/figma-voice-orb.png" width="964" height="964" alt="" loading="lazy" data-mo-breath></div><span aria-hidden="true">orb</span><button class="mo-motion-control" type="button" data-mo-toggle hidden aria-pressed="false"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path class="mo-pause-symbol" d="M4 3v6M8 3v6"/><path class="mo-play-symbol" d="m4 2.5 5 3.5-5 3.5z"/></svg><span data-mo-label>Pause motion</span></button></div>
   </div>
 </section>
 </main>

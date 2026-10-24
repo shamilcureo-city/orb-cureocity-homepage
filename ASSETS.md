@@ -121,3 +121,8 @@ No raster files were generated or changed for v12. The original gradient, logo, 
 Free-tool cards reuse the original food and mobility-check handset derivatives. AI fitness uses the original `figma-longevity.png` training-lab illustration with new HTML/SVG explanatory overlays; it is labelled illustrative. A proportional 1920 × 1080 lossless WebP delivery copy is 1,755,448 bytes versus the 9,471,510-byte original, an 81.5% payload reduction. No retouching, recolouring or replacement imagery was applied. The original source hash is recorded in the delivery manifest.
 
 The connections graphic uses the original coral Orb artwork and wearable lifestyle derivative. Its network, icons and fictional CGM curve are authored SVG/HTML. Motion traces sources and curves and settles existing phone/document graphics. It is finite, with reduced-motion and hidden-document cancellation. No medical readings, live device connection or assessment result is fabricated.
+
+
+## V14 scoped graphic refinement
+
+All original raster files remain unchanged. The feature panorama and four priority scenes reuse the original food and meal phones, coral mesh Orb and training-lab artwork. New daily-view and report folio illustrations use HTML/CSS. An HTML overlay hides inconsistent legacy meal-target numbers without changing the handset source. The voice and closing sections now use the full original 964 × 964 `figma-voice-orb.png`, with no regeneration or retouching. Breathing is a restrained scale animation; all product scenes are labelled illustrative.

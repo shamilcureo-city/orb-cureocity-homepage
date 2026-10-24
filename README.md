@@ -2,11 +2,11 @@
 
 A standalone, owner-private website concept based on **Cureocity_Orb_Product_and_Website_Brief.pdf**, separate from Cureocity Mind. The page makes the breadth of Orb visible through original product artwork, readable interface illustrations and practical examples. Conversion remains Get Orb → download → choose a subscription in the app.
 
-## Current experience — v13
+## Current experience — v14
 
 1. Original navy-to-white hero, three original handset images, sharp Orb Intelligence and daily-plan previews.
 2. Free diet-plan and AI fitness-assessment offers, with mockup buttons pending the owner’s live URLs.
-3. Eight-feature navigation and four visitor-priority paths: understand my day, make food work, build fitness and connected care.
+3. A layered product panorama with eight-feature navigation and four illustrated visitor-priority paths: understand my day, make food work, build fitness and connected care.
 4. Detailed nutrition planning, meal logging and weekly feedback, with familiar-food and preparation-time examples.
 5. Workout planning, movement assessment, session logging and a finite voice-log demonstration.
 6. A visible Health Vault: originals, review of extracted information, history and permission-based sharing.
@@ -34,7 +34,10 @@ Node 20+; local preview http://127.0.0.1:4178. `build.mjs` assembles HTML and ge
 
 - `parts/head.html`: metadata, navigation, icons and imports.
 - `parts/main.html`: original hero with two sharp interface previews.
-- `parts/complete-overview.html`, `dist/complete.css/js`: feature atlas, visitor priorities, responsive foundation and persistent navigation.
+- `parts/feature-atlas.html`, `dist/feature-atlas.css/js`: layered product panorama and feature navigation.
+- `parts/priority-studio.html`, `dist/priority-studio.css/js`: four distinct priority illustrations.
+- `dist/complete.css/js`: responsive foundation, priority tab behavior and persistent navigation. The historical complete-overview partial is no longer assembled.
+- `dist/mesh-orb.css/js`: original mesh Orb presentation in voice logging and closing CTA; viewport-aware breathing and pause controls.
 - `parts/complete-routine.html`, `dist/complete-routine.css/js`: nutrition and training; `parts/voice-routine.html` retains the voice logging section.
 - `parts/complete-health.html`, `dist/complete-health.css/js`: records, contextual insights, cycle and journal.
 - `parts/value-week.html`, `dist/value-week.css/js`: interactive practical week.
@@ -57,7 +60,7 @@ Original PNG/JPEG/SVG files are unchanged. Existing WebP derivatives preserve th
 
 All demonstrations are local and fictional. The website does not connect health sources, upload records, share information, book appointments, run live AI or process subscriptions. The office-lunch choice only changes the displayed example; the next-week proposal is a draft. The voice example does not use a microphone and confirms only an illustrative entry. No entered information is persisted or transmitted.
 
-Tabs support keyboard arrows, Home and End. Feature panels stay visible without JavaScript, except the alternate hero view whose information is also presented elsewhere. Native disclosures work without script. Motion is finite and respects reduced-motion settings. The mobile Get Orb bar hides at the final download section. Persistent navigation provides shortcuts through the complete page.
+Tabs support keyboard arrows, Home and End. Feature panels stay visible without JavaScript, except the alternate hero view whose information is also presented elsewhere. Native disclosures work without script. Introductory motion is finite. The owner-requested mesh Orb breathing loops only on screen, pauses on hidden documents, and offers Pause/Resume controls. All new motion respects reduced-motion settings. The mobile Get Orb bar hides at the final download section. Persistent navigation provides shortcuts through the complete page.
 
 ## Release and destinations
 
