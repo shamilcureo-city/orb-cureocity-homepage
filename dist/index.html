@@ -9,8 +9,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;550;600;650;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="journey.css"><link rel="stylesheet" href="complete.css"><link rel="stylesheet" href="complete-routine.css"><link rel="stylesheet" href="complete-health.css"><link rel="stylesheet" href="complete-care.css"><link rel="stylesheet" href="value-week.css"><link rel="stylesheet" href="value-offer.css"><link rel="stylesheet" href="motion.css">
-<script src="config.js" defer></script><script src="app.js" defer></script><script src="complete.js" defer></script><script src="complete-routine.js" defer></script><script src="complete-health.js" defer></script><script src="complete-care.js" defer></script><script src="value-week.js" defer></script><script src="value-offer.js" defer></script><script src="journey.js" defer></script>
+<link rel="stylesheet" href="journey.css"><link rel="stylesheet" href="complete.css"><link rel="stylesheet" href="complete-routine.css"><link rel="stylesheet" href="complete-health.css"><link rel="stylesheet" href="complete-care.css"><link rel="stylesheet" href="value-week.css"><link rel="stylesheet" href="value-offer.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="free-tools.css"><link rel="stylesheet" href="ai-fitness.css"><link rel="stylesheet" href="connected-orb.css"><link rel="stylesheet" href="premium-motion.css">
+<script src="config.js" defer></script><script src="app.js" defer></script><script src="complete.js" defer></script><script src="complete-routine.js" defer></script><script src="complete-health.js" defer></script><script src="complete-care.js" defer></script><script src="value-week.js" defer></script><script src="value-offer.js" defer></script><script src="journey.js" defer></script><script src="ai-fitness.js" defer></script><script src="connected-orb.js" defer></script><script src="premium-motion.js" defer></script>
 </head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -34,9 +34,9 @@
 </defs></svg>
 <header class="site-header"><div class="container header-inner">
 <a href="#" class="brand" aria-label="Orb by Cureocity, home"><span class="orb-brand-word" aria-hidden="true">orb</span><span class="orb-brand-by" aria-hidden="true">by <img class="source-brand" src="assets/figma-logo.svg" alt="" width="177" height="35"></span></a>
-<nav class="desktop-nav" aria-label="Main navigation"><a href="#features">Explore Orb</a><a href="#how-it-works">How it works</a><a href="#care">Care</a><a href="#plans">Plans</a></nav>
+<nav class="desktop-nav" aria-label="Main navigation"><a class="ft-nav" href="#free-tools">Start free</a><a href="#features">Explore Orb</a><a href="#how-it-works">How it works</a><a href="#care">Care</a><a href="#plans">Plans</a></nav>
 <div class="header-actions"><button class="btn btn-primary btn-compact" data-download>Get Orb</button><button id="menu-toggle" class="icon-button menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation"><svg class="icon"><use href="#i-menu"/></svg></button></div>
-</div><nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#features">Explore Orb</a><a href="#how-it-works">How it works</a><a href="#care">Care</a><a href="#plans">Plans</a></nav></header>
+</div><nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden><a class="ft-nav" href="#free-tools">Start free</a><a href="#features">Explore Orb</a><a href="#how-it-works">How it works</a><a href="#care">Care</a><a href="#plans">Plans</a></nav></header>
 
 <main id="main">
 <section class="hero cp-hero" aria-labelledby="hero-title">
@@ -46,6 +46,7 @@
   <p class="cp-hero-description">Your reports, food, movement, recovery and care all tell part of your story. Orb connects them—so your next step makes sense for you.</p>
   <div class="button-row"><button class="btn btn-light" data-download>Get Orb <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><a class="btn btn-hero-outline" href="#features">Explore everything inside</a></div>
   <p class="cp-hero-price"><strong><span data-orb-price="annual">₹7,500</span> / year</strong><span><span data-orb-price="monthly">₹625</span>/month equivalent · Billed annually</span></p>
+  <div class="cp-hero-free"><span>Try a free first step</span><button type="button" data-free-tool="diet">Free diet plan</button><button type="button" data-free-tool="fitness">Free fitness assessment</button></div>
  </div>
  <div class="cp-wrap cp-hero-stage">
   <figure class="cp-side-phone cp-side-left" aria-hidden="true"><img src="assets/web/figma-workout-phone.webp" width="450" height="920" alt="" decoding="async"><figcaption>Movement that starts with you.</figcaption></figure>
@@ -80,6 +81,25 @@
  <div class="cp-hero-bottom"><p>Start with what you already have. A wearable is optional.</p><div class="store-links"><button data-store="apple" aria-label="App Store"><svg viewBox="0 0 24 28" aria-hidden="true"><path d="M19 15c0-3 2.5-4.5 2.6-4.6C20.2 8.3 18.2 8 17.4 8c-1.8-.2-3.5 1-4.4 1-1 0-2.5-1-4-1C6.9 8 5 9.2 4 11c-2 3.5-.5 8.7 1.5 11.5 1 1.4 2.1 3 3.6 2.9 1.5 0 2-1 3.8-1s2.2 1 3.8 1 2.6-1.4 3.5-2.8c1.2-1.6 1.6-3.2 1.7-3.3-.1 0-3-1.1-3-4.3ZM16.1 6.2c.8-1.1 1.4-2.5 1.2-3.9-1.2 0-2.7.9-3.5 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.7-.7 3.6-1.8Z"/></svg><span><small>Download on the</small><b>App Store</b></span></button><button data-store="google" aria-label="Google Play"><svg viewBox="0 0 25 28" aria-hidden="true"><path fill="#50c7ed" d="M2 1 15 14 2 27Z"/><path fill="#68cd8b" d="m2 1 17 10-4 3Z"/><path fill="#f6ce57" d="m19 11 5 3-5 3-4-3Z"/><path fill="#ed6b7b" d="m2 27 13-13 4 3Z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></button></div></div>
 </section>
 
+<section class="ft-section" id="free-tools" aria-labelledby="ft-title">
+ <div class="cp-wrap">
+  <div class="ft-intro"><div><p class="ft-eyebrow">A little help to get started</p><h2 id="ft-title">Your first step.<br> On us.</h2></div><p>Get a food plan that considers your routine, or explore your fitness starting point. Choose something useful to you—and start free.</p></div>
+  <div class="ft-offers">
+   <article class="ft-offer ft-diet" aria-labelledby="ft-diet-title">
+    <div class="ft-offer-copy"><span class="ft-free">Free diet plan</span><h3 id="ft-diet-title">Make room for<br> your kind of food.</h3><p>Bring your food preferences, goals and everyday routine into a plan you can begin with.</p><button type="button" class="btn btn-primary" data-free-tool="diet">Make my free diet plan <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button></div>
+    <div class="ft-art ft-food-art" aria-hidden="true"><div class="ft-art-ring"></div><img src="assets/web/figma-food-phone.webp" alt="" width="450" height="920" loading="lazy"><div class="ft-art-note"><svg class="icon"><use href="#i-meal"></use></svg><span>Your food.<br><strong>Your routine.</strong></span></div></div>
+    <div class="ft-offer-foot"><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><span>Familiar foods, preferences and a place to begin.</span></div>
+   </article>
+   <article class="ft-offer ft-fitness" aria-labelledby="ft-fitness-title">
+    <div class="ft-offer-copy"><span class="ft-free">Free fitness assessment</span><h3 id="ft-fitness-title">Get to know<br> your starting point.</h3><p>Explore guided movement with an AI fitness assessment, and bring that context into your training.</p><button type="button" class="btn btn-primary" data-free-tool="fitness">Try my free assessment <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button></div>
+    <div class="ft-art ft-assess-art" aria-hidden="true"><div class="ft-art-ring"></div><img src="assets/web/figma-workout-phone.webp" alt="" width="450" height="920" loading="lazy"><div class="ft-art-note"><svg class="icon"><use href="#i-move"></use></svg><span>Your movement.<br><strong>Your next step.</strong></span></div></div>
+    <div class="ft-offer-foot"><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg><span>An assessment-informed start to your fitness routine.</span></div>
+   </article>
+  </div>
+  <p class="ft-scope">These free tools are a starting point. Orb’s annual subscription and professional care are separate options.</p>
+ </div>
+</section>
+
 <section class="cp-atlas" id="features" aria-labelledby="cp-atlas-title">
   <div class="cp-wrap">
     <div class="cp-atlas-intro"><h2 id="cp-atlas-title">One place for the different<br> parts of your health.</h2><p>Go deeper into what matters to you. See how each part connects with your everyday life.</p></div>
@@ -93,6 +113,7 @@
       <a href="#care"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>Care & assessments</a>
       <a href="#family"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Family Circle</a>
     </nav>
+    <div class="cp-feature-spotlights"><a href="#ai-fitness">Explore AI fitness assessment &amp; trainer <span aria-hidden="true">↗</span></a><a href="#connections">Discover devices, CGM &amp; connected information <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 <section class="cp-you" id="for-you" aria-labelledby="cp-you-title">
@@ -149,6 +170,7 @@
           <div><span class="cr-line-number">02</span><div><h3>Record what really happened.</h3><p>Log your meals and portions. Review estimated calories and nutrients, then correct the details when needed.</p></div></div>
           <div><span class="cr-line-number">03</span><div><h3>Keep what works. Change what doesn’t.</h3><p>Give feedback, change selected meals or revisit the week. A plan should be something you can keep coming back to.</p></div></div>
         </div>
+        <div class="cr-free-action"><button type="button" class="btn btn-primary" data-free-tool="diet">Make my free diet plan <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button></div>
         <p class="cr-professional-note"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Working with a dietitian? Active professional nutrition targets take priority within your care service.</span></p>
       </div>
     </div>
@@ -202,6 +224,63 @@
       <article><span>03 / REVIEW</span><h3>See what you’ve completed.</h3><p>Bring your history and feedback into the next review of your training routine.</p></article>
     </div>
     <p class="cr-camera-note">Camera-assisted tracking is available only where an exercise and app version support it. You can review and correct recorded entries.</p>
+  </div>
+</section>
+
+<section class="af-section" id="ai-fitness" aria-labelledby="af-title" data-af-showcase>
+  <div class="cp-wrap">
+    <header class="af-heading">
+      <div><p class="af-kicker">AI fitness, with your life in view</p><h2 id="af-title">Understand your movement.<br> Put it into motion.</h2></div>
+      <p>From a guided starting point to the session in front of you. Explore how Orb’s AI fitness assessment and AI fitness trainer bring more context to your routine.</p>
+    </header>
+
+    <div class="af-tabs" data-af-tabs hidden aria-label="Explore AI fitness">
+      <button type="button" id="af-tab-assessment" data-af-tab="assessment"><span class="af-tab-number">01</span> AI fitness assessment</button>
+      <button type="button" id="af-tab-trainer" data-af-tab="trainer"><span class="af-tab-number">02</span> AI fitness trainer</button>
+    </div>
+
+    <div class="af-stage" data-af-stage data-af-mode="assessment">
+      <div class="af-scene" aria-hidden="true">
+        <img class="af-athlete" src="assets/web/figma-longevity.webp" width="1920" height="1080" loading="lazy" alt="">
+        <div class="af-scene-shade"></div>
+        <svg class="af-trace" viewBox="0 0 2048 1152" preserveAspectRatio="xMidYMid slice" fill="none">
+          <defs><linearGradient id="af-line-light" x1="890" y1="360" x2="1320" y2="920" gradientUnits="userSpaceOnUse"><stop stop-color="#d5f4ff"/><stop offset="1" stop-color="#f19ab0"/></linearGradient><linearGradient id="af-scan-light" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c2edff" stop-opacity="0"/><stop offset=".5" stop-color="#d7f4ff" stop-opacity=".9"/><stop offset="1" stop-color="#c2edff" stop-opacity="0"/></linearGradient></defs>
+          <g class="af-joint-lines" stroke="url(#af-line-light)" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path class="af-path" d="M1102 393 1135 438 1112 562 935 680 898 884"/>
+            <path class="af-path af-path-late" d="M1112 562 1235 817 1332 818 1284 894"/>
+            <path class="af-path af-path-late" d="M1102 393 1213 365 1250 498"/>
+          </g>
+          <g class="af-joints" stroke="#d9f2ff" stroke-width="1.8" fill="#c9e6ff" fill-opacity=".2">
+            <circle cx="1102" cy="393" r="7"/><circle cx="1135" cy="438" r="5"/><circle cx="1112" cy="562" r="8"/><circle cx="935" cy="680" r="8"/><circle cx="898" cy="884" r="7"/><circle cx="1235" cy="817" r="7"/><circle cx="1332" cy="818" r="6"/><circle cx="1284" cy="894" r="5"/><circle cx="1213" cy="365" r="5"/><circle cx="1250" cy="498" r="7"/>
+          </g>
+          <path class="af-floor-track" d="M783 955 885 911 1425 980 1323 1024 Z" stroke="#c4e4f6" stroke-width="1.2" stroke-opacity=".35"/>
+          <g class="af-scan-frame" stroke="#d7effb" stroke-opacity=".55" stroke-width="2"><path d="M835 350V310H875M1315 310H1355V350M1355 910V950H1315M875 950H835V910"/></g>
+          <path class="af-scan-beam" d="M820 350H1370" stroke="url(#af-scan-light)" stroke-width="2"/>
+        </svg>
+        <div class="af-scene-label"><span></span>Movement → Context → Your next session</div>
+        <div class="af-visual-context af-assessment-context"><span class="af-context-label">A guided starting point</span><strong>Your movement.<br>Your experience.<br>Your available time.</strong><div class="af-context-rule"></div><p>Useful context for a relevant plan.</p></div>
+        <div class="af-visual-context af-trainer-context"><span class="af-context-label">A session you can follow</span><div class="af-session-row"><span>01</span><strong>Prepare &amp; warm up</strong><i></i></div><div class="af-session-row"><span>02</span><strong>Follow your exercises</strong><i></i></div><div class="af-session-row"><span>03</span><strong>Review your log</strong><i></i></div><div class="af-context-rule"></div><p>Exercises · Sets · Reps · Weights</p></div>
+      </div>
+
+      <div class="af-panel" id="af-panel-assessment" data-af-panel="assessment">
+        <p class="af-panel-eyebrow">AI fitness assessment</p>
+        <h3>Your starting point<br> deserves attention.</h3>
+        <p>A guided movement check helps you explore how you move and brings useful context to your workout planning.</p>
+        <ul class="af-feature-list"><li><span>01</span>Follow the guided movements.</li><li><span>02</span>Add your experience and goals.</li><li><span>03</span>Use the findings to shape your next steps.</li></ul>
+      </div>
+      <div class="af-panel" id="af-panel-trainer" data-af-panel="trainer">
+        <p class="af-panel-eyebrow">AI fitness trainer</p>
+        <h3>A plan to follow.<br> A record to build on.</h3>
+        <p>Bring your goals, experience, available equipment and schedule into your training. Follow each session and keep your effort in one place.</p>
+        <ul class="af-feature-list"><li><span>01</span>Review your planned exercises.</li><li><span>02</span>Log sets, repetitions and weights.</li><li><span>03</span>Bring feedback into your next review.</li></ul>
+      </div>
+      <div class="af-stage-tools"><span>Illustrative product experience</span><button type="button" data-af-replay hidden aria-label="Replay the movement graphic"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none"><path d="M4 6.5a6.3 6.3 0 1 1-.3 6.5M4 2.5v4.7h4.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Replay motion</span></button></div>
+    </div>
+
+    <div class="af-footer">
+      <div><button class="btn btn-primary af-free-button" type="button" data-free-tool="fitness">Try the free fitness assessment <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button><p>Start with a better understanding of your routine.</p></div>
+      <p class="af-availability">Camera-assisted tracking depends on the supported exercise, device and app version. Review recorded entries before saving. The assessment is for fitness planning, not diagnosis or medical clearance.</p>
+    </div>
   </div>
 </section>
 
@@ -424,14 +503,58 @@
   </div>
 </section>
 
-<section class="cp-section cc-connections" id="connections" aria-labelledby="cc-connections-title">
-  <div class="cp-wrap cc-connection-grid">
-    <div class="cc-connection-photo"><img src="assets/web/figma-guide.webp" width="900" height="1205" loading="lazy" alt="A fitness band during training and a ring during a quiet morning, from the original Orb design"><div><span>Different routines.<br> The same starting point.</span><strong>You.</strong></div></div>
-    <div class="cc-connection-copy"><p class="cc-eyebrow">Bring what you already have</p><h2 id="cc-connections-title">You don’t need to<br> start from zero.</h2><p class="cc-body">Your health story already exists in different places. Begin with what is useful to you, and build the picture over time.</p>
-      <div class="cc-source-list"><div><span class="cc-source-icon" aria-hidden="true"><svg class="icon"><use href="#i-doc"></use></svg></span><p><strong>Existing reports and history</strong><span>Keep the original records and review information added to your health picture.</span></p></div><div><span class="cc-source-icon" aria-hidden="true"><svg class="icon"><use href="#i-meal"></use></svg></span><p><strong>The details only you can add</strong><span>Meals, movement, symptoms and how the plan fits your day.</span></p></div><div><span class="cc-source-icon" aria-hidden="true"><svg class="icon"><use href="#i-watch"></use></svg></span><p><strong>A supported wearable, if you use one</strong><span>Available sleep, activity and other trends can add context alongside your own inputs.</span></p></div></div>
-      <div class="cc-no-device"><strong>No wearable? You can still begin.</strong><p>Start with your goals, records and daily inputs. Device-based insights depend on supported data and permissions.</p></div>
-      <a class="cc-link" href="#plans">Find your starting point <span aria-hidden="true">↗</span></a>
+<section class="cp-section cc-connections co-connections" id="connections" aria-labelledby="co-title">
+  <div class="cp-wrap">
+    <div class="co-heading"><div><p class="co-kicker">Connected to your life</p><h2 id="co-title">Bring your health<br> world together.</h2></div><p>Your health story already exists in different places. Begin with what is useful to you, and build the picture over time. Wearables, supported health apps, CGM, reports and everyday inputs can all have a place in Orb.</p></div>
+    <div class="co-console" data-co-console>
+      <div class="co-console-top"><span>Different sources. One personal picture.</span><span>Explore an illustrative connection</span></div>
+      <div class="co-console-body">
+        <div class="co-map" aria-label="Explore the information you can bring together in Orb">
+          <svg class="co-network" viewBox="0 0 500 420" fill="none" aria-hidden="true">
+            <circle cx="250" cy="210" r="136" class="co-orbit"/><circle cx="250" cy="210" r="78" class="co-orbit co-orbit-inner"/>
+            <g class="co-network-lines">
+              <path d="M100 94C150 94 156 210 250 210" data-co-line="wearable"/><path d="M250 31V210" data-co-line="wearable"/><path d="M400 94C350 94 344 210 250 210" data-co-line="cgm"/><path d="M400 313C350 313 344 210 250 210" data-co-line="reports"/><path d="M250 389V210" data-co-line="everyday"/><path d="M100 313C150 313 156 210 250 210" data-co-line="wearable"/>
+            </g>
+            <g class="co-network-traces"><path d="M100 94C150 94 156 210 250 210" data-co-trace="wearable"/><path d="M250 31V210" data-co-trace="wearable"/><path d="M400 94C350 94 344 210 250 210" data-co-trace="cgm"/><path d="M400 313C350 313 344 210 250 210" data-co-trace="reports"/><path d="M250 389V210" data-co-trace="everyday"/><path d="M100 313C150 313 156 210 250 210" data-co-trace="wearable"/></g>
+            <circle class="co-packet" r="3.5" cx="400" cy="94" opacity="0"/>
+          </svg>
+          <div class="co-core"><img src="assets/web/figma-voice-orb.webp" width="720" height="720" loading="lazy" alt=""><span>orb</span><small>Your daily view</small></div>
+          <button class="co-source co-source-watch" type="button" data-co-source="wearable" aria-label="Explore supported watch information"><span><svg class="icon" aria-hidden="true"><use href="#i-watch"></use></svg></span>Smartwatch</button>
+          <button class="co-source co-source-ring" type="button" data-co-source="wearable" aria-label="Explore supported ring information"><span><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><ellipse cx="14" cy="14" rx="9" ry="11" stroke="currentColor" stroke-width="1.4"/><ellipse cx="14" cy="14" rx="5.5" ry="8" stroke="currentColor" stroke-width="1.4"/><path d="M7 6.5 9.7 8.3M18.3 19.7 21 21.5" stroke="currentColor" stroke-width="1.4"/></svg></span>Smart ring</button>
+          <button class="co-source co-source-cgm" type="button" data-co-source="cgm" aria-label="Explore continuous glucose monitor information"><span><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="14" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M13 10.5v4l3 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>CGM</button>
+          <button class="co-source co-source-reports" type="button" data-co-source="reports" aria-label="Explore existing reports and history"><span><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></span>Health reports</button>
+          <button class="co-source co-source-everyday" type="button" data-co-source="everyday" aria-label="Explore meals, movement and everyday inputs"><span><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg></span>Your daily inputs</button>
+          <button class="co-source co-source-apps" type="button" data-co-source="wearable" aria-label="Explore supported health app information"><span><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="4" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.4"/><path d="M9 14h10m-5-5v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>Health apps</button>
+          <p class="co-map-caption">Select a source to explore its place in your day.</p>
+        </div>
+        <div class="co-explorer">
+          <div class="co-tabs" aria-label="Explore a source"><button id="co-tab-cgm" type="button" data-co-tab="cgm" aria-controls="co-panel-cgm">CGM</button><button id="co-tab-wearable" type="button" data-co-tab="wearable" aria-controls="co-panel-wearable">Watch &amp; ring</button><button id="co-tab-reports" type="button" data-co-tab="reports" aria-controls="co-panel-reports">Reports</button><button id="co-tab-everyday" type="button" data-co-tab="everyday" aria-controls="co-panel-everyday">Daily inputs</button></div>
+          <div class="co-panel" id="co-panel-cgm" data-co-panel="cgm">
+            <div class="co-panel-title"><span class="co-source-type">Continuous glucose monitoring</span><h3>Glucose, with the<br> day around it.</h3><p>Connect a supported CGM to review glucose information alongside meals, movement and your own notes.</p></div>
+            <figure class="co-glucose"><figcaption><strong>Your glucose story</strong><span>Illustrative day</span></figcaption><svg viewBox="0 0 500 150" role="img" aria-labelledby="co-chart-title co-chart-desc"><title id="co-chart-title">Fictional glucose trend across a day</title><desc id="co-chart-desc">A fluctuating line with separate breakfast, walk and lunch time markers. The illustration shows context only; it does not establish the cause of a change or a medical range.</desc><defs><linearGradient id="co-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9dee9" stop-opacity=".22"/><stop offset="1" stop-color="#c9dee9" stop-opacity="0"/></linearGradient></defs><path d="M0 28H500M0 68H500M0 108H500" class="co-chart-grid"/><path d="M0 94C22 94 28 91 45 93S65 104 85 83S106 37 130 51S151 86 177 83S198 72 220 88S252 96 274 81S299 57 317 73S338 59 354 34S380 56 398 66S424 83 447 74S476 58 500 61V130H0Z" fill="url(#co-chart-fill)"/><path class="co-glucose-line" d="M0 94C22 94 28 91 45 93S65 104 85 83S106 37 130 51S151 86 177 83S198 72 220 88S252 96 274 81S299 57 317 73S338 59 354 34S380 56 398 66S424 83 447 74S476 58 500 61"/><g class="co-chart-events"><path d="M85 119V22M177 119V22M354 119V22"/><circle cx="85" cy="119" r="3"/><circle cx="177" cy="119" r="3"/><circle cx="354" cy="119" r="3"/></g><g class="co-chart-times"><text x="0" y="147">7 am</text><text x="220" y="147">10 am</text><text x="464" y="147">2 pm</text></g></svg><div class="co-event-key"><span><i></i>8:00 · Breakfast</span><span><i></i>9:05 · Walk</span><span><i></i>12:00 · Lunch</span></div></figure>
+            <div class="co-source-meta"><span>Source <strong>Supported CGM</strong></span><span>Last sync <strong>2:10 pm · example</strong></span></div><p class="co-panel-note">Look for context and questions to discuss with your professional. Orb does not automatically change medication or replace your prescribed glucose-monitoring guidance.</p>
+          </div>
+          <div class="co-panel" id="co-panel-wearable" data-co-panel="wearable">
+            <div class="co-panel-title"><span class="co-source-type">Wearables &amp; supported health apps</span><h3>The device you wear.<br> The life around it.</h3><p>A supported wearable, if you use one, can add available sleep, activity and other trends alongside your own inputs.</p></div>
+            <div class="co-wearable-preview"><img src="assets/web/figma-guide.webp" width="900" height="1205" loading="lazy" alt="A fitness band during training and a ring during a quiet morning, from the original Orb design"><div><span>Different routines.</span><strong>The same starting point.<br> You.</strong><div class="co-data-tags"><span>Sleep</span><span>Activity</span><span>Heart-rate trends</span></div></div></div>
+            <div class="co-source-meta"><span>Source <strong>Supported device or app</strong></span><span>Permissions <strong>Chosen by you</strong></span></div><p class="co-panel-note">Available information depends on your device, permissions and supported integration. Orb can help you consider device data alongside the details it cannot capture.</p>
+          </div>
+          <div class="co-panel" id="co-panel-reports" data-co-panel="reports">
+            <div class="co-panel-title"><span class="co-source-type">Existing reports &amp; health history</span><h3>Keep the original.<br> Add the context.</h3><p>Keep the original records and review information added to your health picture. Your next conversation can begin with more of your history in view.</p></div>
+            <div class="co-report-preview"><div class="co-file"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg><div><strong>Blood report.pdf</strong><span>Your original file, kept with its date</span></div><span class="co-file-tag">Illustration</span></div><div class="co-report-steps"><div><i>1</i><p><strong>Add an existing report</strong><span>Begin with the information you already have.</span></p></div><div><i>2</i><p><strong>Check the extracted information</strong><span>Review details against the original record.</span></p></div><div><i>3</i><p><strong>Bring it into the bigger picture</strong><span>Consider history, daily habits and relevant questions.</span></p></div></div></div>
+            <div class="co-source-meta"><span>Source <strong>Your uploaded report</strong></span><span>Verification <strong>Review before use</strong></span></div><p class="co-panel-note">The original report remains the reference. An explanation of a result is not a diagnosis or a substitute for professional interpretation.</p>
+          </div>
+          <div class="co-panel" id="co-panel-everyday" data-co-panel="everyday">
+            <div class="co-panel-title"><span class="co-source-type">The details only you can add</span><h3>Your life fills<br> in the picture.</h3><p>Meals, movement, symptoms and how the plan fits your day. Add the everyday context that makes the information more personal.</p></div>
+            <div class="co-daily-preview"><div><span class="co-daily-time">8:00 am</span><svg class="icon" aria-hidden="true"><use href="#i-meal"></use></svg><p><strong>Breakfast, logged</strong><span>Your food, portion and any adjustments.</span></p></div><div><span class="co-daily-time">1:00 pm</span><svg class="icon" aria-hidden="true"><use href="#i-move"></use></svg><p><strong>A little movement</strong><span>A walk added to your daily record.</span></p></div><div><span class="co-daily-time">8:30 pm</span><svg class="icon" aria-hidden="true"><use href="#i-moon"></use></svg><p><strong>How today felt</strong><span>“A busy afternoon. Tomorrow needs a simpler lunch.”</span></p></div><p class="co-daily-example">Illustrative entries · no information is being recorded</p></div>
+            <div class="co-source-meta"><span>Source <strong>Your own entries</strong></span><span>Wearable <strong>Optional</strong></span></div><p class="co-panel-note">A missing entry means there is no recorded information. It does not mean you missed a meal, skipped an activity or felt a particular way.</p>
+          </div>
+        </div>
+      </div>
+      <div class="co-console-foot"><span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Sources, dates and permissions stay part of the picture.</span><a href="#trust">Your information, your say <span aria-hidden="true">↗</span></a></div>
     </div>
+    <div class="co-begin"><div><strong>No wearable? You can still begin.</strong><p>Start with your goals, records and daily inputs. Device-based insights depend on supported data and permissions.</p></div><div><button class="btn btn-primary" type="button" data-download>Bring it together in Orb <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button><a href="#plans">Find your starting point</a></div></div>
+    <p class="co-availability">Check the supported integrations list for current compatibility. Available data and connection methods vary by device, CGM, app and permissions. The connections above are examples of source categories, not a promise that every brand is supported.</p>
   </div>
   <div class="cp-wrap cc-trust" id="trust" aria-labelledby="cc-trust-title">
     <div><p class="cc-eyebrow">Clarity and control</p><h2 id="cc-trust-title">Your information.<br> Your say.</h2><button class="cc-link" type="button" data-detail data-policy="privacyUrl" data-title="How your information is used" data-description="The approved privacy policy will be linked here before launch. This website preview does not collect health information.">How your information is used <span aria-hidden="true">↗</span></button></div>
@@ -466,6 +589,7 @@
   <div class="sales-wrap vo-faq-layout">
     <div class="sales-heading"><h2 id="vo-faq-title">The questions<br> worth asking.</h2><p>Understand how Orb fits your life before you choose.</p><a class="vo-faq-context-link" href="#trust">Explore clarity and control <span aria-hidden="true">↗</span></a></div>
     <div class="vo-faq-list" data-offer-faq>
+      <details><summary>What can I try for free?<span aria-hidden="true">+</span></summary><div><p>Start with the free diet-plan builder or free fitness assessment. These are separate from the Orb annual subscription and optional professional care.</p><a href="#free-tools">Choose your free first step</a></div></details>
       <details><summary>I already use a wearable. Why would I add Orb?<span aria-hidden="true">+</span></summary><div><p>A wearable contributes one part of your story. Orb’s connected approach brings available device trends alongside your reports, goals, meals, workouts and personal check-ins. The value to look for is how that context supports your daily plan and next review. Check whether your device and the information you want to use are supported.</p><a href="#connections">See how your information comes together</a></div></details>
       <details><summary>Do I need a wearable to begin?<span aria-hidden="true">+</span></summary><div><p>No. You can begin with your goals, records and your own daily inputs. Device-based trends and scores need the relevant supported data and permissions. Missing data should stay visibly missing, rather than being treated as a zero or a missed activity.</p></div></details>
       <details><summary>Can I use reports I already have?<span aria-hidden="true">+</span></summary><div><p>The Health Vault experience is designed around existing reports: keep the original file, review extracted details and correct them before they become verified information. Supported formats and limits need to be confirmed in the available app. New tests are not a requirement for everyone.</p><a href="#health-vault">Explore Health Vault</a></div></details>
@@ -489,7 +613,7 @@
 </main>
 <footer class="vo-footer" id="footer">
   <div class="sales-wrap">
-    <div class="vo-footer-top"><div class="vo-footer-identity"><a class="vo-footer-brand" href="#top" aria-label="Orb by Cureocity, back to top"><strong>orb</strong><span>by <img src="assets/figma-logo.svg" alt="Cureocity" width="177" height="35"></span></a><p>Your health information, everyday habits and next steps, brought together.</p></div><nav class="vo-footer-nav" aria-label="Footer navigation"><div><h3>Your everyday app</h3><a href="#features">Explore all features</a><a href="#nutrition">Meals &amp; nutrition</a><a href="#movement">Movement &amp; workouts</a><a href="#insights">Insights &amp; trends</a><a href="#cycle-journal">Cycle &amp; personal check-ins</a></div><div><h3>Your health context</h3><a href="#health-vault">Health Vault</a><a href="#connections">Connected information</a><a href="#family">Family Circle</a><a href="#trust">Clarity &amp; control</a></div><div><h3>Your next step</h3><a href="#how-it-works">How Orb works</a><a href="#care">Professional care</a><a href="#assessment">Blueprint &amp; assessment</a><a href="#plans">Orb annual subscription</a><a href="#faq">Questions before starting</a></div></nav></div>
+    <div class="vo-footer-top"><div class="vo-footer-identity"><a class="vo-footer-brand" href="#top" aria-label="Orb by Cureocity, back to top"><strong>orb</strong><span>by <img src="assets/figma-logo.svg" alt="Cureocity" width="177" height="35"></span></a><p>Your health information, everyday habits and next steps, brought together.</p></div><nav class="vo-footer-nav" aria-label="Footer navigation"><div><h3>Your everyday app</h3><a href="#free-tools">Free diet plan &amp; assessment</a><a href="#features">Explore all features</a><a href="#nutrition">Meals &amp; nutrition</a><a href="#movement">Movement &amp; workouts</a><a href="#insights">Insights &amp; trends</a><a href="#cycle-journal">Cycle &amp; personal check-ins</a></div><div><h3>Your health context</h3><a href="#health-vault">Health Vault</a><a href="#connections">Connected information</a><a href="#family">Family Circle</a><a href="#trust">Clarity &amp; control</a></div><div><h3>Your next step</h3><a href="#how-it-works">How Orb works</a><a href="#care">Professional care</a><a href="#assessment">Blueprint &amp; assessment</a><a href="#plans">Orb annual subscription</a><a href="#faq">Questions before starting</a></div></nav></div>
     <div class="vo-footer-info"><nav aria-label="Policies and professional information"><button type="button" data-detail="privacy-policy" data-policy="privacyUrl" data-title="Privacy Policy" data-description="The approved Cureocity privacy policy is not connected to this preview. Review the published policy before sharing health information.">Privacy Policy</button><button type="button" data-detail="terms" data-policy="termsUrl" data-title="Terms of Use" data-description="The approved terms of use are not connected to this preview. Review the current terms inside Orb before subscribing.">Terms of Use</button><button type="button" data-detail="data-requests" data-policy="dataRequestsUrl" data-title="Data Requests" data-description="The authorised data-request destination is not connected to this preview. No request is submitted here.">Data Requests</button><button type="button" data-detail="orbit-professionals" data-policy="professionalsUrl" data-title="Orbit for professionals" data-description="Orb is the member-facing app. Orbit is Cureocity’s distinct professional workspace for care plans, authorised records and follow-up workflows. The professional product destination is not connected to this preview.">For professionals</button></nav><p>Orb’s AI guidance does not replace professional medical care. Features, integrations and care services depend on availability, plan and location.</p><span>© Cureocity. All rights reserved.</span><p class="vo-preview-note" data-preview-only>Private design preview: annual price confirmed; final app inclusions and release availability are awaiting confirmation.</p></div>
   </div>
 </footer>

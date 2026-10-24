@@ -141,6 +141,20 @@
       "bytes": 975882,
       "savingsPercent": 95.4,
       "sha256Original": "0f800c017b5d8b550250d92606655ff2e8e462af439058107dd93e1f99e82b63"
+    },
+    {
+      "name": "ai-fitness-lab",
+      "original": "assets/figma-originals/figma-longevity.png",
+      "source": "dist/assets/figma-longevity.png",
+      "output": "dist/assets/web/figma-longevity.webp",
+      "sourceWidth": 3840,
+      "sourceHeight": 2160,
+      "width": 1920,
+      "height": 1080,
+      "sourceBytes": 9471510,
+      "bytes": 1755448,
+      "savingsPercent": 81.5,
+      "sha256Original": "76da1d3c293458452239ee29d377099fe0a89674a6c63cd6fa628f670c16675c"
     }
   ]
 }

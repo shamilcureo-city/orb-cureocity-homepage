@@ -8,6 +8,8 @@ window.ORB_CONFIG = {
   "supportUrl": null,
   "professionalsUrl": null,
   "dataRequestsUrl": null,
+  "freeDietPlanUrl": null,
+  "freeFitnessAssessmentUrl": null,
   "commerce": {
     "currency": "INR",
     "annualPrice": 7500,

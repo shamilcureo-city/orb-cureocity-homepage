@@ -2,19 +2,21 @@
 
 A standalone, owner-private website concept based on **Cureocity_Orb_Product_and_Website_Brief.pdf**, separate from Cureocity Mind. The page makes the breadth of Orb visible through original product artwork, readable interface illustrations and practical examples. Conversion remains Get Orb → download → choose a subscription in the app.
 
-## Current experience — v12
+## Current experience — v13
 
 1. Original navy-to-white hero, three original handset images, sharp Orb Intelligence and daily-plan previews.
-2. Eight-feature navigation and four visitor-priority paths: understand my day, make food work, build fitness and connected care.
-3. Detailed nutrition planning, meal logging and weekly feedback, with familiar-food and preparation-time examples.
-4. Workout planning, movement assessment, session logging and a finite voice-log demonstration.
-5. A visible Health Vault: originals, review of extracted information, history and permission-based sharing.
-6. Interactive sleep/recovery, activity/stress, health-trend and glucose illustrations, with sources, dates, gaps and interpretation boundaries.
-7. Original cycle-tracking handset, coherent date overlays and a personal journal illustration.
-8. A three-stage interactive week: plan, adapt an office lunch, carry feedback forward.
-9. Optional connected care, distinct professional roles, app-led/online/hybrid routes, Blueprint and consent-based Family Circle.
-10. Original wearable/lifestyle photography, a no-wearable path, sharing and AI boundaries.
-11. Confirmed annual offer: ₹7,500/year; ₹625 monthly equivalent, billed annually. Professional care is separate. Ten FAQs and comprehensive footer navigation.
+2. Free diet-plan and AI fitness-assessment offers, with mockup buttons pending the owner’s live URLs.
+3. Eight-feature navigation and four visitor-priority paths: understand my day, make food work, build fitness and connected care.
+4. Detailed nutrition planning, meal logging and weekly feedback, with familiar-food and preparation-time examples.
+5. Workout planning, movement assessment, session logging and a finite voice-log demonstration.
+6. A visible Health Vault: originals, review of extracted information, history and permission-based sharing.
+7. Interactive sleep/recovery, activity/stress, health-trend and glucose illustrations, with sources, dates, gaps and interpretation boundaries.
+8. Original cycle-tracking handset, coherent date overlays and a personal journal illustration.
+9. A three-stage interactive week: plan, adapt an office lunch, carry feedback forward.
+10. Optional connected care, distinct professional roles, app-led/online/hybrid routes, Blueprint and consent-based Family Circle.
+11. An interactive connections console with a source network, CGM default view, supported wearables/apps, reports, daily inputs and no-wearable path.
+12. A cinematic AI assessment/trainer showcase using the original training-lab artwork, movement traces, keyboard tabs and finite replay.
+13. Confirmed annual offer: ₹7,500/year; ₹625 monthly equivalent, billed annually. Professional care is separate. Eleven FAQs and comprehensive footer navigation.
 
 Final app inclusions and released features remain unconfirmed. No competitor exclusivity, clinical outcomes, fabricated testimonials, trial, discount or automatic treatment changes are claimed. Bevel's official website was reviewed for breadth and product visibility; its assets, copy and customer proof were not reused.
 
@@ -33,11 +35,15 @@ Node 20+; local preview http://127.0.0.1:4178. `build.mjs` assembles HTML and ge
 - `parts/head.html`: metadata, navigation, icons and imports.
 - `parts/main.html`: original hero with two sharp interface previews.
 - `parts/complete-overview.html`, `dist/complete.css/js`: feature atlas, visitor priorities, responsive foundation and persistent navigation.
-- `parts/complete-routine.html`, `dist/complete-routine.css/js`: nutrition, training and voice logging.
+- `parts/complete-routine.html`, `dist/complete-routine.css/js`: nutrition and training; `parts/voice-routine.html` retains the voice logging section.
 - `parts/complete-health.html`, `dist/complete-health.css/js`: records, contextual insights, cycle and journal.
 - `parts/value-week.html`, `dist/value-week.css/js`: interactive practical week.
-- `parts/complete-care.html`, `dist/complete-care.css/js`: care, assessments, family, connected information and trust.
+- `parts/complete-care.html`, `dist/complete-care.css/js`: care, assessments and family.
 - `parts/value-offer.html`, `dist/value-offer.css/js`: annual offer, FAQs, final action and footer.
+- `parts/free-tools.html`, `dist/free-tools.css`: free offer cards and supporting entry points.
+- `parts/ai-fitness.html`, `dist/ai-fitness.css/js`: AI fitness showcase.
+- `parts/connected-orb.html`, `dist/connected-orb.css/js`: source network, CGM and other source panels, original trust content.
+- `dist/premium-motion.css/js`: finite document, phone, chart and care-journey motion.
 - `parts/foot.html`: shared dialog and mobile Get Orb bar.
 - `dist/journey.css/js`: daily-screen styles, sticky CTA and configured policy destinations.
 - `dist/app.js`: destination dialogs and navigation. Unused legacy handlers remain inert.
@@ -56,6 +62,8 @@ Tabs support keyboard arrows, Home and End. Feature panels stay visible without 
 ## Release and destinations
 
 The user confirmed ₹7,500/year on 24 October 2026. Final paid inclusions, release status, tax treatment, renewal and cancellation terms remain unconfirmed. `site-content.json` records feature release/claim status. Publishing this website concept does not verify the app's availability. `ORB_PUBLIC_BUILD=1` fails until featured claims and essential destinations are confirmed.
+
+The owner confirmed both free tools are live and explicitly requested mockup buttons until their URLs are supplied. Set `freeDietPlanUrl` and `freeFitnessAssessmentUrl` in `site-content.json` to approved HTTPS links and rebuild. No lead form or collection is present.
 
 App Store and Google Play URLs were explicitly deferred. Download buttons therefore open a store-selection dialog with disabled unconfigured links. Enquiry, privacy, terms, support, data-request and professional URLs are also pending. Add approved HTTPS destinations, rebuild and verify the actual journey before public use.
 

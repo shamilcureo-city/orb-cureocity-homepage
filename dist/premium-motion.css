@@ -1,0 +1,29 @@
+/* Product-specific motion enhancement. All content is visible in the base layout. */
+.ch-text-link > span,
+.cc-link > span,
+.cr-link > .icon {
+  transition: translate 200ms cubic-bezier(.2,.7,.2,1);
+}
+
+.ch-text-link:focus-visible > span,
+.cc-link:focus-visible > span,
+.cr-link:focus-visible > .icon {
+  translate: 3px 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ch-text-link:hover > span,
+  .cc-link:hover > span,
+  .cr-link:hover > .icon {
+    translate: 3px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-text-link > span,
+  .cc-link > span,
+  .cr-link > .icon {
+    transition: none;
+    translate: none;
+  }
+}

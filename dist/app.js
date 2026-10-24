@@ -265,9 +265,11 @@
     const dialogDescription = $('#dialog-description');
     const dialogContent = $('#dialog-content');
     let dialogOpener = null;
+    let dialogDestination = null;
     function openDialog(title, description, trigger) {
       if (!dialog || !dialogTitle || !dialogDescription || !dialogContent) return false;
       dialogOpener = trigger || document.activeElement;
+      dialogDestination = null;
       dialogTitle.textContent = title;
       dialogDescription.textContent = description;
       dialogContent.replaceChildren();
@@ -294,18 +296,47 @@
         dialogContent.append(make('p', 'The enquiry link is not available in this preview. No personal information is collected here.', 'demo-note'));
       }
     }
+    function showFreeTool(trigger) {
+      const fitness = trigger.dataset.freeTool === 'fitness';
+      const href = destination(fitness ? config.freeFitnessAssessmentUrl : config.freeDietPlanUrl);
+      if (href) { window.location.assign(href); return; }
+      const title = fitness ? 'Your free fitness assessment' : 'Your free diet plan';
+      const description = fitness
+        ? 'Explore your fitness starting point with guided movement and AI-assisted assessment.'
+        : 'Start with your food preferences, goals and routine to build a diet plan around your life.';
+      if (!openDialog(title, description, trigger)) return;
+      const summary = make('div', undefined, 'ft-dialog-summary');
+      summary.append(make('strong', fitness ? 'Start with how you move.' : 'Start with the food you know.'));
+      summary.append(make('span', fitness ? 'The free tool is a first step. Ongoing Orb app access and professional care are separate.' : 'The free plan builder is a first step. Ongoing Orb app access and professional care are separate.'));
+      dialogContent.append(summary);
+      dialogContent.append(make('p', 'Mockup button: the live tool link will be added later. No information is collected in this preview.', 'ft-dialog-status'));
+      const action = make('a', fitness ? 'Explore AI fitness' : 'Explore nutrition', 'btn btn-primary ft-dialog-actions');
+      action.href = fitness ? '#ai-fitness' : '#nutrition';
+      action.addEventListener('click', () => { dialogDestination = $(action.getAttribute('href')); dialog.close(); });
+      dialogContent.append(action);
+    }
     $('#dialog-close')?.addEventListener('click', () => dialog?.close());
-    dialog?.addEventListener('close', () => { if (dialogOpener instanceof HTMLElement && document.contains(dialogOpener)) dialogOpener.focus({ preventScroll: true }); });
+    dialog?.addEventListener('close', () => {
+      if (dialogDestination instanceof HTMLElement) {
+        const target = dialogDestination.querySelector('h2') || dialogDestination;
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        dialogDestination = null;
+      } else if (dialogOpener instanceof HTMLElement && document.contains(dialogOpener)) {
+        dialogOpener.focus({ preventScroll: true });
+      }
+    });
     dialog?.addEventListener('click', event => {
       if (event.target !== dialog) return;
       const rect = dialog.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
     });
     document.addEventListener('click', event => {
-      const trigger = event.target.closest('[data-download], [data-store], [data-enquiry], [data-detail]');
+      const trigger = event.target.closest('[data-download], [data-store], [data-enquiry], [data-detail], [data-free-tool]');
       if (!trigger || trigger.disabled) return;
       event.preventDefault();
-      if (trigger.hasAttribute('data-store')) {
+      if (trigger.hasAttribute('data-free-tool')) showFreeTool(trigger);
+      else if (trigger.hasAttribute('data-store')) {
         const href = destination(trigger.dataset.store === 'apple' ? config.appStoreUrl : config.googlePlayUrl);
         if (href) window.location.assign(href);
         else showDownloads(trigger);

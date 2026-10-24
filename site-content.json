@@ -10,7 +10,9 @@
     "termsUrl": null,
     "supportUrl": null,
     "professionalsUrl": null,
-    "dataRequestsUrl": null
+    "dataRequestsUrl": null,
+    "freeDietPlanUrl": null,
+    "freeFitnessAssessmentUrl": null
   },
   "features": [
     {
@@ -165,5 +167,15 @@
     "paidInclusions": "pending-owner-confirmation",
     "taxTreatment": "unconfirmed",
     "checkout": "choose-plan-in-app"
+  },
+  "leadGeneration": {
+    "freeOffers": [
+      "diet-plan",
+      "fitness-assessment"
+    ],
+    "destinationStatus": "live tools confirmed by owner; URLs pending",
+    "previewBehavior": "mockup-buttons-only",
+    "dataCollection": false,
+    "source": "User confirmation, 24 October 2026"
   }
 }

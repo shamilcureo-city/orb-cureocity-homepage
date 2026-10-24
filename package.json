@@ -6,6 +6,6 @@
   "scripts": {
     "build": "node build.mjs",
     "dev": "node server.mjs",
-    "check": "node --check dist/app.js && node --check dist/config.js && node --check dist/complete.js && node --check dist/complete-routine.js && node --check dist/complete-health.js && node --check dist/complete-care.js && node --check dist/journey.js && node --check dist/value-week.js && node --check dist/value-offer.js && node --check build.mjs"
+    "check": "node --check dist/app.js && node --check dist/config.js && node --check dist/complete.js && node --check dist/complete-routine.js && node --check dist/complete-health.js && node --check dist/complete-care.js && node --check dist/journey.js && node --check dist/value-week.js && node --check dist/value-offer.js && node --check build.mjs && node --check dist/ai-fitness.js && node --check dist/connected-orb.js && node --check dist/premium-motion.js"
   }
 }

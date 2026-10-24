@@ -114,3 +114,10 @@ The original logo, gradient, hero handset, meal-plan phone, mobility-check phone
 ## V12 comprehensive product presentation
 
 No raster files were generated or changed for v12. The original gradient, logo, hero/meal/food/workout/cycle handsets, coral Orb, wearable lifestyle image and hub illustration are reused. The centre hero uses the existing handset with sharp HTML Intelligence and Today panels; its side graphics are the original food and mobility handsets. Centre widths are 320px desktop, 300px mobile and 280px narrow. The meal overlay covers inconsistent legacy nutritional numbers; cycle overlays use 25 October, an estimated next period on 29 October, and four days remaining. Original pixels remain intact beneath these HTML overlays. The Health Vault document stack, dated insight charts, journal, connected-care workflow, Blueprint and family-sharing illustration are authored in HTML/CSS/SVG and explicitly fictional. No competitor artwork or proof is used.
+
+
+## V13 free tools and AI fitness
+
+Free-tool cards reuse the original food and mobility-check handset derivatives. AI fitness uses the original `figma-longevity.png` training-lab illustration with new HTML/SVG explanatory overlays; it is labelled illustrative. A proportional 1920 × 1080 lossless WebP delivery copy is 1,755,448 bytes versus the 9,471,510-byte original, an 81.5% payload reduction. No retouching, recolouring or replacement imagery was applied. The original source hash is recorded in the delivery manifest.
+
+The connections graphic uses the original coral Orb artwork and wearable lifestyle derivative. Its network, icons and fictional CGM curve are authored SVG/HTML. Motion traces sources and curves and settles existing phone/document graphics. It is finite, with reduced-motion and hidden-document cancellation. No medical readings, live device connection or assessment result is fabricated.
