@@ -1,1 +1,11 @@
-{"name":"orb-homepage","version":"1.0.0","private":true,"type":"module","scripts":{"build":"node build.mjs","dev":"node server.mjs","check":"node --check dist/app.js && node --check dist/config.js && node --check dist/motion.js && node --check dist/sales.js && node --check dist/sales-day.js && node --check dist/sales-why.js && node --check build.mjs"}}
+{
+  "name": "orb-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node server.mjs",
+    "check": "node --check dist/app.js && node --check dist/config.js && node --check dist/motion.js && node --check dist/journey.js && node --check dist/journey-story.js && node --check dist/journey-features.js && node --check dist/journey-care.js && node --check build.mjs"
+  }
+}
