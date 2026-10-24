@@ -275,7 +275,7 @@
       return true;
     }
     function showDownloads(trigger) {
-      if (!openDialog('Choose your app store', 'Download Orb, then compare plans and choose your subscription inside the app.', trigger)) return;
+      if (!openDialog('Choose your app store', `Orb is ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: config.commerce?.currency || 'INR', maximumFractionDigits: 0 }).format(config.commerce?.annualPrice || 7500)} per year, billed annually. Download the app to review what’s included and choose your plan. Professional care is separate.`, trigger)) return;
       const actions = make('div', undefined, 'dialog-actions');
       [['App Store', config.appStoreUrl], ['Google Play', config.googlePlayUrl]].forEach(([label, value]) => {
         const href = destination(value);

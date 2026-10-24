@@ -192,6 +192,15 @@
       ], { duration: 1250, delay: compact.matches ? 0 : (index % 2) * 100 }));
     });
 
+    // A short, one-time reveal helps the product and care story unfold.
+    // Copy is visible before observation and remains visible without JavaScript.
+    document.querySelectorAll('.vp-original-phone img, .vp-care-story, .vo-offer').forEach(element => {
+      enterOnce(element, () => animate(element, [
+        { opacity: .7, translate: '0 12px' },
+        { opacity: 1, translate: '0 0' }
+      ], { duration: 650 }));
+    });
+
     const voiceOrb = document.querySelector('.voice-visual img');
     const voiceWaveform = document.querySelector('.voice-waveform');
     let wavePlayed = false;

@@ -102,7 +102,7 @@
       "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
       "ctaDestination": null,
       "claimApproval": "pending-owner-review",
-      "showInDesignPreview": true
+      "showInDesignPreview": false
     },
     {
       "id": "family-circle",
@@ -115,7 +115,7 @@
       "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
       "ctaDestination": null,
       "claimApproval": "pending-owner-review",
-      "showInDesignPreview": true
+      "showInDesignPreview": false
     },
     {
       "id": "trust",
@@ -130,5 +130,14 @@
       "claimApproval": "pending-owner-review",
       "showInDesignPreview": true
     }
-  ]
+  ],
+  "commerce": {
+    "currency": "INR",
+    "annualPrice": 7500,
+    "billingPeriod": "year",
+    "priceSource": "User confirmation, 24 October 2026",
+    "paidInclusions": "pending-owner-confirmation",
+    "taxTreatment": "unconfirmed",
+    "checkout": "choose-plan-in-app"
+  }
 }

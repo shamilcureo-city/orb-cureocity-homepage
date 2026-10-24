@@ -106,3 +106,7 @@ New HTML/CSS illustrations explain preferences and equipment informing plans, a 
 ## V10 connected-care concept
 
 The new supplied Orb Product and Website Brief is the narrative source. The current page uses the unchanged logo, navy-to-white gradient, hero handset, coral Orb, meal-plan phone and mobility-check phone. Other historical assets remain preserved but are no longer necessarily displayed. The hero contains newly authored sharp HTML showing a fictional daily plan, logs and upcoming review. Further HTML/CSS visuals demonstrate context flowing into the day, verification of an original report, source-aware historical/partial/missing data and permission-controlled summaries. No new raster assets or AI-generated replacement imagery were created in v10. Demonstration screens are concepts, not verified live-product screenshots.
+
+## V11 sales narrative and annual offer
+
+The original logo, gradient, hero handset, meal-plan phone, mobility-check phone and coral Orb are reused. No raster asset was changed. The hero uses newly authored HTML for a practical lunch, a workout and feedback. The meal phone retains the original handset and meal choices; a responsive HTML overlay replaces visibility of inconsistent numerical targets in the old concept artwork with non-numeric illustrative planning content. It is labelled as an illustrative app concept. The weekly board and care journey are HTML/CSS illustrations with fictional content, not verified released product screens.
