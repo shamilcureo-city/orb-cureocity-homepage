@@ -52,14 +52,14 @@ h1{text-wrap:balance}.reduce-motion [data-video-toggle]{display:none}@media(pref
 
 /* Comfortable viewing scale: preserve the composition without sizing every
    element to the original 1728px design canvas. */
-:root{font-size:16px;--content-width:1120px;--section-space:88px}
+:root{font-size:16px;--content-width:1040px;--section-space:68px}
 html{scroll-padding-top:88px}
 .container{width:min(calc(100% - 64px),var(--content-width))}
-h2{font-size:clamp(30px,3vw,44px)}
-h3{font-size:clamp(25px,2.4vw,34px)}
-.section-head{max-width:800px;margin-bottom:36px}
-.section-head h2,.free-section .section-head h2{font-size:clamp(32px,3.4vw,48px)}
-.section-head p{font-size:18px;max-width:740px;margin-top:18px}
+h2{font-size:clamp(28px,2.7vw,38px)}
+h3{font-size:clamp(24px,2.1vw,29px)}
+.section-head{max-width:720px;margin-bottom:28px}
+.section-head h2,.free-section .section-head h2{font-size:clamp(28px,2.9vw,40px)}
+.section-head p{font-size:17px;max-width:680px;margin-top:16px}
 .button,.button.compact{font-size:16px;min-height:48px;padding:13px 22px;gap:9px}
 .button .icon{width:20px;height:20px}
 .tag,.eyebrow{font-size:14px;padding:8px 12px;border-radius:7px}
@@ -80,17 +80,17 @@ h3{font-size:clamp(25px,2.4vw,34px)}
 .hero-bottom .button{font-size:16px;min-height:48px;padding:13px 22px}
 .store-badges img{width:128px;height:44px}
 .hero-billing{font-size:12px;margin-top:12px}
-.trust-strip{width:min(calc(100% - 64px),1200px);padding:30px 0;gap:24px}
+.trust-strip{width:min(calc(100% - 64px),1120px);padding:24px 0;gap:20px}
 .trust-item{gap:12px}
 .trust-item>.icon{width:24px;height:26px}
 .trust-item strong{font-size:14px;line-height:1.4}
 .trust-item span{font-size:12px;line-height:1.5}
-.intro-plans{width:min(calc(100% - 64px),var(--content-width));gap:28px;margin-top:48px}
-.intro-plan{height:660px;padding:40px 24px 0;border-radius:18px}
+.intro-plans{width:min(calc(100% - 64px),var(--content-width));gap:24px;margin-top:36px}
+.intro-plan{height:540px;padding:30px 24px 0;border-radius:18px}
 .intro-plan .tag{font-size:14px}
-.intro-plan h2{font-size:34px;line-height:1.14;margin:20px auto 24px}
+.intro-plan h2{font-size:29px;line-height:1.16;margin:18px auto 20px}
 .intro-plan .button{font-size:16px;min-height:48px}
-.intro-plan>.mini-phone{width:300px;max-width:100%;margin-top:32px}
+.intro-plan>.mini-phone{width:270px;max-width:100%;margin-top:26px}
 .mini-phone{height:650px;border-radius:54px 54px 44px 44px;border-width:6px;font-size:14px}
 .mini-phone:before{top:14px;width:94px;height:25px}
 .mini-phone .phone-top{font-size:15px;padding:54px 16px 18px}
@@ -108,23 +108,23 @@ h3{font-size:clamp(25px,2.4vw,34px)}
 .chat-bubble{font-size:14px;padding:13px;margin:10px 0;border-radius:14px}
 .chat-choice{padding:12px;font-size:12px;margin-top:10px}
 .chat-choice p{font-size:12px;margin-top:6px}
-.free-section{padding:88px 0 96px}
-.free-section .section-head{margin-bottom:36px}
-.free-cards{gap:24px}
-.free-card,.free-card.reverse{height:auto;min-height:420px;border-width:2px;border-radius:24px;grid-template-columns:1fr 1fr}
-.free-card-copy{padding:44px 48px}
-.free-card h3{font-size:34px;margin-top:22px}
-.free-card p{font-size:18px;line-height:1.55;margin:18px 0 26px}
-.free-media{min-height:0;height:100%;max-height:520px}
-.connected-story>.connect-tabs{top:64px;left:max(32px,calc((100% - 1200px)/2))}
+.free-section{padding:68px 0 72px}
+.free-section .section-head{margin-bottom:28px}
+.free-cards{gap:20px}
+.free-card,.free-card.reverse{height:auto;min-height:360px;border-width:2px;border-radius:20px;grid-template-columns:1fr 1fr}
+.free-card-copy{padding:32px 36px}
+.free-card h3{font-size:29px;margin-top:18px}
+.free-card p{font-size:17px;line-height:1.55;margin:16px 0 22px}
+.free-media{min-height:0;height:100%;max-height:440px;contain:size}
+.connected-story>.connect-tabs{top:44px;left:max(32px,calc((100% - 1200px)/2))}
 .connect-tabs button{font-size:14px;min-height:44px;min-width:44px;padding:10px 14px}
-.connect-slide{min-height:660px}
-.connect-slide .connect-inner{width:min(calc(100% - 64px),1200px);padding:140px 0 88px}
-.connect-copy{max-width:535px}
-.connect-copy h2{font-size:40px;line-height:1.13}
-.connect-copy>p{font-size:18px;margin-top:18px}
+.connect-slide{min-height:560px}
+.connect-slide .connect-inner{width:min(calc(100% - 64px),1120px);padding:116px 0 76px}
+.connect-copy{max-width:490px}
+.connect-copy h2{font-size:34px;line-height:1.15}
+.connect-copy>p{font-size:17px;margin-top:16px}
 .connect-copy .button{margin-top:24px}
-.connect-faqs{max-width:555px;margin-top:34px;gap:12px}
+.connect-faqs{max-width:520px;margin-top:26px;gap:10px}
 .connect-faqs summary{font-size:15px;line-height:1.45}
 .connect-faqs details{padding:13px 15px}
 .connect-faqs details>p{font-size:15px;margin-top:16px}
@@ -132,25 +132,25 @@ h3{font-size:clamp(25px,2.4vw,34px)}
 .connect-slide .media-toggle{left:max(32px,calc((100% - 1200px)/2))}
 @media(max-width:1100px) and (min-width:901px){
   .header-inner{gap:16px}.brand-logo{width:156px}.desktop-nav a{font-size:12px;padding:10px 11px}
-  .hero-bottom{flex-wrap:wrap}.intro-plan h2{font-size:30px}
+  .hero-bottom{flex-wrap:wrap}.intro-plan h2{font-size:28px}
 }
 @media(max-width:900px){
   .container,.header-inner,.hero-content,.intro-plans{width:calc(100% - 48px)}
   .hero-new{min-height:600px}.hero-content{padding:210px 0 56px}
   .hero-content h1{font-size:46px;max-width:650px}.hero-description{font-size:17px;max-width:620px}
   .hero-bottom{gap:18px}.hero-bottom .button{font-size:15px}
-  .trust-strip{width:calc(100% - 48px);gap:24px 32px;padding:28px 0}
-  .intro-plan{height:620px;padding:32px 18px 0}.intro-plan h2{font-size:28px}
-  .intro-plan .button{font-size:14px}.intro-plan>.mini-phone{width:270px}
-  .free-card,.free-card.reverse{min-height:390px;height:auto}.free-card-copy{padding:32px}
-  .free-card h3{font-size:30px}.free-card p{font-size:16px}.free-card .button{font-size:14px}
-  .free-section{padding:72px 0}.connect-copy h2{font-size:36px}
-  .connected-story>.connect-tabs{top:52px;left:24px}.connect-slide .connect-inner{width:calc(100% - 48px);padding-top:124px}
-  .connect-slide{min-height:620px}.connect-controls{right:24px}.connect-slide .media-toggle{left:24px}
+  .trust-strip{width:calc(100% - 48px);gap:18px 28px;padding:22px 0}
+  .intro-plan{height:520px;padding:26px 18px 0}.intro-plan h2{font-size:26px}
+  .intro-plan .button{font-size:14px}.intro-plan>.mini-phone{width:250px}
+  .free-card,.free-card.reverse{min-height:340px;height:auto}.free-card-copy{padding:26px}
+  .free-card h3{font-size:26px}.free-card p{font-size:16px}.free-card .button{font-size:14px}
+  .free-section{padding:56px 0}.connect-copy h2{font-size:32px}
+  .connected-story>.connect-tabs{top:38px;left:24px}.connect-slide .connect-inner{width:calc(100% - 48px);padding-top:108px}
+  .connect-slide{min-height:560px}.connect-controls{right:24px}.connect-slide .media-toggle{left:24px}
 }
 @media(max-width:600px){
   html{scroll-padding-top:80px}.container,.header-inner,.intro-plans{width:calc(100% - 36px)}
-  .section-head h2,.free-section .section-head h2{font-size:30px}.section-head p{font-size:16px;margin-top:16px}
+  .section-head h2,.free-section .section-head h2{font-size:28px}.section-head p{font-size:16px;margin-top:16px}
   .section-head{margin-bottom:28px}.brand-logo{width:144px;height:33px}
   .site-header{top:16px}.site-header.scrolled{padding:8px 0}.header-inner{gap:10px}
   .header-actions>.compact{font-size:12px;padding:10px 14px}.menu-toggle{min-width:44px;min-height:44px}
@@ -162,16 +162,16 @@ h3{font-size:clamp(25px,2.4vw,34px)}
   .hero-billing{font-size:11px;max-width:310px}.store-badges img{width:120px;height:42px}
   .trust-strip{width:calc(100% - 40px);padding:24px 0;gap:22px 16px}.trust-item{gap:9px}
   .trust-item>.icon{width:20px;height:22px}.trust-item strong{font-size:12px}.trust-item span{font-size:11px}
-  .intro-plans{margin-top:28px;gap:20px}.intro-plan{height:590px;padding:30px 22px 0}
-  .intro-plan h2{font-size:28px;margin:18px auto 20px}.intro-plan>.mini-phone{width:264px;margin-top:28px}
+  .intro-plans{margin-top:24px;gap:18px}.intro-plan{height:520px;padding:26px 22px 0}
+  .intro-plan h2{font-size:26px;margin:16px auto 18px}.intro-plan>.mini-phone{width:250px;margin-top:24px}
   .intro-plan .button{min-height:46px}.intro-plan .tag{font-size:12px}
-  .free-section{padding:60px 0}.free-section .section-head{margin-bottom:28px}
-  .free-card,.free-card.reverse{min-height:0;height:auto;border-radius:20px}.free-card-copy{padding:28px}
-  .free-card h3{font-size:28px;margin-top:18px}.free-card p{font-size:16px;margin:16px 0 22px}
-  .free-media{height:250px;max-height:none}.free-card .button{min-height:46px}
+  .free-section{padding:48px 0}.free-section .section-head{margin-bottom:28px}
+  .free-card,.free-card.reverse{min-height:0;height:auto;border-radius:20px}.free-card-copy{padding:24px}
+  .free-card h3{font-size:26px;margin-top:16px}.free-card p{font-size:16px;margin:16px 0 22px}
+  .free-media{height:220px;max-height:none}.free-card .button{min-height:46px}
   .connected-story>.connect-tabs{top:36px;left:20px;right:20px}.connect-tabs button{font-size:12px;padding:10px 12px}
-  .connect-slide{min-height:620px}.connect-slide .connect-inner{width:calc(100% - 40px);padding:108px 0 92px}
-  .connect-copy h2{font-size:30px}.connect-copy>p{font-size:16px;margin-top:16px}.connect-copy .button{font-size:14px;margin-top:22px}
+  .connect-slide{min-height:580px}.connect-slide .connect-inner{width:calc(100% - 40px);padding:108px 0 92px}
+  .connect-copy h2{font-size:28px}.connect-copy>p{font-size:16px;margin-top:16px}.connect-copy .button{font-size:14px;margin-top:22px}
   .connect-faqs{margin-top:30px}.connect-faqs summary{font-size:13px}.connect-faqs details{padding:12px}
   .connect-faqs details>p{font-size:14px}.connect-controls{right:20px}.connect-slide .media-toggle{left:20px}
 }

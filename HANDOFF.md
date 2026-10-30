@@ -18,9 +18,15 @@ Original screen content is retained at the owner's explicit request and labelled
 - Pro eyebrow is centered with the headline and price block.
 - Dr. Vijesh Vijayan's portrait is reframed to show his complete head. The original Figma quote is restored in italic double quotation marks, with the owner-requested “(Medical Director)” title.
 - Blueprint previous/next arrows sit at the sides of the media area.
-- The professionals section's Next arrow is removed. Additional professional profiles still require supplied names, roles and approved portraits; no identities are invented.
+- The professionals section's Next arrow is removed. The owner confirmed the complete lineup on 30 October 2026: Dr Lubna Ali and Dr Vijesh Vijayan only. No additional professional profiles or portraits are required.
 
 The existing compact typography, cards and footer remain. Layout sizing is CSS-based rather than browser zoom or whole-page scaling.
+
+## Smaller sections below the hero
+
+The owner requested a more compact scale below the hero. The full-viewport hero and floating navigation stay at their established size. Body sections now use smaller headings, shorter cards and media, tighter section spacing and a 1040px content limit. At 700–900px, care choices and member portraits share a row, while pricing and starting-point cards use two columns. Main body copy remains 16–17px, with controls at least 44px high.
+
+At the current 758px-wide preview, the page decreased from 19,973px to 14,909px (about 25%). The free-offer section decreased from 1262px to 939px. Browser checks at 360, 390, 600, 601, 640, 641, 699, 700, 758, 900, 901, 1024, 1440 and 1728px found no horizontal page overflow. The hero remained one viewport tall. Build and content/asset checks passed.
 
 ## Real voice trial
 
@@ -46,7 +52,7 @@ Still pending for a commercial release:
 2. Free/Pro entitlements, final tax/billing terms, supported devices/CGM inputs and available markets.
 3. Care, Blueprint and hub service/package details and booking destinations.
 4. Approved privacy, terms, data-request, help, contact and professional destinations; released sharing controls.
-5. Approved details/assets for additional professionals, and final member-photo usage approval.
+5. Final member-photo usage approval. The two-professional lineup is confirmed.
 
 Missing destinations open specific preview information panels. They do not falsely claim account creation, payment, assessment completion or booking. `mode: design-preview` remains; `ORB_PUBLIC_BUILD=1` is a commercial-release guard, not the visitor-sharing setting. Actual public preview access is controlled by Sites, with `audience` in the content configuration descriptive only.
 

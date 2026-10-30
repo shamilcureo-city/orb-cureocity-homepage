@@ -36,47 +36,47 @@
 @media(max-width:600px){.mid-agent-panel,.mid-feature-card{height:780px;min-height:780px}.mid-feature-visual,.mid-food-visual,.mid-training-visual,.mid-cycle-visual,.mid-age-visual,.mid-care-visual{top:380px}}
 
 /* Comfortable website scale: retain the reference composition without oversized canvases. */
-.mid-agent{padding:88px 0 80px}
-.mid-agent-heading{max-width:820px;margin-bottom:36px}
-.mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:46px;line-height:1.16}
-.mid-category-tabs{flex-wrap:nowrap;gap:10px;margin:0 0 24px}
+.mid-agent{padding:68px 0 64px}
+.mid-agent-heading{max-width:720px;margin-bottom:28px}
+.mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:40px;line-height:1.16}
+.mid-category-tabs{flex-wrap:nowrap;gap:8px;margin:0 0 20px}
 .mid-category-tabs button{flex:1 1 auto;min-height:44px;font-size:14px;padding:11px 13px;border-radius:8px}
 .mid-category-tabs button[aria-selected=true]:before{width:8px;height:8px;margin-right:7px}
-.mid-agent-window{width:100%;margin:0;gap:24px}
-.mid-agent-panel,.mid-feature-card{height:500px;min-height:500px}
-.mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:54%;padding:48px 0 36px 48px}
+.mid-agent-window{width:100%;margin:0;gap:20px}
+.mid-agent-panel,.mid-feature-card{height:430px;min-height:430px}
+.mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:54%;padding:36px 0 28px 36px}
 .mid-feature-copy .tag{font-size:14px;padding:8px 12px}
-.mid-feature-copy h3{font-size:34px;line-height:1.15;max-width:470px;margin:20px 0 18px}
-.mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:18px;line-height:1.5;max-width:440px}
-.mid-feature-copy>.button{font-size:16px;min-height:48px;padding:13px 19px;margin-top:24px;gap:9px}
+.mid-feature-copy h3{font-size:30px;line-height:1.15;max-width:420px;margin:18px 0 14px}
+.mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:17px;line-height:1.5;max-width:410px}
+.mid-feature-copy>.button{font-size:15px;min-height:44px;padding:11px 18px;margin-top:20px;gap:8px}
 .mid-feature-copy>.button .icon{width:20px;height:20px}
 .mid-feature-visual,.mid-food-visual,.mid-training-visual,.mid-cycle-visual,.mid-age-visual{left:64%;top:48px;height:628px;transform:scale(.72);transform-origin:top left}
 .mid-care-visual{left:56%;top:48px;height:628px;transform:scale(.72);transform-origin:top left}
 .mid-visual-caption{font-size:14px;bottom:14px}
 .mid-agent-tabs>.carousel-controls{margin:18px 0 0}
-.mid-professional{margin-top:72px;gap:56px}
+.mid-professional{margin-top:56px;gap:44px}
 .mid-professional-copy{padding:0}
-.mid-professional h2{font-size:46px;line-height:1.16;margin-bottom:26px}
-.mid-professional-copy>p{font-size:18px;line-height:1.55;margin-bottom:24px;max-width:465px}
-.mid-professional-copy>strong{font-size:22px}
+.mid-professional h2{font-size:40px;line-height:1.16;margin-bottom:22px}
+.mid-professional-copy>p{font-size:17px;line-height:1.55;margin-bottom:20px;max-width:440px}
+.mid-professional-copy>strong{font-size:20px}
 .mid-professional-copy>span{font-size:15px;line-height:1.5}
-.mid-professional>img{height:520px;border-radius:14px}
-.mid-pro-overview{padding:80px 0}
-.mid-pro-overview .section-head{max-width:850px;margin-bottom:34px}
+.mid-professional>img{height:440px;border-radius:14px}
+.mid-pro-overview{padding:64px 0}
+.mid-pro-overview .section-head{max-width:760px;margin-bottom:28px}
 .mid-pro-eyebrow{font-size:16px;margin-bottom:18px!important}
 .mid-pro-billing{position:static;font-size:16px!important;margin-top:18px!important}
-.mid-pro-grid{width:min(calc(100% - 64px),1120px);padding:18px;gap:16px;border-radius:26px}
-.mid-pro-feature{gap:18px;min-height:94px;padding:18px;border-radius:16px}
-.mid-pro-icon{width:48px;height:48px;border-radius:12px}
+.mid-pro-grid{width:min(calc(100% - 64px),1040px);padding:14px;gap:12px;border-radius:22px}
+.mid-pro-feature{gap:16px;min-height:80px;padding:14px 16px;border-radius:14px}
+.mid-pro-icon{width:42px;height:42px;border-radius:11px}
 .mid-pro-icon .icon{width:28px;height:28px}
-.mid-pro-feature h3{font-size:19px;line-height:1.3}
+.mid-pro-feature h3{font-size:18px;line-height:1.3}
 .mid-pro-feature p{font-size:15px;line-height:1.45;margin-top:5px}
-.mid-pro-action{margin-top:32px}
+.mid-pro-action{margin-top:26px}
 .mid-pro-action>p{position:static;font-size:13px;margin-top:16px;max-width:660px}
-.mid-vault{padding-top:76px}
-.mid-vault-intro>.tag{font-size:14px;margin-bottom:24px}
-.mid-vault-intro>p{font-size:18px;line-height:1.55;max-width:820px;margin:24px auto 30px}
-.mid-vault-intro>.button,.mid-vault-benefits>.button{font-size:16px;min-height:48px;padding:13px 20px}
+.mid-vault{padding-top:60px}
+.mid-vault-intro>.tag{font-size:14px;margin-bottom:20px}
+.mid-vault-intro>p{font-size:17px;line-height:1.55;max-width:760px;margin:20px auto 24px}
+.mid-vault-intro>.button,.mid-vault-benefits>.button{font-size:15px;min-height:44px;padding:11px 18px}
 .mid-vault-handset{width:310px;height:650px;border-width:6px;border-radius:54px;margin:48px auto 56px}
 .mid-vault-handset>.mid-phone-island{width:94px;height:27px;top:13px}
 .mid-vault-phone-head{height:280px;padding:50px 12px 0}
@@ -92,26 +92,26 @@
 .mid-vault-phone-records>h3{font-size:15px;margin-bottom:10px}
 .mid-phone-record{padding:14px 0;gap:8px}
 .mid-phone-record strong{font-size:11px}
-.mid-vault-records{width:min(calc(100% - 64px),1120px);min-height:600px}
-.mid-vault-benefits{padding:52px 40px 40px}
-.mid-vault-benefits article{gap:20px;margin-bottom:26px}
+.mid-vault-records{width:min(calc(100% - 64px),1040px);min-height:500px}
+.mid-vault-benefits{padding:40px 32px 32px}
+.mid-vault-benefits article{gap:16px;margin-bottom:22px}
 .mid-vault-benefits article>.icon{width:26px;height:26px}
-.mid-vault-benefits h3{font-size:20px;margin-bottom:8px}
+.mid-vault-benefits h3{font-size:19px;margin-bottom:7px}
 .mid-vault-benefits p{font-size:17px;line-height:1.5;max-width:380px}
 .mid-vault-benefits>.button{margin-top:4px}
-.mid-vault-browser{padding:30px 24px 0}
-.mid-vault-browser>.tag{font-size:17px;padding:9px 18px}
-.mid-vault-tabs{margin:20px auto 24px}
+.mid-vault-browser{padding:24px 20px 0}
+.mid-vault-browser>.tag{font-size:15px;padding:8px 16px}
+.mid-vault-tabs{margin:16px auto 20px}
 .mid-vault-tabs button{font-size:15px;min-height:44px;padding:11px 16px}
-.mid-report,.mid-record-review{min-height:480px}
-.mid-voice{padding:76px 0}
-.mid-voice-heading{gap:64px;margin-bottom:38px;grid-template-columns:1.1fr 1fr}
+.mid-report,.mid-record-review{min-height:410px}
+.mid-voice{padding:60px 0}
+.mid-voice-heading{gap:48px;margin-bottom:30px;grid-template-columns:1.1fr 1fr}
 .mid-voice-heading .tag{font-size:14px}
-.mid-voice-heading h2{font-size:42px;line-height:1.17;margin-top:22px}
+.mid-voice-heading h2{font-size:36px;line-height:1.17;margin-top:18px}
 .mid-voice-description{padding-top:8px;max-width:420px}
-.mid-voice-description p{font-size:18px;line-height:1.55}
-.mid-voice-description .button{font-size:16px;min-height:48px;margin-top:24px}
-.mid-voice-photo{max-height:560px}
+.mid-voice-description p{font-size:17px;line-height:1.55}
+.mid-voice-description .button{font-size:15px;min-height:44px;margin-top:20px}
+.mid-voice-photo{max-height:460px}
 .mid-voice-input{width:min(720px,calc(100% - 32px));min-height:64px;padding:10px 12px 10px 22px;margin-top:-32px}
 .mid-voice-input>p{font-size:16px}
 .mid-voice-controls .button{font-size:14px;min-height:44px;padding:11px 16px}
@@ -125,52 +125,53 @@
 .mid-voice-stats span{font-size:12px}
 .mid-voice-stats strong{font-size:19px}
 @media(min-width:601px) and (max-width:1100px){
-  .mid-agent,.mid-pro-overview,.mid-voice{padding-block:64px}
-  .mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:40px}
+  .mid-agent,.mid-pro-overview,.mid-voice{padding-block:52px}
+  .mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:35px}
   .mid-category-tabs{overflow-x:auto;scrollbar-width:none;justify-content:flex-start;padding:3px 0 7px}
   .mid-category-tabs button{flex:0 0 auto;font-size:13px}
-  .mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:57%;padding:38px 0 32px 30px}
-  .mid-feature-copy h3{font-size:29px;margin:18px 0 16px}
+  .mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:57%;padding:30px 0 26px 24px}
+  .mid-feature-copy h3{font-size:27px;margin:16px 0 14px}
   .mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:16px}
   .mid-feature-copy>.button{font-size:14px;margin-top:20px}
   .mid-feature-visual,.mid-food-visual,.mid-training-visual,.mid-cycle-visual,.mid-age-visual{left:64%;top:48px;transform:scale(.62);height:729px}
   .mid-care-visual{left:54%;top:48px;transform:scale(.62);height:729px}
-  .mid-professional{gap:36px;margin-top:56px}
-  .mid-professional h2{font-size:38px}
+  .mid-professional{gap:28px;margin-top:46px}
+  .mid-professional h2{font-size:34px}
   .mid-professional-copy>p{font-size:16px}
-  .mid-professional>img{height:440px}
+  .mid-professional>img{height:390px}
   .mid-pro-grid,.mid-vault-records{width:calc(100% - 48px)}
-  .mid-vault-benefits{padding:36px 26px}
+  .mid-vault-benefits{padding:30px 22px}
   .mid-vault-benefits h3{font-size:18px}
   .mid-vault-benefits p{font-size:16px}
-  .mid-voice-heading{gap:36px}
-  .mid-voice-heading h2{font-size:36px}
+  .mid-voice-heading{gap:28px}
+  .mid-voice-heading h2{font-size:32px}
   .mid-voice-description p{font-size:17px}
+  .mid-voice-photo{max-height:360px}
 }
 @media(min-width:601px) and (max-width:800px){
-  .mid-feature-copy h3{font-size:27px}
-  .mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:15px}
+  .mid-feature-copy h3{font-size:25px}
+  .mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:16px}
   .mid-feature-visual,.mid-food-visual,.mid-training-visual,.mid-cycle-visual,.mid-age-visual{transform:scale(.53);height:852px}
   .mid-care-visual{transform:scale(.50);height:904px}
-  .mid-professional h2{font-size:34px}
-  .mid-professional>img{height:390px}
+  .mid-professional h2{font-size:32px}
+  .mid-professional>img{height:360px}
   .mid-pro-feature{padding:14px;gap:12px}
   .mid-pro-feature h3{font-size:17px}
   .mid-pro-feature p{font-size:14px}
 }
 @media(max-width:600px){
-  .mid-agent{padding:52px 0}
+  .mid-agent{padding:44px 0}
   .mid-agent-heading{margin-bottom:24px}
-  .mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:30px;line-height:1.18}
+  .mid-agent-heading h2,.mid-pro-overview .section-head h2,.mid-vault-intro h2{font-size:28px;line-height:1.18}
   .mid-category-tabs{gap:8px;margin-bottom:18px;padding:3px 0 6px;overflow-x:auto;justify-content:flex-start}
   .mid-category-tabs button{flex:0 0 auto;font-size:12px;padding:11px 13px;min-height:44px}
   .mid-agent-window{width:calc(100% - 20px);gap:16px}
-  .mid-agent-panel,.mid-feature-card{height:630px;min-height:630px}
+  .mid-agent-panel,.mid-feature-card{height:610px;min-height:610px}
   .mid-feature-card{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-  .mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:100%;height:auto;padding:22px 22px 0}
+  .mid-feature-copy,.mid-slide-food .mid-feature-copy,.mid-slide-fitness .mid-feature-copy,.mid-slide-cycle .mid-feature-copy,.mid-slide-age .mid-feature-copy,.mid-slide-care .mid-feature-copy{width:100%;height:auto;padding:20px 20px 0}
   .mid-feature-copy .tag{font-size:11px;padding:7px 10px}
-  .mid-feature-copy h3{font-size:25px;line-height:1.14;margin:16px 0 13px}
-  .mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:14px;line-height:1.5}
+  .mid-feature-copy h3{font-size:24px;line-height:1.14;margin:14px 0 12px}
+  .mid-feature-copy>p,.mid-slide-fitness .mid-feature-copy>p,.mid-slide-age .mid-feature-copy>p{font-size:16px;line-height:1.5}
   .mid-feature-copy>.button{font-size:13px;min-height:44px;padding:11px 15px;margin-top:18px}
   .mid-feature-visual,.mid-food-visual,.mid-training-visual,.mid-cycle-visual,.mid-age-visual,.mid-care-visual{position:relative;left:auto;top:auto;width:100%;height:100%;min-height:0;margin:0;padding:0;transform:none;overflow:hidden}
   .mid-feature-visual>.mid-daily-handset,.mid-feature-visual>.mid-cycle-handset,.mid-feature-visual>.mid-source-phone,.mid-feature-visual>.mid-care-composition{position:absolute;left:50%;top:22px;transform:translateX(-50%) scale(.58);transform-origin:top center}
@@ -181,14 +182,14 @@
   .mid-feature-visual:after{height:40px}
   .mid-visual-caption{font-size:10px;bottom:10px;line-height:1.35;padding:0 14px}
   .mid-agent-tabs>.carousel-controls{margin-top:14px}
-  .mid-professional{gap:26px;margin-top:48px}
+  .mid-professional{gap:22px;margin-top:40px}
   .mid-professional-copy{padding:0}
-  .mid-professional h2{font-size:32px;margin-bottom:20px}
-  .mid-professional-copy>p{font-size:15px;line-height:1.55;margin-bottom:20px}
+  .mid-professional h2{font-size:29px;margin-bottom:18px}
+  .mid-professional-copy>p{font-size:16px;line-height:1.55;margin-bottom:18px}
   .mid-professional-copy>strong{font-size:18px}
   .mid-professional-copy>span{font-size:13px}
-  .mid-professional>img{height:360px;max-height:none;aspect-ratio:auto}
-  .mid-pro-overview{padding:52px 0}
+  .mid-professional>img{height:320px;max-height:none;aspect-ratio:auto}
+  .mid-pro-overview{padding:44px 0}
   .mid-pro-overview .section-head{margin-bottom:26px}
   .mid-pro-eyebrow{font-size:13px;margin-bottom:14px!important}
   .mid-pro-billing{font-size:13px!important;margin-top:15px!important}
@@ -201,28 +202,28 @@
   .mid-pro-action{margin-top:26px}
   .mid-pro-action .button{min-height:44px;font-size:14px}
   .mid-pro-action>p{font-size:11px;margin-top:14px}
-  .mid-vault{padding-top:52px}
+  .mid-vault{padding-top:44px}
   .mid-vault-intro>.tag{font-size:12px;margin-bottom:20px}
-  .mid-vault-intro>p{font-size:15px;margin:20px auto 24px}
+  .mid-vault-intro>p{font-size:16px;margin:18px auto 22px}
   .mid-vault-intro>.button,.mid-vault-benefits>.button{font-size:14px;min-height:44px;padding:11px 17px}
   .mid-vault-handset{width:280px;height:630px;margin:36px auto 40px}
   .mid-vault-records{width:calc(100% - 32px);min-height:0}
-  .mid-vault-benefits{padding:30px 24px}
+  .mid-vault-benefits{padding:26px 22px}
   .mid-vault-benefits article{gap:16px;margin-bottom:22px}
   .mid-vault-benefits h3{font-size:18px}
-  .mid-vault-benefits p{font-size:15px}
+  .mid-vault-benefits p{font-size:16px}
   .mid-vault-browser{padding:26px 18px 0}
   .mid-vault-browser>.tag{font-size:15px}
   .mid-vault-tabs{margin:18px auto 22px}
   .mid-vault-tabs button{font-size:13px;padding:11px 14px}
-  .mid-voice{padding:52px 0}
-  .mid-voice-heading{grid-template-columns:1fr;gap:22px;margin-bottom:28px}
+  .mid-voice{padding:44px 0}
+  .mid-voice-heading{grid-template-columns:1fr;gap:20px;margin-bottom:24px}
   .mid-voice-heading .tag{font-size:12px}
-  .mid-voice-heading h2{font-size:31px;margin-top:18px}
+  .mid-voice-heading h2{font-size:29px;margin-top:16px}
   .mid-voice-description{padding:0;max-width:none;margin:0}
-  .mid-voice-description p{font-size:15px}
+  .mid-voice-description p{font-size:16px}
   .mid-voice-description .button{font-size:14px;min-height:44px;margin-top:20px}
-  .mid-voice-photo{aspect-ratio:4/3;max-height:340px}
+  .mid-voice-photo{aspect-ratio:4/3;max-height:290px}
   .mid-voice-input{width:calc(100% - 16px);padding:16px;gap:12px;margin-top:-18px;min-height:0}
   .mid-voice-input>p{font-size:14px}
   .mid-voice-controls .button{font-size:13px;min-height:44px}
@@ -235,34 +236,34 @@
 }
 
 /* Original supplied app artwork — preserve the source image proportions. */
-.mid-feature-card .mid-original-visual{position:absolute;left:auto;right:24px;top:30px;bottom:22px;width:42%;height:auto;min-height:0;margin:0;padding:0;transform:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden}
+.mid-feature-card .mid-original-visual{position:absolute;left:auto;right:20px;top:24px;bottom:18px;width:42%;height:auto;min-height:0;margin:0;padding:0;transform:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden}
 .mid-original-visual:after{display:none}
 .mid-original-visual>.mid-original-screen{position:static;display:block;flex:0 1 auto;width:auto;height:auto;max-width:100%;max-height:calc(100% - 34px);min-height:0;object-fit:contain;transform:none;border:0;border-radius:0;box-shadow:none}
 .mid-original-visual>figcaption{position:static;flex:none;margin:0;padding:0 4px;text-align:center;font-size:11px;line-height:1.4;color:#62656b;max-width:100%}
-.mid-professional>img{object-position:center 55%}
+.mid-professional>img{object-position:center 35%}
 .mid-professional-quote{font-style:italic;font-synthesis:style}
 .mid-pro-overview .section-head .mid-pro-eyebrow{width:100%;max-width:none;margin-inline:auto!important;text-align:center}
-.mid-vault-showcase{position:relative;width:min(100%,1440px);height:650px;margin:42px auto 52px;isolation:isolate;overflow:hidden}
+.mid-vault-showcase{position:relative;width:min(100%,1440px);height:540px;margin:32px auto 40px;isolation:isolate;overflow:hidden}
 .mid-vault-documents{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
-.mid-vault-original{position:relative;z-index:1;width:min(366px,38%);height:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.mid-vault-original{position:relative;z-index:1;width:min(310px,38%);height:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 .mid-vault-original>img{display:block;width:100%;height:auto;max-height:calc(100% - 32px);object-fit:contain;min-height:0}
 .mid-vault-original>figcaption{flex:none;font-size:11px;line-height:1.4;color:#f5f6f9;text-align:center;padding:4px 10px;background:#172239b8;border-radius:20px}
 @media(min-width:601px) and (max-width:1100px){
-  .mid-feature-card .mid-original-visual{right:14px;top:40px;bottom:26px;width:39%}
+  .mid-feature-card .mid-original-visual{right:14px;top:30px;bottom:22px;width:39%}
   .mid-original-visual>figcaption{font-size:10px}
-  .mid-vault-showcase{height:580px}
+  .mid-vault-showcase{height:480px}
 }
 @media(max-width:600px){
   .mid-feature-card .mid-original-visual{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;height:100%;margin:0;padding:18px 20px 16px;gap:10px;min-height:0}
   .mid-original-visual>.mid-original-screen{max-height:calc(100% - 30px);max-width:86%}
   .mid-original-visual>figcaption{font-size:10px}
-  .mid-vault-showcase{height:500px;margin:30px auto 34px}
+  .mid-vault-showcase{height:440px;margin:26px auto 28px}
   .mid-vault-documents{width:180%;max-width:none;left:-40%;object-fit:contain}
-  .mid-vault-original{width:min(285px,72%)}
+  .mid-vault-original{width:min(265px,72%)}
   .mid-vault-original>figcaption{font-size:10px}
 }
 
-.mid-original-report{margin:0;min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px}
+.mid-original-report{margin:0;min-height:410px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px}
 .mid-original-report>img{display:block;width:100%;height:auto;object-fit:contain}
 .mid-original-report>figcaption{max-width:340px;padding:0 10px;font-size:11px;line-height:1.5;text-align:center;color:#465169}
 @media(max-width:600px){.mid-original-report{min-height:0;padding-bottom:18px}.mid-original-report>figcaption{font-size:10px}}
