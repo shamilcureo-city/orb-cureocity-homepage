@@ -1,23 +1,384 @@
-/* Generated from site-content.json. Never place secrets in this public configuration. */
-window.ORB_CONFIG = {
-  "appStoreUrl": null,
-  "googlePlayUrl": null,
-  "enquiryUrl": null,
-  "privacyUrl": null,
-  "termsUrl": null,
-  "supportUrl": null,
-  "professionalsUrl": null,
-  "dataRequestsUrl": null,
-  "freeDietPlanUrl": null,
-  "freeFitnessAssessmentUrl": null,
+/* Generated from site-content.json. No secrets. */
+window.ORB_CONFIG={
+  "mode": "design-preview",
+  "sourceBrief": "Cureocity_Orb_Product_and_Website_Brief.pdf",
+  "audience": "anyone-with-link",
+  "destinations": {
+    "appStoreUrl": null,
+    "googlePlayUrl": null,
+    "enquiryUrl": null,
+    "privacyUrl": null,
+    "termsUrl": null,
+    "supportUrl": null,
+    "professionalsUrl": null,
+    "dataRequestsUrl": null,
+    "freeDietPlanUrl": null,
+    "freeFitnessAssessmentUrl": null,
+    "careUrl": null,
+    "blueprintUrl": null,
+    "hubsUrl": null,
+    "contactUrl": null,
+    "dailyUrl": null,
+    "nutritionUrl": null,
+    "fitnessUrl": null,
+    "vaultUrl": null,
+    "integrationsUrl": null,
+    "familyUrl": null,
+    "proUrl": null,
+    "cycleUrl": null,
+    "biologicalAgeUrl": null
+  },
+  "features": [
+    {
+      "id": "daily",
+      "publicName": "Daily planning",
+      "description": "Actions, explanations and relevant reviews in one daily view.",
+      "source": "Brief pp. 4, 11; PRD 17",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "vault",
+      "publicName": "Health Vault",
+      "description": "Original reports, verification and permission-based sharing.",
+      "source": "Brief pp. 6, 12, 15; PRD 12",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "nutrition",
+      "publicName": "Nutrition planning and logging",
+      "description": "Familiar foods, preferences, daily logs and active professional targets.",
+      "source": "Brief p. 7; PRDs 19, 37",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "movement",
+      "publicName": "Workout planning and logging",
+      "description": "Plans shaped by assessment, experience, equipment and feedback.",
+      "source": "Brief p. 7; PRDs 15, 18, 20, 36",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "insights",
+      "publicName": "Contextual insights",
+      "description": "Dated observations with sources, uncertainty and relevant context.",
+      "source": "Brief pp. 5, 8, 12; PRDs 21-30",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "care-routes",
+      "publicName": "Professional care",
+      "description": "App-led, online and hybrid ways to access relevant support.",
+      "source": "Brief pp. 2, 9, 12; PRDs 1-10, 13-14, 38",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "blueprint",
+      "publicName": "Assessment and Blueprint",
+      "description": "An assessment-informed starting point for ongoing care.",
+      "source": "Brief pp. 2, 6; PRD 6",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "family-circle",
+      "publicName": "Family Health Circle",
+      "description": "Invitations, selected summaries and permission revocation.",
+      "source": "Brief pp. 9, 12, 15; PRD 31",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "trust",
+      "publicName": "Information and AI controls",
+      "description": "Data status, sharing controls and professional boundaries.",
+      "source": "Brief pp. 5, 13, 16-18",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "cycle-journal",
+      "publicName": "Cycle tracking and smart journal",
+      "description": "Optional cycle estimates, symptoms, mood and personal routine notes.",
+      "source": "Brief pp. 8-9; PRDs 26, 30",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    },
+    {
+      "id": "connections",
+      "publicName": "Connected information",
+      "description": "Supported device signals and self-added reports and daily logs with data freshness context.",
+      "source": "Brief pp. 5, 8, 13; PRDs 11, 21-28",
+      "availability": "unverified",
+      "markets": [],
+      "planEligibility": [],
+      "prerequisites": "Confirm release, data prerequisites, market and plan eligibility.",
+      "ctaDestination": null,
+      "claimApproval": "pending-owner-review",
+      "showInDesignPreview": true
+    }
+  ],
   "commerce": {
     "currency": "INR",
-    "annualPrice": 7500,
+    "annualPrice": 7999,
     "billingPeriod": "year",
-    "priceSource": "User confirmation, 24 October 2026",
+    "priceSource": "User confirmation, 29 October 2026, new Figma design",
     "paidInclusions": "pending-owner-confirmation",
     "taxTreatment": "unconfirmed",
-    "checkout": "choose-plan-in-app"
+    "checkout": "choose-plan-in-app",
+    "billingCopy": "Equivalent to {monthlyEquivalent}/month, billed annually.",
+    "entitlementStatus": "pending-commercial-confirmation",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "subtitle": "A first step with your food and movement.",
+        "features": [
+          "Free diet-plan starting point",
+          "Free guided fitness assessment",
+          "Entry links and account requirements awaiting confirmation"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "subtitle": "For personalised plans and deeper insights.",
+        "features": [
+          "Daily health insights",
+          "Biological age",
+          "Personalised nutrition & meal plans",
+          "AI fitness assessment & training",
+          "CGM metrics & analysis"
+        ]
+      }
+    }
   },
-  "mode": "design-preview"
+  "leadGeneration": {
+    "freeOffers": [
+      "diet-plan",
+      "fitness-assessment"
+    ],
+    "destinationStatus": "live tools confirmed by owner; URLs pending",
+    "previewBehavior": "mockup-buttons-only",
+    "dataCollection": false,
+    "source": "User confirmation, 24 October 2026"
+  },
+  "integrations": {
+    "status": "unverified",
+    "supportedDevices": [],
+    "supportedCGM": [],
+    "note": "Device models, data types, regions and plan eligibility require confirmation before public release."
+  },
+  "actions": {
+    "download": {
+      "title": "Get Orb",
+      "body": "Choose your device to download Orb. Store destinations are not connected to this preview. Explore the app experience on this page while the approved links are confirmed.",
+      "urlKey": "appStoreUrl"
+    },
+    "free-diet": {
+      "title": "Your free diet plan",
+      "body": "The free diet-plan offer is recorded in the existing website configuration. Its live entry link and any account requirement still need to be confirmed. This preview does not create a plan or collect your information.",
+      "urlKey": "freeDietPlanUrl"
+    },
+    "free-fitness": {
+      "title": "Your free fitness assessment",
+      "body": "The free fitness-assessment offer is recorded in the existing website configuration. Its live entry link and any account requirement still need to be confirmed. This preview does not assess your movement or collect your information.",
+      "urlKey": "freeFitnessAssessmentUrl"
+    },
+    "daily": {
+      "title": "Daily insights in Orb",
+      "body": "Explore sleep, activity and your own notes together in the illustrative daily view. The released feature scope and app destination are awaiting confirmation.",
+      "urlKey": "dailyUrl"
+    },
+    "nutrition": {
+      "title": "Meal planning in Orb",
+      "body": "The preview shows how preferences, portions, meal records and feedback can shape a routine. The released planning features and destination are awaiting confirmation.",
+      "urlKey": "nutritionUrl"
+    },
+    "fitness": {
+      "title": "Fitness in Orb",
+      "body": "The preview connects movement assessment, workout planning and session logging. Its voice example is simulated. The released training features and app destination are awaiting confirmation.",
+      "urlKey": "fitnessUrl"
+    },
+    "vault": {
+      "title": "Explore Health Vault",
+      "body": "The preview illustrates original reports, dates and sources. Supported formats, sharing controls and the Health Vault destination are awaiting confirmation. No report is uploaded here.",
+      "urlKey": "vaultUrl"
+    },
+    "integrations": {
+      "title": "Supported integrations",
+      "body": "The approved compatibility list is not connected to this preview. Device models, glucose sources, regions and plan eligibility must be confirmed before connecting information.",
+      "urlKey": "integrationsUrl"
+    },
+    "care": {
+      "title": "Explore professional care",
+      "body": "Professional care is optional and purchased separately. The booking destination, professionals, locations, consultations and follow-up included in each service are awaiting confirmation. No appointment has been booked.",
+      "urlKey": "careUrl"
+    },
+    "blueprint": {
+      "title": "Explore Blueprint",
+      "body": "Blueprint brings assessment information into professional consultations and next steps. The package details, participating professionals, locations and booking link are awaiting confirmation. An assessment package is separate from a hub membership.",
+      "urlKey": "blueprintUrl"
+    },
+    "hubs": {
+      "title": "Explore our hubs",
+      "body": "Explore assessment and training services connected with Orb. The verified hub locations, local service list and enquiry destination are awaiting confirmation. The setting on this page is illustrative.",
+      "urlKey": "hubsUrl"
+    },
+    "family": {
+      "title": "Explore Family Circle",
+      "body": "This preview demonstrates selected summaries shared with people you trust. Released permissions, invitation controls and the app destination require confirmation. No health information is shared here.",
+      "urlKey": "familyUrl"
+    },
+    "pro": {
+      "title": "Explore Orb Pro",
+      "body": "The annual app price is recorded in the website configuration. Final Free and Pro inclusions, taxes, renewal and cancellation terms are awaiting confirmation. No subscription or payment is started in this preview.",
+      "urlKey": "proUrl"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "body": "The approved Orb privacy policy is not connected to this preview. The final policy must describe the released product and its actual information practices.",
+      "urlKey": "privacyUrl"
+    },
+    "terms": {
+      "title": "Terms of use",
+      "body": "The approved Orb terms of use are not connected to this preview. Review the final subscription, renewal and cancellation terms before purchasing.",
+      "urlKey": "termsUrl"
+    },
+    "support": {
+      "title": "Help & support",
+      "body": "The approved Orb help and support destination is not connected to this preview. No support request is submitted here.",
+      "urlKey": "supportUrl"
+    },
+    "contact": {
+      "title": "Contact Cureocity",
+      "body": "The approved contact destination is not connected to this preview. No enquiry is submitted and no personal information is collected here.",
+      "urlKey": "contactUrl"
+    },
+    "data-requests": {
+      "title": "Data requests",
+      "body": "The authorised Orb data-request destination is not connected to this preview. No access, correction or deletion request is submitted here.",
+      "urlKey": "dataRequestsUrl"
+    },
+    "cycle": {
+      "title": "Cycle and personal check-ins",
+      "body": "Explore logging periods and symptoms, reviewing your history and estimated upcoming dates. The released feature, eligibility and entry destination are awaiting confirmation.",
+      "note": "Upcoming dates are estimates. This preview does not log or store cycle information.",
+      "urlKey": "cycleUrl"
+    },
+    "professionals": {
+      "title": "Cureocity for professionals",
+      "body": "The professional information and enquiry destination is awaiting confirmation. No enquiry has been sent from this preview.",
+      "urlKey": "professionalsUrl"
+    },
+    "biological-age": {
+      "title": "Biological age in Orb",
+      "body": "The illustrative screen shows an estimated biological age, not a diagnosis. The released feature, calculation method, required information and eligibility are awaiting confirmation. This preview does not calculate your biological age.",
+      "urlKey": "biologicalAgeUrl"
+    }
+  },
+  "confirmationGaps": [
+    "Approved App Store and Google Play destinations",
+    "Free diet-plan and fitness-assessment entry routes and account requirements",
+    "Free app access versus the two free starting-point offers",
+    "One-off diet plan versus ongoing Pro meal planning and adjustments",
+    "Free assessment versus paid workout planning and logging",
+    "Free daily insights versus deeper Pro insights",
+    "Basic supported CGM access versus paid analysis",
+    "Paid feature eligibility, limits, taxes, renewals and cancellation terms",
+    "Supported wearable/CGM models, data types, regions and release status",
+    "Family Circle and Health Vault released sharing controls",
+    "Care, Blueprint and hub availability, package inclusions and destinations",
+    "Approved privacy, terms, support, contact and data-request destinations"
+  ],
+  "examples": {
+    "glucose": {
+      "date": "2026-10-26",
+      "period": "06:00–18:00",
+      "unit": "mg/dL",
+      "readings": [
+        {
+          "time": "06:00",
+          "value": 92
+        },
+        {
+          "time": "08:00",
+          "value": 96
+        },
+        {
+          "time": "10:00",
+          "value": 108
+        },
+        {
+          "time": "12:00",
+          "value": 118
+        },
+        {
+          "time": "14:00",
+          "value": 112
+        },
+        {
+          "time": "16:00",
+          "value": 101
+        },
+        {
+          "time": "18:00",
+          "value": 97
+        }
+      ]
+    }
+  }
 };

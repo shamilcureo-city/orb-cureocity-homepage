@@ -1,361 +1,408 @@
+/* Orb preview interactions. No analytics, health collection, microphone access or form submission. */
 (() => {
   'use strict';
-
-  function init() {
-    const $ = (selector, parent = document) => parent.querySelector(selector);
-    const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const config = window.ORB_CONFIG || {};
-    const scrollTo = (element) => element?.scrollIntoView({
-      behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start'
+  const config = window.ORB_CONFIG;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const motionReduced = () => reducedMotion.matches || document.documentElement.classList.contains('reduce-motion');
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  document.documentElement.classList.add('motion-ready');
+  const ownTabs = group => $$('[role="tab"]', group).filter(tab => tab.closest('[data-tabs]') === group);
+  const carousels = new Map();
+  const header = $('#site-header');
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 25);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const menu = $('#mobile-menu');
+  const actionDialog = $('#action-dialog');
+  const updateLock = () => {
+    document.body.classList.toggle('modal-open', menu.open || actionDialog.open);
+    document.dispatchEvent(new Event('orb:panelchange'));
+  };
+  $('#menu-toggle').addEventListener('click', () => {
+    menu.showModal(); $('#menu-toggle').setAttribute('aria-expanded', 'true'); updateLock();
+  });
+  $('#menu-close').addEventListener('click', () => menu.close());
+  menu.addEventListener('close', () => { $('#menu-toggle').setAttribute('aria-expanded', 'false'); updateLock(); });
+  [menu, actionDialog].forEach(dialog => {
+    dialog.addEventListener('keydown', event => {
+      if(event.key !== 'Tab') return;
+      const focusable = $$('a[href], button:not([disabled]), [tabindex="0"]', dialog).filter(el => el.getClientRects().length);
+      const first = focusable[0], last = focusable.at(-1);
+      if(event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if(!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
-    const make = (tag, text, className) => {
-      const element = document.createElement(tag);
-      if (text !== undefined) element.textContent = text;
-      if (className) element.className = className;
-      return element;
-    };
-    const destination = (value) => {
-      if (typeof value !== 'string' || !value.trim()) return null;
-      try {
-        const url = new URL(value);
-        return url.protocol === 'https:' ? url.href : null;
-      } catch { return null; }
-    };
-
-    // Navigation stays usable as native links when JavaScript is unavailable.
-    const menuToggle = $('#menu-toggle');
-    const mobileMenu = $('#mobile-menu');
-    function setMenu(open, returnFocus = false) {
-      if (!menuToggle || !mobileMenu) return;
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-      mobileMenu.hidden = !open;
-      document.body.classList.toggle('nav-open', open);
-      if (returnFocus) menuToggle.focus();
-    }
-    if (menuToggle && mobileMenu) {
-      menuToggle.setAttribute('aria-controls', mobileMenu.id);
-      setMenu(false);
-      menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
-      mobileMenu.addEventListener('click', (event) => {
-        if (event.target.closest('a, button')) setMenu(false);
-      });
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') setMenu(false, true);
-      });
-      document.addEventListener('click', (event) => {
-        if (menuToggle.getAttribute('aria-expanded') === 'true' && !mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) setMenu(false);
-      });
-      window.matchMedia('(min-width: 981px)').addEventListener('change', event => {
-        if (event.matches) setMenu(false);
-      });
-    }
-
-    const guideRail = $('#guide-rail');
-    const guideCards = $$('[data-guide-card]');
-    const guideControls = $$('[data-guide-index]');
-    const guideTarget = card => Math.max(0, Math.min(card.offsetLeft - guideCards[0].offsetLeft - (guideRail.clientWidth - card.clientWidth) / 2, guideRail.scrollWidth - guideRail.clientWidth));
-    guideControls.forEach(button => button.addEventListener('click', () => {
-      const index = Number(button.dataset.guideIndex);
-      const card = guideCards[index];
-      if (!guideRail || !card) return;
-      guideRail.scrollTo({ left: guideTarget(card), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-      guideControls.forEach((control, i) => control.setAttribute('aria-current', String(i === index)));
-    }));
-    guideRail?.addEventListener('scroll', () => {
-      const nearest = guideCards.reduce((best, card, index) => Math.abs(guideTarget(card) - guideRail.scrollLeft) < Math.abs(guideTarget(guideCards[best]) - guideRail.scrollLeft) ? index : best, 0);
-      guideControls.forEach((control, index) => control.setAttribute('aria-current', String(index === nearest)));
-    }, { passive: true });
-
-    // Keep the original hero artwork untouched; replay revised copy in an accessible modal.
-    const conversation = $('#orb-conversation');
-    const previewDialog = $('#hero-preview-dialog');
-    let previewTrigger = null;
-    const demoButtons = $$('[data-demo-play]');
-    const demoMessages = conversation ? $$('[data-message]', conversation) : [];
-    let demoTimers = [];
-    if (conversation && !$('#demo-status')) {
-      const status = make('p', '', 'sr-only');
-      status.id = 'demo-status';
-      status.setAttribute('role', 'status');
-      conversation.append(status);
-    }
-    function finishDemo() {
-      demoTimers.forEach(clearTimeout);
-      demoTimers = [];
-      demoButtons.forEach(button => { button.disabled = false; button.removeAttribute('aria-busy'); });
-      conversation?.classList.remove('is-playing');
-      demoMessages.forEach(message => message.classList.remove('demo-highlight'));
-      const status = $('#demo-status');
-      if (status) status.textContent = 'Illustrative conversation complete.';
-    }
-    reducedMotion.addEventListener('change', event => {
-      if (event.matches && demoTimers.length) finishDemo();
-    });
-    demoButtons.forEach(button => button.addEventListener('click', () => {
-      if (!conversation || !demoMessages.length) return;
-      demoTimers.forEach(clearTimeout);
-      demoTimers = [];
-      conversation.tabIndex = -1;
-      previewTrigger = button;
-      if (previewDialog && !previewDialog.open) previewDialog.showModal();
-      conversation.focus({ preventScroll: true });
-      demoMessages.forEach(message => message.classList.remove('demo-highlight', 'demo-read'));
-      if (reducedMotion.matches) {
-        demoMessages.forEach(message => message.classList.add('demo-read'));
-        finishDemo();
-        return;
-      }
-      demoButtons.forEach(item => { item.disabled = true; item.setAttribute('aria-busy', 'true'); });
-      conversation.classList.add('is-playing');
-      const status = $('#demo-status');
-      if (status) status.textContent = 'Playing the illustrative conversation.';
-      demoMessages.forEach((message, index) => {
-        demoTimers.push(setTimeout(() => {
-          demoMessages.forEach(item => item.classList.remove('demo-highlight'));
-          message.classList.add('demo-highlight', 'demo-read');
-        }, index * 850));
-      });
-      demoTimers.push(setTimeout(finishDemo, demoMessages.length * 850 + 600));
-    }));
-
-    $('#hero-preview-close')?.addEventListener('click', () => previewDialog.close());
-    previewDialog?.addEventListener('close', () => {
-      finishDemo();
-      previewTrigger?.focus({ preventScroll: true });
-    });
-    previewDialog?.addEventListener('click', event => {
-      if (event.target !== previewDialog) return;
-      const rect = previewDialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) previewDialog.close();
-    });
-    document.addEventListener('visibilitychange', () => { if (document.hidden) finishDemo(); });
-
-    // A local demonstration: no microphone access and no saved workout record.
-    const voiceButton = $('[data-voice-demo]');
-    const transcript = $('#voice-transcript');
-    const voiceResult = $('#voice-result');
-    const voiceStatus = $('#voice-status');
-    if (voiceButton && transcript && voiceResult) {
-      voiceButton.addEventListener('click', () => {
-        voiceResult.classList.remove('is-reviewed');
-        transcript.hidden = false;
-        transcript.textContent = '“Log bench press: 40 kilograms, 10 reps.”';
-        voiceResult.replaceChildren();
-        const heading = make('h3', 'Review your entry');
-        const values = make('dl', undefined, 'voice-entry-values');
-        [['Exercise', 'Bench press'], ['Weight', '40 kg'], ['Repetitions', '10']].forEach(([label, value]) => {
-          const item = make('div');
-          item.append(make('dt', label), make('dd', value));
-          values.append(item);
-        });
-        const confirm = make('button', 'Confirm entry', 'btn btn-primary');
-        confirm.type = 'button';
-        confirm.dataset.voiceConfirm = '';
-        const note = make('p', 'Illustrative example. This demo does not save a workout.', 'demo-note');
-        voiceResult.append(heading, values, confirm, note);
-        voiceResult.hidden = false;
-        voiceButton.textContent = 'Play the example again';
-        if (voiceStatus) voiceStatus.textContent = 'Example recognised. Review the exercise, weight and repetitions.';
-      });
-      voiceResult.addEventListener('click', (event) => {
-        const confirm = event.target.closest('[data-voice-confirm]');
-        if (!confirm) return;
-        confirm.textContent = 'Entry reviewed';
-        confirm.disabled = true;
-        voiceResult.classList.add('is-reviewed');
-        if (voiceStatus) voiceStatus.textContent = 'Entry reviewed in this demo. No workout has been saved.';
-      });
-    }
-
-    const connections = $('#connections');
-    const sourceLabels = {
-      sleep: 'Sleep', activity: 'Activity & workouts', heartrate: 'Heart-rate trends',
-      meals: 'Meals & hydration', reports: 'Blood reports', glucose: 'Glucose readings',
-      cycle: 'Cycle & symptoms', history: 'Health history'
-    };
-    const deviceLabels = { apple: 'Apple Watch', garmin: 'Garmin', oura: 'Oura', whoop: 'WHOOP', samsung: 'Samsung', none: 'I don’t use a wearable' };
-    const selfAdded = new Set(['meals', 'reports', 'cycle', 'history']);
-    const results = $('#connection-results');
-    const count = $('#source-count');
-    const showConnections = $('#show-connections');
-    const selectedSources = () => connections ? $$('input[name="source"]:checked', connections).map(input => input.value).filter(value => sourceLabels[value]) : [];
-    function resultCategory(title, items, emptyMessage) {
-      const category = make('section', undefined, 'connection-category');
-      category.append(make('h4', title));
-      if (items.length) {
-        const list = make('ul');
-        items.forEach(value => list.append(make('li', value)));
-        category.append(list);
-      } else category.append(make('p', emptyMessage, 'connection-empty'));
-      return category;
-    }
-    function renderConnections() {
-      if (!results || !connections) return;
-      const selected = selectedSources();
-      const selectedDevice = $('input[name="device"]:checked', connections);
-      const device = selectedDevice?.value || 'none';
-      const deviceName = selectedDevice?.closest('label')?.textContent.replace(/\s+/g, ' ').trim() || deviceLabels[device] || 'your selected device';
-      results.replaceChildren();
-      results.append(make('h3', 'Here’s what you can bring into Orb'));
-      results.append(make('p', 'Explore the supported information from your selections and see how it can contribute to your daily view.'));
-      const grid = make('div', undefined, 'connection-result-grid');
-      const checkText = device !== 'none'
-        ? `Compatibility to be confirmed for ${deviceName}.`
-        : 'Choose an integration to check availability. You can use Orb without connecting a wearable.';
-      const connectCategory = resultCategory('Available to connect', [], checkText);
-      const deviceSources = selected.filter(value => !selfAdded.has(value));
-      if (deviceSources.length) connectCategory.append(make('p', `Selected for a compatibility check: ${deviceSources.map(value => sourceLabels[value]).join(', ')}.`, 'connection-pending'));
-      grid.append(connectCategory);
-      grid.append(resultCategory('Add or log yourself', selected.filter(value => selfAdded.has(value)).map(value => sourceLabels[value]), 'Select meals, existing reports, cycle information or health history to explore adding them yourself.'));
-      grid.append(resultCategory('Not currently supported', [], 'Unsupported sources have not been confirmed in this preview.'));
-      results.append(grid);
-      results.append(make('p', 'Device compatibility will be confirmed when integrations are configured.', 'demo-note'));
-      const action = make('button', 'Get Started with Orb', 'btn btn-primary');
-      action.type = 'button';
-      action.dataset.download = '';
-      results.append(action);
-      results.hidden = false;
-      showConnections?.setAttribute('aria-expanded', 'true');
-    }
-    function updateSources() {
-      const selected = selectedSources();
-      if (count) count.textContent = selected.length
-        ? `${selected.length} ${selected.length === 1 ? 'source' : 'sources'} selected. Add any others you use.`
-        : 'No sources selected. Select the information you already track or have available.';
-      if (showConnections) showConnections.disabled = !selected.length;
-      if (connections) $$('input[name="source"], input[name="device"]', connections).forEach(input => input.closest('label')?.classList.toggle('is-selected', input.checked));
-      if (results && !selected.length) {
-        results.replaceChildren();
-        results.hidden = true;
-        showConnections?.setAttribute('aria-expanded', 'false');
-      } else if (results && !results.hidden) renderConnections();
-    }
-    if (connections) {
-      const fields = $$('input[name="source"]', connections);
-      if (!fields.some(input => input.checked)) fields.forEach(input => { input.checked = input.value !== 'glucose'; });
-      if (!$('input[name="device"]:checked', connections)) {
-        const none = $('input[name="device"][value="none"]', connections);
-        if (none) none.checked = true;
-      }
-      connections.addEventListener('change', updateSources);
-      const form = connections.matches('form') ? connections : $('form', connections);
-      const revealResults = () => {
-        if (!selectedSources().length) return;
-        renderConnections();
-        scrollTo(results);
-        results?.focus({ preventScroll: true });
-      };
-      form?.addEventListener('submit', event => { event.preventDefault(); revealResults(); });
-      if (count) count.setAttribute('aria-live', 'polite');
-      if (showConnections) {
-        showConnections.setAttribute('aria-controls', 'connection-results');
-        showConnections.setAttribute('aria-expanded', 'false');
-        showConnections.addEventListener('click', event => {
-          event.preventDefault();
-          revealResults();
-        });
-      }
-      updateSources();
-    }
-
-    const dialog = $('#detail-dialog');
-    const dialogTitle = $('#dialog-title');
-    const dialogDescription = $('#dialog-description');
-    const dialogContent = $('#dialog-content');
-    let dialogOpener = null;
-    let dialogDestination = null;
-    function openDialog(title, description, trigger) {
-      if (!dialog || !dialogTitle || !dialogDescription || !dialogContent) return false;
-      dialogOpener = trigger || document.activeElement;
-      dialogDestination = null;
-      dialogTitle.textContent = title;
-      dialogDescription.textContent = description;
-      dialogContent.replaceChildren();
-      if (!dialog.open) dialog.showModal();
-      return true;
-    }
-    function showDownloads(trigger) {
-      if (!openDialog('Choose your app store', `Orb is ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: config.commerce?.currency || 'INR', maximumFractionDigits: 0 }).format(config.commerce?.annualPrice || 7500)} per year, billed annually. Download the app to review what’s included and choose your plan. Professional care is separate.`, trigger)) return;
-      const actions = make('div', undefined, 'dialog-actions');
-      [['App Store', config.appStoreUrl], ['Google Play', config.googlePlayUrl]].forEach(([label, value]) => {
-        const href = destination(value);
-        const action = make(href ? 'a' : 'button', label, 'btn btn-primary');
-        if (href) { action.href = href; action.target = '_blank'; action.rel = 'noopener noreferrer'; }
-        else { action.type = 'button'; action.disabled = true; }
-        actions.append(action);
-      });
-      dialogContent.append(actions);
-      if (!destination(config.appStoreUrl) || !destination(config.googlePlayUrl)) dialogContent.append(make('p', 'Download links are not available in this preview.', 'demo-note'));
-    }
-    function showEnquiry(trigger) {
-      const href = destination(config.enquiryUrl);
-      if (href) { window.location.assign(href); return; }
-      if (openDialog(trigger.dataset.title || 'Talk with the Cureocity team', trigger.dataset.description || 'Explore the care, assessment and hub options that fit your goals.', trigger)) {
-        dialogContent.append(make('p', 'The enquiry link is not available in this preview. No personal information is collected here.', 'demo-note'));
-      }
-    }
-    function showFreeTool(trigger) {
-      const fitness = trigger.dataset.freeTool === 'fitness';
-      const href = destination(fitness ? config.freeFitnessAssessmentUrl : config.freeDietPlanUrl);
-      if (href) { window.location.assign(href); return; }
-      const title = fitness ? 'Your free fitness assessment' : 'Your free diet plan';
-      const description = fitness
-        ? 'Explore your fitness starting point with guided movement and AI-assisted assessment.'
-        : 'Start with your food preferences, goals and routine to build a diet plan around your life.';
-      if (!openDialog(title, description, trigger)) return;
-      const summary = make('div', undefined, 'ft-dialog-summary');
-      summary.append(make('strong', fitness ? 'Start with how you move.' : 'Start with the food you know.'));
-      summary.append(make('span', fitness ? 'The free tool is a first step. Ongoing Orb app access and professional care are separate.' : 'The free plan builder is a first step. Ongoing Orb app access and professional care are separate.'));
-      dialogContent.append(summary);
-      dialogContent.append(make('p', 'Mockup button: the live tool link will be added later. No information is collected in this preview.', 'ft-dialog-status'));
-      const action = make('a', fitness ? 'Explore AI fitness' : 'Explore nutrition', 'btn btn-primary ft-dialog-actions');
-      action.href = fitness ? '#ai-fitness' : '#nutrition';
-      action.addEventListener('click', () => { dialogDestination = $(action.getAttribute('href')); dialog.close(); });
-      dialogContent.append(action);
-    }
-    $('#dialog-close')?.addEventListener('click', () => dialog?.close());
-    dialog?.addEventListener('close', () => {
-      if (dialogDestination instanceof HTMLElement) {
-        const target = dialogDestination.querySelector('h2') || dialogDestination;
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-        dialogDestination = null;
-      } else if (dialogOpener instanceof HTMLElement && document.contains(dialogOpener)) {
-        dialogOpener.focus({ preventScroll: true });
-      }
-    });
-    dialog?.addEventListener('click', event => {
+    dialog.addEventListener('click', event => {
       if (event.target !== dialog) return;
-      const rect = dialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+      const r = dialog.getBoundingClientRect();
+      if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
     });
-    document.addEventListener('click', event => {
-      const trigger = event.target.closest('[data-download], [data-store], [data-enquiry], [data-detail], [data-free-tool]');
-      if (!trigger || trigger.disabled) return;
-      event.preventDefault();
-      if (trigger.hasAttribute('data-free-tool')) showFreeTool(trigger);
-      else if (trigger.hasAttribute('data-store')) {
-        const href = destination(trigger.dataset.store === 'apple' ? config.appStoreUrl : config.googlePlayUrl);
-        if (href) window.location.assign(href);
-        else showDownloads(trigger);
-      } else if (trigger.hasAttribute('data-download')) showDownloads(trigger);
-      else if (trigger.hasAttribute('data-enquiry') || ['hub-visit', 'contact'].includes(trigger.dataset.detail)) showEnquiry(trigger);
-      else if (openDialog(trigger.dataset.title || trigger.textContent.trim(), trigger.dataset.description || 'Explore the information on this homepage to learn more.', trigger)) {
-        const target = trigger.dataset.target;
-        if (target && /^#[A-Za-z][\w-]*$/.test(target) && $(target)) {
-          const link = make('a', trigger.dataset.actionLabel || 'Explore this section', 'btn btn-primary');
-          link.href = target;
-          link.addEventListener('click', () => dialog.close());
-          dialogContent.append(link);
-        } else dialogContent.append(make('p', 'This preview shows the homepage design. The full detail page is not connected yet.', 'demo-note'));
+  });
+  $$('a[href^="#"]', menu).forEach(link => link.addEventListener('click', () => menu.close()));
+  matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches && menu.open) menu.close(); });
+  $('.dialog-close').addEventListener('click', () => actionDialog.close());
+  actionDialog.addEventListener('close', updateLock);
+
+  function safeUrl(value) {
+    if (!value) return null;
+    try { const url = new URL(value); return url.protocol === 'https:' ? url.href : null; } catch { return null; }
+  }
+  function element(tag, text, className) {
+    const el = document.createElement(tag); if (text) el.textContent = text; if (className) el.className = className; return el;
+  }
+  function openAction(key) {
+    const action = config.actions[key];
+    if (!action) return;
+    if (menu.open) menu.close();
+    const url = safeUrl(config.destinations[action.urlKey]);
+    if (url && key !== 'download') { location.assign(url); return; }
+    $('#action-title').textContent = action.title;
+    $('#action-body').textContent = action.body;
+    $('#action-kicker').textContent = 'Website preview';
+    const content = $('#action-content'); content.replaceChildren();
+    if (key === 'download') {
+      const available = [config.destinations.appStoreUrl, config.destinations.googlePlayUrl].some(safeUrl);
+      $('#action-body').textContent = available ? 'Choose an available Orb store listing for your device. Unavailable store links are shown below.' : 'Verified Orb store links are awaiting confirmation. You can explore the app experience and free starting points on this page. No download or account is started here.';
+      const choices = element('div', '', 'download-choices');
+      for (const [platform, urlKey, icon] of [['App Store', 'appStoreUrl', '↗'], ['Google Play', 'googlePlayUrl', '▷']]) {
+        const storeUrl = safeUrl(config.destinations[urlKey]);
+        const row = element(storeUrl ? 'a' : 'div', '', 'store-choice');
+        if (storeUrl) { row.href = storeUrl; row.target = '_blank'; row.rel = 'noopener noreferrer'; }
+        const symbol = element('span', icon); symbol.setAttribute('aria-hidden', 'true');
+        const description = element('div'); description.append(element('h3', platform), element('p', storeUrl ? 'Open the verified Orb listing' : 'Verified Orb listing awaiting confirmation'));
+        row.append(symbol, description); choices.append(row);
+      }
+      content.append(choices);
+      const link = element('a', 'Explore the free starting points', 'text-link'); link.href = '#free-tools'; link.addEventListener('click', () => actionDialog.close()); content.append(link);
+    } else if (action.note) content.append(element('p', action.note, 'dialog-note'));
+    actionDialog.showModal(); updateLock();
+  }
+  document.addEventListener('click', event => { const control = event.target.closest('[data-action]'); if (control) openAction(control.dataset.action); });
+
+  let voiceTimer = null;
+  let voiceRunning = false;
+  const transcript = $('#voice-transcript');
+  const result = $('#voice-result');
+  const voicePlay = $('#voice-play');
+  const voiceStop = $('#voice-stop');
+  const utterance = 'Log bench press: 40 kilograms, 10 reps.';
+  function stopVoice(reset = true) {
+    clearTimeout(voiceTimer); voiceTimer = null; voiceRunning = false;
+    transcript.setAttribute('aria-live', 'polite');
+    $('.voice-example')?.classList.remove('is-playing');
+    voiceStop.hidden = true; voicePlay.disabled = false;
+    voicePlay.textContent = result.hidden ? 'Play example' : 'Replay example';
+    if (reset) { transcript.textContent = `“${utterance}”`; result.hidden = true; voicePlay.textContent = 'Play example'; }
+  }
+  function completeVoice() {
+    transcript.textContent = `“${utterance}”`; result.hidden = false; stopVoice(false);
+    if (!motionReduced()) result.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, easing: 'ease-out' });
+  }
+  voicePlay.addEventListener('click', () => {
+    stopVoice(); voiceRunning = true; voicePlay.disabled = true; voiceStop.hidden = false;
+    if (motionReduced()) { completeVoice(); return; }
+    $('.voice-example').classList.add('is-playing'); transcript.textContent = 'Example starting…';
+    // Keep the live region quiet while words arrive; announce the final entry as one update.
+    transcript.setAttribute('aria-live', 'off');
+    const words = utterance.split(' '); let index = 0;
+    const tick = () => {
+      transcript.textContent = `“${words.slice(0, ++index).join(' ')}${index === words.length ? '”' : '…'}`;
+      if (index < words.length) voiceTimer = setTimeout(tick, 180);
+      else voiceTimer = setTimeout(() => { transcript.setAttribute('aria-live', 'polite'); completeVoice(); }, 450);
+    };
+    voiceTimer = setTimeout(tick, 350);
+  });
+  voiceStop.addEventListener('click', () => { stopVoice(); voicePlay.focus(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && voiceRunning) stopVoice(); });
+  reducedMotion.addEventListener('change', event => { if (event.matches && voiceRunning) completeVoice(); });
+  const motionControls = $$('[data-motion-toggle], #motion-toggle');
+  function updateMotionControls() {
+    const paused = motionReduced();
+    motionControls.forEach(control => {
+      const label = reducedMotion.matches ? 'Animations paused by your device setting' : paused ? 'Resume animations' : 'Pause animations';
+      control.setAttribute('aria-pressed', String(paused));
+      control.setAttribute('aria-label', label); control.title = label;
+      control.disabled = reducedMotion.matches;
+      if (!control.classList.contains('motion-control')) control.textContent = label;
+    });
+    if (paused && voiceRunning) completeVoice();
+    document.dispatchEvent(new Event('orb:motionchange'));
+  }
+  motionControls.forEach(control => control.addEventListener('click', () => {
+    document.documentElement.classList.toggle('reduce-motion'); updateMotionControls();
+  }));
+  reducedMotion.addEventListener('change', updateMotionControls);
+  updateMotionControls();
+
+  function updateIndicator(group, tab) {
+    const list = tab?.closest('[role="tablist"]');
+    if (!list || !tab || !tab.getClientRects().length) return;
+    const r = tab.getBoundingClientRect(), parent = list.getBoundingClientRect();
+    list.style.setProperty('--tab-x', `${r.left - parent.left}px`);
+    list.style.setProperty('--tab-y', `${r.top - parent.top}px`);
+    list.style.setProperty('--tab-w', `${r.width}px`);
+    list.style.setProperty('--tab-h', `${r.height}px`);
+    list.classList.add('with-indicator');
+  }
+  function activateTab(tab, focus = false) {
+    const group = tab.closest('[data-tabs]');
+    if (carousels.has(group)) { carousels.get(group).select(ownTabs(group).indexOf(tab), focus); return; }
+    ownTabs(group).forEach(button => {
+      const selected = button === tab;
+      button.setAttribute('aria-selected', String(selected)); button.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(button.getAttribute('aria-controls'));
+      panel.hidden = !selected; panel.classList.remove('panel-enter');
+      if (!selected) $$('video', panel).forEach(video => video.pause());
+      if (selected && !motionReduced()) { void panel.offsetWidth; panel.classList.add('panel-enter'); }
+    });
+
+    if (tab.id === 'tab-cgm') requestAnimationFrame(revealChart);
+    updateIndicator(group, tab);
+    if (focus) tab.focus();
+    $$('[data-tabs]', group).forEach(nested => updateIndicator(nested, ownTabs(nested).find(t => t.getAttribute('aria-selected') === 'true')));
+    requestAnimationFrame(() => $$('[data-carousel]', group).forEach(nested => carousels.get(nested)?.layout()));
+    document.dispatchEvent(new Event('orb:panelchange'));
+  }
+  // Real, independently controlled tracks: tabs, arrows, touch and mouse share one state.
+  $$('[data-carousel]').forEach(group => {
+    const own = selector => $$(selector, group).filter(el => el.closest('[data-carousel]') === group);
+    const track = own('[data-carousel-track]')[0];
+    const viewport = own('[data-carousel-viewport]')[0] || track.parentElement;
+    const slides = own('[data-carousel-slide]');
+    if (!track || !slides.length) return;
+    viewport.tabIndex = 0;
+    viewport.setAttribute('role','group');
+    viewport.setAttribute('aria-roledescription','carousel');
+    if (!viewport.hasAttribute('aria-label')) viewport.setAttribute('aria-label', `${group.dataset.carousel.replaceAll('-',' ')}. Use left and right arrows to browse.`);
+    const tabs = group.hasAttribute('data-tabs') ? ownTabs(group) : [];
+    let index = Math.max(0, tabs.findIndex(tab => tab.getAttribute('aria-selected') === 'true'));
+    let offset = 0, pointer = null, suppressClick = false;
+    let autoTimer = null, inView = false, hovered = false, autoPaused = false, allowFocusedResume = false;
+    const duration = ({connected:9000,features:7500,'blueprint-online-steps':10000,'blueprint-centre-steps':10000,doctors:7000,'pro-gallery':6500,members:6500})[group.dataset.carousel] || 7500;
+    group.style.setProperty('--slide-duration', `${duration}ms`);
+    const controls = own('.carousel-controls')[0];
+    const autoButton = element('button', '', 'carousel-auto-toggle');
+    autoButton.type = 'button'; autoButton.dataset.carouselToggle = '';
+    autoButton.innerHTML = '<span class="motion-pause-icon" aria-hidden="true"></span>';
+    controls?.append(autoButton);
+    const progress = element('div', '', 'carousel-progress');
+    progress.setAttribute('aria-hidden', 'true'); progress.append(element('span'));
+    group.append(progress);
+    const visibleCount = () => Math.max(1, Math.min(slides.length, parseInt(getComputedStyle(group).getPropertyValue('--carousel-visible')) || 1));
+    const maxIndex = () => slides.length - visibleCount();
+    const label = slide => slide.getAttribute('aria-label') || document.getElementById(slide.getAttribute('aria-labelledby'))?.textContent.trim() || $('h2,h3',slide)?.textContent.trim() || '';
+    function layout() {
+      if (!track.getClientRects().length || !track.offsetWidth) return;
+      index = Math.min(index, maxIndex());
+      offset = slides[index].offsetLeft - slides[0].offsetLeft;
+      track.style.setProperty('--carousel-offset', `${-offset}px`);
+    }
+    function select(next, focus = false, announce = true) {
+      const previousIndex = index;
+      index = Math.max(0, Math.min(maxIndex(), next));
+      group.dataset.carouselIndex = String(index);
+      slides.forEach((slide, i) => {
+        const visible = i >= index && i < index + visibleCount();
+        slide.hidden = false; slide.inert = !visible;
+        slide.setAttribute('aria-hidden', String(!visible));
+        slide.classList.toggle('is-active', i === index);
+        if (!visible) $$('video', slide).forEach(video => video.pause());
+      });
+      tabs.forEach((tab,i) => { tab.setAttribute('aria-selected',String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+      own('[data-carousel-go]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.carouselGo) === index)));
+      own('[data-carousel-prev]').forEach(button => button.disabled = index === 0);
+      own('[data-carousel-next]').forEach(button => button.disabled = index === maxIndex());
+      own('.carousel-controls').forEach(controls => controls.hidden = maxIndex() === 0);
+      progress.hidden = maxIndex() === 0;
+      own('[data-carousel-status]').forEach(status => {
+        status.setAttribute('aria-live',announce ? 'polite' : 'off');
+        status.textContent = `${index + 1} / ${slides.length}${label(slides[index]) ? ` · ${label(slides[index])}` : ''}`;
+      });
+      layout();
+      if (tabs[index]) {
+        updateIndicator(group,tabs[index]);
+        const list = tabs[index].closest('[role="tablist"]');
+        if (list.scrollWidth > list.clientWidth) list.scrollTo({left:tabs[index].offsetLeft - list.offsetLeft - (list.clientWidth - tabs[index].offsetWidth)/2,behavior:motionReduced()?'instant':'smooth'});
+        if (focus) tabs[index].focus({preventScroll:true});
+      }
+      group.dispatchEvent(new CustomEvent('orb:slidechange',{bubbles:true}));
+      if (previousIndex !== index) {
+        slides.forEach(slide => slide.classList.remove('slide-arrive'));
+        if (!motionReduced()) { void slides[index].offsetWidth; slides[index].classList.add('slide-arrive'); }
+      }
+      stopAuto(); scheduleAuto();
+    }
+    function stopAuto() {
+      clearTimeout(autoTimer); autoTimer = null; group.classList.remove('is-auto-playing');
+    }
+    function canAutoPlay() {
+      const focusBlocks = group.contains(document.activeElement) && !(allowFocusedResume && document.activeElement === autoButton);
+      return inView && maxIndex() > 0 && !autoPaused && !hovered && !pointer && !motionReduced() && !document.hidden && !document.body.classList.contains('modal-open') && !group.closest('[hidden]') && !focusBlocks && !group.querySelector('details[open]');
+    }
+    function scheduleAuto() {
+      autoButton.setAttribute('aria-pressed', String(autoPaused));
+      autoButton.setAttribute('aria-label', autoPaused ? 'Resume automatic slides' : 'Pause automatic slides');
+      autoButton.title = autoPaused ? 'Resume automatic slides' : 'Pause automatic slides';
+      autoButton.disabled = motionReduced();
+      if (!canAutoPlay()) { stopAuto(); return; }
+      if (autoTimer !== null) return;
+      progress.replaceChildren(element('span'));
+      group.classList.add('is-auto-playing');
+      autoTimer = setTimeout(() => {
+        autoTimer = null;
+        if (!canAutoPlay()) { stopAuto(); return; }
+        const wrapping = index === maxIndex();
+        if (wrapping) group.classList.add('is-resetting');
+        select(wrapping ? 0 : index + 1, false, false);
+        if (wrapping) {
+          void track.offsetWidth;
+          requestAnimationFrame(() => group.classList.remove('is-resetting'));
+          if (!motionReduced()) viewport.animate([{opacity:.35},{opacity:1}],{duration:350,easing:'ease-out'});
+        }
+      }, duration);
+    }
+    autoButton.addEventListener('click', () => { autoPaused = !autoPaused; allowFocusedResume = !autoPaused; stopAuto(); scheduleAuto(); });
+    group.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; stopAuto(); } });
+    group.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') { hovered = false; scheduleAuto(); } });
+    group.addEventListener('focusin', () => { allowFocusedResume = false; stopAuto(); });
+    group.addEventListener('focusout', () => requestAnimationFrame(scheduleAuto));
+    group.addEventListener('toggle', scheduleAuto, true);
+    document.addEventListener('visibilitychange', scheduleAuto);
+    document.addEventListener('orb:motionchange', scheduleAuto);
+    document.addEventListener('orb:panelchange', scheduleAuto);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        inView = entries[0].isIntersecting && entries[0].intersectionRatio >= .18;
+        scheduleAuto();
+      }, {threshold:[0,.18]}).observe(viewport);
+    }
+    carousels.set(group,{select,layout});
+    group.classList.add('carousel-ready');
+    own('[data-carousel-prev]').forEach(button => button.addEventListener('click',()=>select(index-1)));
+    own('[data-carousel-next]').forEach(button => button.addEventListener('click',()=>select(index+1)));
+    own('[data-carousel-go]').forEach(button => button.addEventListener('click',()=>select(Number(button.dataset.carouselGo))));
+    viewport.addEventListener('keydown',event => {
+      if (event.target !== viewport) return;
+      const next = {ArrowRight:index+1,ArrowLeft:index-1,Home:0,End:maxIndex()}[event.key];
+      if (next !== undefined) { event.preventDefault(); select(next); }
+    });
+    viewport.addEventListener('dragstart',event => event.preventDefault());
+    viewport.addEventListener('pointerdown',event => {
+      if (!event.isPrimary || event.button !== 0 || event.target.closest('button,a,summary,input,select,textarea')) return;
+      const video = event.target.closest('video');
+      // Leave the native video control strip available for scrubbing and playback.
+      if (video?.controls && event.clientY > video.getBoundingClientRect().bottom - 64) return;
+      pointer = {id:event.pointerId,x:event.clientX,y:event.clientY,dragging:false,delta:0}; suppressClick = false;
+      stopAuto();
+    });
+    viewport.addEventListener('pointermove',event => {
+      if (!pointer || event.pointerId !== pointer.id) return;
+      const dx = event.clientX-pointer.x, dy = event.clientY-pointer.y;
+      if (!pointer.dragging && Math.abs(dy)>12 && Math.abs(dy)>Math.abs(dx)) { pointer=null; scheduleAuto(); return; }
+      if (!pointer.dragging && Math.abs(dx)>8 && Math.abs(dx)>Math.abs(dy)*1.15) {
+        pointer.dragging=true; viewport.setPointerCapture(event.pointerId); group.classList.add('is-dragging');
+      }
+      if (pointer.dragging) {
+        if (event.cancelable) event.preventDefault();
+        pointer.delta = dx; suppressClick = true;
+        const resistance = (index===0 && dx>0) || (index===maxIndex() && dx<0) ? .2 : 1;
+        track.style.setProperty('--carousel-offset',`${-offset + dx*resistance}px`);
       }
     });
+    function release(event, cancelled = false) {
+      if (!pointer || event.pointerId !== pointer.id) return;
+      const delta = pointer.delta, wasDragging=pointer.dragging;
+      pointer=null; group.classList.remove('is-dragging');
+      if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+      const threshold = Math.min(85,Math.max(40,viewport.clientWidth*.12));
+      if (wasDragging) select(index + (!cancelled && Math.abs(delta)>=threshold ? (delta<0?1:-1) : 0));
+      else scheduleAuto();
+    }
+    viewport.addEventListener('pointerup',event=>release(event));
+    viewport.addEventListener('pointercancel',event=>release(event,true));
+    viewport.addEventListener('click',event => {
+      if (suppressClick) { event.preventDefault(); event.stopPropagation(); suppressClick=false; return; }
+      if (event.target.closest('button,a,video,summary')) return;
+      const peek = slides.findIndex(slide => { const r=slide.getBoundingClientRect(); return event.clientX>=r.left && event.clientX<=r.right && event.clientY>=r.top && event.clientY<=r.bottom; });
+      if (peek>=0 && peek!==index) select(peek);
+    },true);
+    new ResizeObserver(()=>select(index,false,false)).observe(viewport);
+    select(index,false,false);
+  });
+  $$('[data-tabs]').forEach(group => {
+    const tabs = ownTabs(group);
+    updateIndicator(group, tabs.find(tab => tab.getAttribute('aria-selected') === 'true'));
+    new ResizeObserver(() => updateIndicator(group, tabs.find(tab => tab.getAttribute('aria-selected') === 'true'))).observe(group);
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', event => {
+        let next;
+        const vertical = tab.closest('[role=tablist]').getAttribute('aria-orientation') === 'vertical';
+        if (event.key === (vertical ? 'ArrowDown' : 'ArrowRight')) next = (index + 1) % tabs.length;
+        if (event.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) next = (index + tabs.length - 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); activateTab(tabs[next], true); }
+      });
+    });
+  });
+  $$('[data-demo-target]').forEach(button => button.addEventListener('click', () => {
+    const target = {fitness:'tab-fitness',nutrition:'tab-food',day:'tab-day'}[button.dataset.demoTarget];
+    const tab = document.getElementById(target); if (!tab) return; activateTab(tab); $('#features').scrollIntoView({behavior: motionReduced() ? 'instant' : 'smooth'}); tab.focus({preventScroll:true});
+  }));
 
-    document.documentElement.classList.add('js-ready');
+
+  const ambientVideos = $$('video[data-ambient]');
+  function syncAmbient(video) {
+    const slide = video.closest('[data-carousel-slide]');
+    const allowed = video.dataset.inView === 'true' && !document.hidden && !document.body.classList.contains('modal-open') && !motionReduced() && !video.closest('[hidden]') && (!slide || slide.getAttribute('aria-hidden') !== 'true');
+    if (allowed) { video.muted = true; video.play().catch(() => {}); }
+    else video.pause();
   }
+  if ('IntersectionObserver' in window) {
+    const mediaObserver = new IntersectionObserver(entries => entries.forEach(entry => { entry.target.dataset.inView = String(entry.isIntersecting && entry.intersectionRatio >= .2); syncAmbient(entry.target); }), {threshold:[0,.2]});
+    ambientVideos.forEach(video => mediaObserver.observe(video));
+  }
+  document.addEventListener('orb:slidechange', () => ambientVideos.forEach(syncAmbient));
+  document.addEventListener('orb:panelchange', () => ambientVideos.forEach(syncAmbient));
+  document.addEventListener('orb:motionchange', () => ambientVideos.forEach(syncAmbient));
+  document.addEventListener('visibilitychange', () => ambientVideos.forEach(syncAmbient));
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
-  else init();
+  const glucose = config.examples.glucose;
+  const values = glucose.readings.map(reading => reading.value);
+  const stats = { average: (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1), min: Math.min(...values), max: Math.max(...values) };
+  $$('[data-glucose-stat]').forEach(node => node.textContent = stats[node.dataset.glucoseStat]);
+  const svg = $('#glucose-chart');
+  const ns = 'http://www.w3.org/2000/svg';
+  function svgNode(name, attributes, text) {
+    const node = document.createElementNS(ns, name); Object.entries(attributes).forEach(([key,value])=>node.setAttribute(key,value)); if(text)node.textContent=text;svg.append(node);return node;
+  }
+  const x = i => 48 + i * 90;
+  const lower = Math.floor(Math.min(...values) / 10) * 10 - 10;
+  const upper = Math.ceil(Math.max(...values) / 10) * 10 + 10;
+  const y = value => 174 - (value - lower) / (upper - lower) * 140;
+  [lower, (upper + lower) / 2, upper].forEach(value => {
+    svgNode('line',{x1:48,y1:y(value),x2:588,y2:y(value),stroke:'#dce5ed','stroke-width':1});
+    svgNode('text',{x:35,y:y(value)+4,'text-anchor':'end',fill:'#52677e','font-size':12},String(value));
+  });
+  glucose.readings.forEach((reading,i)=>{
+    svgNode('text',{x:x(i),y:205,'text-anchor':'middle',fill:'#52677e','font-size':12},reading.time);
+  });
+  const path = svgNode('polyline',{points:values.map((v,i)=>`${x(i)},${y(v)}`).join(' '),fill:'none',stroke:'#526f8d','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'});
+  values.forEach((value,i)=>{ const circle=svgNode('circle',{cx:x(i),cy:y(value),r:4,fill:'#f7f9fb',stroke:'#526f8d','stroke-width':2}); const title=document.createElementNS(ns,'title'); title.textContent=`${glucose.readings[i].time}: ${value} ${glucose.unit}`;circle.append(title); });
+  let chartRevealed = false;
+  function revealChart() {
+    if (chartRevealed || motionReduced() || !svg.getClientRects().length) return; chartRevealed = true;
+    const length = path.getTotalLength(); path.animate([{strokeDasharray:String(length),strokeDashoffset:String(length)},{strokeDasharray:String(length),strokeDashoffset:'0'}],{duration:650,easing:'ease-out'});
+  }
+  if ('IntersectionObserver' in window) {
+    $$('.trust-item,.mid-pro-feature,.mid-vault-benefits article,.nl-support-card,.nl-family-grid figure,.nl-start-card,.nl-footer-main>nav,.mid-voice-heading,.mid-vault-intro,.nl-pro-copy,.nl-pro-gallery').forEach((node, i) => {
+      node.classList.add('reveal'); node.style.setProperty('--reveal-delay', `${(i % 3) * 75}ms`);
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }), {threshold:.08,rootMargin:'0px 0px -20px 0px'});
+    $$('.reveal').forEach(node => observer.observe(node));
+    const chartObserver = new IntersectionObserver(entries => {if(entries.some(e=>e.isIntersecting)){revealChart();chartObserver.disconnect();}},{threshold:.35}); chartObserver.observe(svg);
+    const voiceObserver = new IntersectionObserver(entries => {if(entries.some(e=>!e.isIntersecting) && voiceRunning) stopVoice();},{threshold:0}); voiceObserver.observe($('.voice-example'));
+  } else $$('.reveal').forEach(node=>node.classList.add('is-visible'));
 })();

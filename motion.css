@@ -1,0 +1,66 @@
+/* Shared motion for the web layout. Never transform the carousel track or
+   phone artwork here: both already own their layout transforms. */
+:root{--reveal-duration:560ms;--motion-ease:cubic-bezier(.22,.7,.18,1)}
+.motion-ready .reveal:not(.is-visible){opacity:0;transform:translateY(20px)}
+.motion-ready .reveal.is-visible{
+  opacity:1;transform:translateY(0);
+  transition:opacity var(--reveal-duration) var(--motion-ease),transform var(--reveal-duration) var(--motion-ease);
+  transition-delay:var(--reveal-delay,0ms);
+}
+
+@keyframes orb-copy-arrive{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes orb-visual-arrive{from{opacity:.25}to{opacity:1}}
+.slide-arrive .mid-feature-copy>*,.slide-arrive .connect-copy>*{
+  animation:orb-copy-arrive 460ms var(--motion-ease) both;
+}
+.slide-arrive .mid-feature-copy>:nth-child(2),.slide-arrive .connect-copy>:nth-child(2){animation-delay:60ms}
+.slide-arrive .mid-feature-copy>:nth-child(3),.slide-arrive .connect-copy>:nth-child(3){animation-delay:110ms}
+.slide-arrive .mid-feature-copy>:nth-child(4),.slide-arrive .connect-copy>:nth-child(4){animation-delay:160ms}
+.slide-arrive .mid-feature-visual,.slide-arrive .nl-blueprint-media,.slide-arrive .nl-pro-main{
+  animation:orb-visual-arrive 580ms var(--motion-ease) both;
+}
+
+.button .icon{transition:transform 200ms var(--motion-ease)}
+.button:hover .icon,.button:focus-visible .icon{transform:translateX(3px)}
+.button:active .icon{transform:translateX(1px)}
+.mid-pro-feature,.nl-support-card,.intro-plan{transition:box-shadow 220ms var(--motion-ease),border-color 220ms var(--motion-ease)}
+.nl-pro-thumbnails button{transition:opacity 180ms ease,outline-color 180ms ease,box-shadow 180ms ease}
+.nl-pro-thumbnails button:hover,.nl-pro-thumbnails button:focus-visible{box-shadow:0 5px 18px #1018291c}
+.nl-footer nav a,.nl-footer nav button{text-decoration-color:transparent;transition:color 180ms ease,text-decoration-color 180ms ease}
+.nl-footer nav a:hover,.nl-footer nav button:hover,.nl-footer nav a:focus-visible,.nl-footer nav button:focus-visible{text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:4px}
+@media(hover:hover) and (pointer:fine){
+  .mid-pro-feature:hover,.nl-support-card:hover,.intro-plan:hover{box-shadow:0 10px 28px #1018290d}
+  .reveal.is-visible:is(.mid-pro-feature,.nl-support-card,.intro-plan):hover{transform:translateY(-3px);transition-duration:220ms;transition-delay:0ms}
+}
+
+/* A thin timeline makes automatic movement predictable. Removing the running
+   class resets it, so interaction restarts a complete reading interval. */
+.carousel-progress{height:2px;width:100%;margin-top:14px;overflow:hidden;border-radius:2px;background:#14213914;color:#526d93;pointer-events:none}
+.carousel-progress span{display:block;width:100%;height:100%;background:currentColor;transform:scaleX(0);transform-origin:left center}
+@keyframes orb-carousel-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.is-auto-playing .carousel-progress span{animation:orb-carousel-progress var(--slide-duration,7500ms) linear both}
+.connected-story>.carousel-progress{position:absolute;z-index:3;bottom:0;left:0;margin:0;height:3px;background:#ffffff20;color:#ffffffa6}
+.carousel-progress[hidden]{display:none}
+@media(max-width:600px){
+  :root{--reveal-duration:480ms}
+  .motion-ready .reveal:not(.is-visible){transform:translateY(14px)}
+  .carousel-progress{margin-top:10px}
+}
+
+/* Both the operating-system preference and the site's explicit pause control
+   provide the same readable, static experience. */
+.reduce-motion .reveal,.reduce-motion .reveal.is-visible,.reduce-motion .reveal:not(.is-visible){opacity:1!important;transform:none!important;transition:none!important}
+.reduce-motion .slide-arrive .mid-feature-copy>*,.reduce-motion .slide-arrive .connect-copy>*{opacity:1!important;transform:none!important;animation:none!important}
+.reduce-motion .slide-arrive .mid-feature-visual,.reduce-motion .slide-arrive .nl-blueprint-media,.reduce-motion .slide-arrive .nl-pro-main{opacity:1!important;animation:none!important}
+.reduce-motion .button .icon{transform:none!important;transition:none!important}
+.reduce-motion .carousel-progress{display:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal.is-visible,.motion-ready .reveal:not(.is-visible){opacity:1!important;transform:none!important;transition:none!important}
+  .slide-arrive .mid-feature-copy>*,.slide-arrive .connect-copy>*{opacity:1!important;transform:none!important;animation:none!important}
+  .slide-arrive .mid-feature-visual,.slide-arrive .nl-blueprint-media,.slide-arrive .nl-pro-main{opacity:1!important;animation:none!important}
+  .button .icon{transform:none!important;transition:none!important}
+  .carousel-progress{display:none}
+}
