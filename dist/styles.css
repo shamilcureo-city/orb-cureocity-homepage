@@ -175,3 +175,45 @@ h3{font-size:clamp(25px,2.4vw,34px)}
   .connect-faqs{margin-top:30px}.connect-faqs summary{font-size:13px}.connect-faqs details{padding:12px}
   .connect-faqs details>p{font-size:14px}.connect-controls{right:20px}.connect-slide .media-toggle{left:20px}
 }
+
+/* Annotated review: only navigation floats; brand and download action scroll away. */
+.site-header,.site-header.scrolled{
+  position:absolute;top:24px;left:0;width:100%;padding:0;
+  background:transparent;border:0;backdrop-filter:none;
+}
+.site-header.scrolled .desktop-nav{background:#101522eb}
+@media(min-width:901px){
+  .site-header .desktop-nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);
+    width:max-content;max-width:calc(100% - 40px);padding:8px;
+    background:#252622b8;border:1px solid #ffffff12;
+    box-shadow:0 8px 24px #00000012;backdrop-filter:blur(18px);
+    transition:background .2s,box-shadow .2s;
+  }
+  .site-header.scrolled .desktop-nav{background:#101522ed;box-shadow:0 8px 24px #1018291a}
+}
+/* Full-height opening retains natural height when copy needs more room. */
+.hero-new{height:auto;min-height:100vh;min-height:100svh;max-height:none}
+.hero-content{padding-top:max(160px,20svh);padding-bottom:clamp(44px,7svh,84px)}
+.trust-item{color:#262c36}
+.trust-item>*{opacity:.78}
+.trust-item strong{color:inherit;font-weight:500}
+.trust-item span{color:#404651}
+@media(max-width:900px){
+  .site-header,.site-header.scrolled{top:24px;padding:0}
+  .header-actions{padding-right:58px}
+  .menu-toggle{
+    position:fixed;top:24px;right:24px;width:44px;height:44px;
+    border:1px solid #ffffff24;background:#2526229e;
+    color:#fff;backdrop-filter:blur(16px);box-shadow:0 6px 20px #00000012;
+  }
+  .site-header.scrolled .menu-toggle{background:#101522ed}
+  .hero-new{min-height:100vh;min-height:100svh}
+  .hero-content{padding-top:max(144px,20svh);padding-bottom:48px}
+}
+@media(max-width:600px){
+  .site-header,.site-header.scrolled{top:16px}
+  .header-actions{padding-right:52px}
+  .menu-toggle{top:16px;right:18px}
+  .hero-content{padding-top:max(132px,20svh);padding-bottom:40px}
+}

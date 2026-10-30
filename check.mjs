@@ -8,7 +8,7 @@ assert.equal(new Set(ids).size,ids.length,'HTML IDs must be unique');
 for(const [,id] of html.matchAll(/(?:href="#|aria-controls=")([^"#]+)"/g))assert.ok(ids.includes(id),`Missing internal target ${id}`);
 for(const [,action] of html.matchAll(/data-action="([^"]+)"/g))assert.ok(config.actions[action],`Unknown action ${action}`);
 for(const [key,action] of Object.entries(config.actions))assert.ok(action.urlKey in config.destinations,`Missing URL config for ${key}`);
-for(const [,src] of html.matchAll(/(?:src|poster|href)="((?:assets\/|(?:app|config)\.js|(?:styles|carousel|features|lower|motion)\.css|favicon\.svg)[^"]*)"/g))assert.ok((await stat(new URL(`dist/${decodeURIComponent(src)}`,import.meta.url))).size>0,`Empty or missing ${src}`);
+for(const [,src] of html.matchAll(/(?:src|poster|href)="((?:assets\/|(?:app|config|voice)\.js|(?:styles|carousel|features|lower|motion|voice)\.css|favicon\.svg)[^"]*)"/g))assert.ok((await stat(new URL(`dist/${decodeURIComponent(src)}`,import.meta.url))).size>0,`Empty or missing ${src}`);
 assert.ok(!html.includes('{{'),'No unexpanded content tokens');
 for(const bad of ['₹7,000','₹7,500','write faster','think clearer','Continues Glucose','1200 Kcal of 264','6:15 PM','liver risk'])assert.ok(!html.includes(bad),`Obsolete copy: ${bad}`);
 const annual=new Intl.NumberFormat('en-IN',{style:'currency',currency:config.commerce.currency,maximumFractionDigits:0}).format(config.commerce.annualPrice);

@@ -233,3 +233,39 @@
   .mid-voice-result-heading>span{font-size:10px}
   .mid-voice-stats strong{font-size:17px}
 }
+
+/* Original supplied app artwork — preserve the source image proportions. */
+.mid-feature-card .mid-original-visual{position:absolute;left:auto;right:24px;top:30px;bottom:22px;width:42%;height:auto;min-height:0;margin:0;padding:0;transform:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden}
+.mid-original-visual:after{display:none}
+.mid-original-visual>.mid-original-screen{position:static;display:block;flex:0 1 auto;width:auto;height:auto;max-width:100%;max-height:calc(100% - 34px);min-height:0;object-fit:contain;transform:none;border:0;border-radius:0;box-shadow:none}
+.mid-original-visual>figcaption{position:static;flex:none;margin:0;padding:0 4px;text-align:center;font-size:11px;line-height:1.4;color:#62656b;max-width:100%}
+.mid-professional>img{object-position:center 55%}
+.mid-professional-quote{font-style:italic;font-synthesis:style}
+.mid-pro-overview .section-head .mid-pro-eyebrow{width:100%;max-width:none;margin-inline:auto!important;text-align:center}
+.mid-vault-showcase{position:relative;width:min(100%,1440px);height:650px;margin:42px auto 52px;isolation:isolate;overflow:hidden}
+.mid-vault-documents{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.mid-vault-original{position:relative;z-index:1;width:min(366px,38%);height:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.mid-vault-original>img{display:block;width:100%;height:auto;max-height:calc(100% - 32px);object-fit:contain;min-height:0}
+.mid-vault-original>figcaption{flex:none;font-size:11px;line-height:1.4;color:#f5f6f9;text-align:center;padding:4px 10px;background:#172239b8;border-radius:20px}
+@media(min-width:601px) and (max-width:1100px){
+  .mid-feature-card .mid-original-visual{right:14px;top:40px;bottom:26px;width:39%}
+  .mid-original-visual>figcaption{font-size:10px}
+  .mid-vault-showcase{height:580px}
+}
+@media(max-width:600px){
+  .mid-feature-card .mid-original-visual{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;height:100%;margin:0;padding:18px 20px 16px;gap:10px;min-height:0}
+  .mid-original-visual>.mid-original-screen{max-height:calc(100% - 30px);max-width:86%}
+  .mid-original-visual>figcaption{font-size:10px}
+  .mid-vault-showcase{height:500px;margin:30px auto 34px}
+  .mid-vault-documents{width:180%;max-width:none;left:-40%;object-fit:contain}
+  .mid-vault-original{width:min(285px,72%)}
+  .mid-vault-original>figcaption{font-size:10px}
+}
+
+.mid-original-report{margin:0;min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px}
+.mid-original-report>img{display:block;width:100%;height:auto;object-fit:contain}
+.mid-original-report>figcaption{max-width:340px;padding:0 10px;font-size:11px;line-height:1.5;text-align:center;color:#465169}
+@media(max-width:600px){.mid-original-report{min-height:0;padding-bottom:18px}.mid-original-report>figcaption{font-size:10px}}
+
+/* Exact icon tiles exported at 2x from the approved Figma homepage. */
+.mid-pro-icon.mid-original-icon{display:block;object-fit:contain;background:transparent;border-radius:0}

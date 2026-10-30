@@ -7,8 +7,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="carousel.css"><link rel="stylesheet" href="features.css"><link rel="stylesheet" href="lower.css"><link rel="stylesheet" href="motion.css">
-<script src="config.js" defer></script><script src="app.js" defer></script>
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="carousel.css"><link rel="stylesheet" href="features.css"><link rel="stylesheet" href="lower.css"><link rel="stylesheet" href="motion.css"><link rel="stylesheet" href="voice.css">
+<script src="config.js" defer></script><script src="app.js" defer></script><script type="module" src="voice.js"></script>
 </head><body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -31,7 +31,7 @@
 <header class="site-header" id="site-header"><div class="header-inner">
 <a class="brand" href="#top" aria-label="Orb powered by Cureocity, home"><svg class="brand-logo" viewBox="0 0 235 52" aria-hidden="true"><defs><filter id="brand-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 -0.2126 -0.7152 -0.0722 1 0"/></filter></defs><image href="assets/reference/footer-brand.webp" width="235" height="52" filter="url(#brand-white)"/></svg></a>
 <nav class="desktop-nav" aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#hubs">Health &amp; Fitness Hub</a><a href="#plans">Plans &amp; pricing</a><a href="#blueprint">Blueprint</a></nav>
-<div class="header-actions"><button class="button button-white compact" data-action="download">Get Orb</button><button class="motion-control icon-button" id="header-motion-toggle" data-motion-toggle aria-label="Pause animations" aria-pressed="false" title="Pause animations"><span class="motion-pause-icon" aria-hidden="true"></span></button><button class="menu-toggle icon-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
+<div class="header-actions"><button class="button button-white compact" data-action="download">Get Orb</button><button class="menu-toggle icon-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button></div>
 </div></header>
 <dialog id="mobile-menu" class="mobile-menu" aria-labelledby="menu-title"><div class="menu-head"><span id="menu-title">Explore Orb</span><button class="icon-button" id="menu-close" aria-label="Close navigation"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div><nav aria-label="Mobile navigation"><a href="#how-it-works">How it works</a><a href="#hubs">Health &amp; Fitness Hub</a><a href="#plans">Plans &amp; pricing</a><a href="#blueprint">Blueprint</a><button class="button" data-action="download">Get Orb</button></nav></dialog>
 <main id="main">

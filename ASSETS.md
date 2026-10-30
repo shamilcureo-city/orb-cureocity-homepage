@@ -1,52 +1,41 @@
-# Runtime assets
+# Asset provenance
 
-This export includes only assets used by the current website: supplied Orb graphics and videos, optimized derivatives, and the corrected illustrative UI used in the preview. Unused source graphics, real report samples and full Figma exports are excluded. Public repository access does not grant rights to reuse Cureocity branding or supplied imagery.
+The current preview follows the supplied Website Design page in [Client App V3](https://www.figma.com/design/AwydaKZ3UdxjHtLi1rrhBX/Client-App-V3?node-id=6031-51867). The desktop source is **Home Page**, node `6621:58204`, on page `6031:51867`. The owner's annotated screenshots dated 30 October 2026 request restoration of original app artwork rather than recreated screen contents.
 
-Total: 44 files, 91195152 bytes.
+`build.mjs` copies only media referenced by the assembled HTML and CSS into `dist/assets`. Its output reports the actual packaged count. Source inventory totals are not a reliable runtime count, because unused comparison derivatives can remain outside `dist`. Full Figma exports, local review screenshots and the raw identifiable laboratory report are not deployment assets.
 
-| Path | Bytes |
-| --- | ---: |
-| `assets/optimized/BG.webp` | 22652 |
-| `assets/optimized/ChatGPT Image 28 Oct 2026, 21_03_37.webp` | 121002 |
-| `assets/optimized/ChatGPT Image 28 Oct 2026, 21_03_50.webp` | 142896 |
-| `assets/optimized/ChatGPT Image 28 Oct 2026, 21_03_56.webp` | 142982 |
-| `assets/optimized/ChatGPT Image 28 Oct 2026, 21_06_12.webp` | 150732 |
-| `assets/optimized/ChatGPT Image 28 Oct 2026, 21_07_40.webp` | 71012 |
-| `assets/optimized/Frame 2147228749 1.webp` | 38280 |
-| `assets/optimized/Frame 2147228768 1.webp` | 26730 |
-| `assets/optimized/Frame 2147228935.webp` | 28062 |
-| `assets/optimized/Frame 2147228989.webp` | 36052 |
-| `assets/optimized/Frame 2147228992.webp` | 18472 |
-| `assets/optimized/Group 2085666069 1.webp` | 19084 |
-| `assets/optimized/WhatsApp Image 2025-12-18 at 16.21.27 1.webp` | 25962 |
-| `assets/optimized/WhatsApp Image 2025-12-18 at 16.21.35 1.webp` | 29264 |
-| `assets/optimized/WhatsApp Image 2025-12-18 at 16.21.54 1.webp` | 17618 |
-| `assets/optimized/bioage 1.webp` | 16568 |
-| `assets/optimized/blueprint-diet-poster.webp` | 43798 |
-| `assets/optimized/blueprint-doctor-poster.webp` | 40538 |
-| `assets/optimized/blueprint-fitness-poster.webp` | 33958 |
-| `assets/optimized/care-online-poster.webp` | 39424 |
-| `assets/optimized/daddadad 1-1.webp` | 9360 |
-| `assets/optimized/daddadad 1.webp` | 8966 |
-| `assets/optimized/dsdssfsfsf 1.webp` | 14736 |
-| `assets/optimized/free-diet-poster.webp` | 36088 |
-| `assets/optimized/free-fitness-poster.webp` | 27266 |
-| `assets/optimized/hero-poster.webp` | 42572 |
-| `assets/optimized/hf_20261026_113657_148d0d91-5b3e-4deb-9268-c1dcc894ec0b 1.webp` | 74668 |
-| `assets/optimized/hf_20261028_082442_a2b195ab-3301-4296-b9be-66cd15680283.webp` | 67414 |
-| `assets/optimized/lubna-portrait.webp` | 259444 |
-| `assets/optimized/sdsdsdsds.webp` | 14650 |
-| `assets/optimized/vijesh-portrait.webp` | 66812 |
-| `assets/optimized/voice-reference-poster.webp` | 38176 |
-| `assets/reference/app-store-badge.webp` | 1544 |
-| `assets/reference/footer-brand.webp` | 3324 |
-| `assets/reference/google-play-badge.webp` | 1710 |
-| `assets/supplied/Diet Plan.mp4` | 13463382 |
-| `assets/supplied/Fitness assessment.mp4` | 14454745 |
-| `assets/supplied/health-windows-warm-scene.mp4` | 685099 |
-| `assets/supplied/hf_20261028_041415_29011f23-b503-4645-af9c-46e36fa4b332.mp4` | 16854288 |
-| `assets/supplied/hf_20261028_094844_2d80bc61-eeb9-49bc-973a-8f162ebc4d95.mp4` | 5410001 |
-| `assets/supplied/hf_20261028_100546_31588fb0-c150-4636-87f2-f88bee14e0d8.mp4` | 5385773 |
-| `assets/supplied/hf_20261028_152056_e5bd2866-3499-4f4a-a8b7-f07bc8311596.mp4` | 6791509 |
-| `assets/supplied/hf_20261028_154030_2bb4ff8b-0679-4f88-b099-4b63e6c786e3.mp4` | 8869535 |
-| `assets/supplied/voice-figma-6655-1467.mp4` | 17549004 |
+## Original app artwork
+
+These files in `assets/original/` are copied byte-for-byte from the owner's `Website Graphics 2.zip` bundle. Their natural proportions are retained in the page.
+
+| Display | Original filename | Native dimensions |
+| --- | --- | --- |
+| Daily insights | `Group 2085666071 1.png` | 347 × 538 |
+| Food and nutrition | `Frame 2147228749 1.png` | 345 × 566 |
+| Training | `Group 2085666069 1.png` | 376 × 566 |
+| Cycle and journal | `Cycle Tracker 1.png` | 373 × 566 |
+| Biological age | `bioage 1.png` | 366 × 566 |
+| Care and assessment | `Frame 2147228989.png` | 481 × 566 |
+| Health Vault | `Group 2085666068 1.png` | 366 × 566 |
+
+The original screens are explicitly labelled as illustrative designs. Their embedded example dates, values, scores and statements are retained for the requested visual fidelity; they are not evidence of clinical validity, release status or commercial entitlement.
+
+## Original icons and motion
+
+The ten Pro feature icons use original exports from the same Figma Home Page (`6621:58204`, page `6031:51867`). Their actual local filenames are referenced in `parts/features.html`; retain the exported geometry rather than replacing them with generic symbols.
+
+The Health Vault backdrop uses the supplied `assets/supplied/health-documents-transparent.webm`, 1920 × 1080, with the existing extracted `assets/optimized/health-documents-poster.webp` as its static state. This is the original animation of generic health documents. It follows the site's viewport-aware muted playback and reduced-motion behavior.
+
+The voice-section lifestyle footage is the exact video downloaded from Figma node `6655:1467`, retained at `assets/supplied/voice-figma-6655-1467.mp4`. Its SHA-256 is `6f48dc75b4eb219cb0f7d004ad2262ab101f2203c36706a1d57e4a0106f1933e`. The poster is `assets/optimized/voice-reference-poster.webp`.
+
+Other supplied videos, professional/member portraits, original brand marks and approved optimized derivatives retain their existing call sites. Names, endorsements, professional roles or service availability must not be inferred from imagery alone.
+
+## Permanently redacted original report
+
+`assets/original/health-report-redacted.png` is a new 633 × 565 raster derived deterministically from the supplied report using Swift/CoreGraphics. It retains the original card silhouette, laboratory branding, table layout and report values. It is a redacted source sample, not a newly fabricated clinical record.
+
+The derivative permanently removes the patient name, demographic and patient-ID fields, sample-location and collection/registration details, QR code, barcode, laboratory contact numbers, email/address and the bottom interpretation. The removed pixels are replaced with white, with restrained “Redacted sample” wording in the patient strip. Redaction is baked into the PNG; no original data is hidden behind CSS, SVG layers or browser overlays. The output was written as a fresh raster without source metadata and visually inspected.
+
+The raw report is excluded from the repository and served assets. The page labels the derivative “Redacted report sample” and preserves its original proportions.
+
+Public access to this repository does not grant rights to reuse Cureocity branding or supplied imagery.

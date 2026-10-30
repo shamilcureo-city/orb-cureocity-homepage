@@ -321,3 +321,29 @@
   .nl-footer-note{display:block;margin-top:16px;font-size:11px}
   .nl-footer-note #motion-toggle{margin-top:6px}
 }
+
+/* Review: Blueprint navigation belongs beside its media, not below the tabs. */
+.nl-blueprint-stages>.nl-blueprint-side-arrow{
+  position:absolute;top:var(--blueprint-arrow-y,clamp(100px,25vw,286px));z-index:6;
+  display:grid;place-items:center;width:46px;height:46px;min-width:46px;
+  padding:0;border:1px solid #1018291f;border-radius:50%;background:#fff;
+  color:#101829;font-size:24px;line-height:1;box-shadow:0 5px 20px #1018291c;
+  transform:translateY(-50%);transition:background .18s,box-shadow .18s,opacity .18s;
+}
+.nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-prev]{left:-23px}
+.nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-next]{right:-23px}
+.nl-blueprint-stages>.nl-blueprint-side-arrow:hover{background:#f4f6fa;box-shadow:0 6px 22px #10182929}
+.nl-blueprint-stages>.nl-blueprint-side-arrow:disabled{opacity:.35;box-shadow:none;cursor:default}
+.nl-blueprint-stages>.carousel-controls [data-carousel-status]{max-width:calc(100% - 64px)}
+.nl-doctor-carousel>.carousel-controls [data-carousel-status]{max-width:calc(100% - 114px)}
+@media(max-width:760px){
+  .nl-blueprint-stages>.nl-blueprint-side-arrow{width:44px;height:44px;min-width:44px;font-size:22px}
+  .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-prev]{left:8px}
+  .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-next]{right:28px}
+}
+
+/* Keep side controls inside the viewport on tablet and compact desktop widths. */
+@media(min-width:641px) and (max-width:1200px){
+  .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-prev]{left:8px}
+  .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-next]{right:8px}
+}

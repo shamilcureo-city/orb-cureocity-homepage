@@ -22,14 +22,14 @@ const glucoseDate=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',ye
 const glucosePeriod=`${glucoseDate} · ${glucose.readings[0].time}–${glucose.readings.at(-1).time}`;
 const glucoseAlt=`Illustrative glucose readings in ${glucose.unit} on ${glucoseDate}: ${glucose.readings.map(r=>`${r.time}: ${r.value}`).join('; ')}.`;
 const replacements={...copy,annualPrice,monthlyEquivalent,glucosePeriod,glucoseAlt,glucoseAverage:(glucoseValues.reduce((a,b)=>a+b,0)/glucoseValues.length).toFixed(1),glucoseMin:Math.min(...glucoseValues),glucoseMax:Math.max(...glucoseValues),glucoseUnit:glucose.unit,billingCopy:content.commerce.billingCopy.replace('{monthlyEquivalent}',monthlyEquivalent),freeFeatures:content.commerce.plans.free.features.map(f=>`<li>${escape(f)}</li>`).join(''),proFeatures:content.commerce.plans.pro.features.map(f=>`<li>${escape(f)}</li>`).join('')};
-const parts=await Promise.all(['head','hero','features','lower','end'].map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
+const parts=await Promise.all(['head','hero','features','voice','lower','end'].map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
 let html=parts.join('\n').replace(/\{\{(\w+)\}\}/g,(_,key)=>{if(!(key in replacements))throw new Error(`Unknown content key ${key}`);return replacements[key];});
 await mkdir(new URL('dist/',root),{recursive:true});
 await writeFile(new URL('dist/index.html',root),html);
 await writeFile(new URL('dist/config.js',root),`/* Generated from site-content.json. No secrets. */\nwindow.ORB_CONFIG=${JSON.stringify(content,null,2)};\n`);
-for(const file of ['styles.css','carousel.css','features.css','lower.css','motion.css','app.js','favicon.svg']) await cp(new URL(file,root),new URL(`dist/${file}`,root));
+for(const file of ['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','app.js','voice.js','favicon.svg']) await cp(new URL(file,root),new URL(`dist/${file}`,root));
 // Package only displayed assets; source bundle and unused private report samples stay outside dist.
-const css=await Promise.all(['styles.css','carousel.css','features.css','lower.css','motion.css'].map(file=>readFile(new URL(file,root),'utf8')));
+const css=await Promise.all(['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css'].map(file=>readFile(new URL(file,root),'utf8')));
 const assetPaths=new Set([...html.matchAll(/(?:src|poster|href)="(assets\/[^"#]+)"/g)].map(m=>decodeURIComponent(m[1])));
 for(const source of css) for(const match of source.matchAll(/url\(['"]?(assets\/[^)'"\n]+)['"]?\)/g)) assetPaths.add(decodeURIComponent(match[1]));
 await rm(new URL('dist/assets/',root),{recursive:true,force:true});

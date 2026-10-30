@@ -1,0 +1,38 @@
+<section class="mid-voice" id="voice-logging" aria-labelledby="mid-voice-title"><div class="container">
+  <div class="mid-voice-heading reveal"><div><span class="tag purple">Voice logging</span><h2 id="mid-voice-title">Finish your set.<br>Say what you did.</h2></div><div class="mid-voice-description"><p>Try logging your exercise, weight, repetitions and sets by voice. Check the details and make them your own.</p><a class="button" href="#voice-example">Try a one-minute voice trial</a></div></div>
+  <div class="voice-example mid-voice-example" id="voice-example" data-voice-trial>
+    <video class="mid-voice-photo" data-ambient muted playsinline loop preload="none" poster="assets/optimized/voice-reference-poster.webp" aria-label="Illustrative lifestyle scene of a man reaching for his phone beside the bed" width="1440" height="810"><source src="assets/supplied/voice-figma-6655-1467.mp4" type="video/mp4"></video>
+    <div class="voice-trial-shell">
+      <div class="voice-trial-bar">
+        <div class="voice-trial-intro"><strong>Try voice logging</strong><span>One minute of listening, on us</span></div>
+        <div class="voice-trial-buttons">
+          <div class="voice-budget" id="voice-budget" aria-label="Microphone time remaining"><time id="voice-countdown" role="timer" aria-live="off">1:00</time><span>remaining</span></div>
+          <button class="button voice-start" id="voice-start" type="button" aria-describedby="voice-privacy" hidden><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg>Start microphone</button>
+          <button class="button voice-stop" id="voice-end" type="button" hidden>Stop microphone</button>
+        </div>
+      </div>
+      <p class="voice-trial-status" id="voice-status" role="status" aria-live="polite">Voice input is available in supported browsers. You can also type an entry below.</p>
+      <p class="voice-trial-privacy" id="voice-privacy"><strong>You choose when the microphone starts.</strong> Your browser handles speech recognition and may send audio to its speech provider. Orb does not upload audio or save this trial to your account.</p>
+      <div class="voice-trial-editor">
+        <label class="voice-transcript-label" for="voice-words">Your words — speak or type</label>
+        <textarea id="voice-words" rows="2" maxlength="1000" placeholder="For example: Log bench press, 40 kilograms, 10 reps, 1 set."></textarea>
+        <p class="voice-interim" id="voice-interim" aria-live="off"></p>
+        <button class="voice-parse" id="voice-parse" type="button" disabled>Use these words to fill the entry</button>
+        <form class="voice-entry-form" id="voice-entry-form">
+          <div class="voice-entry-heading"><h3>Review your entry</h3><span>Workout draft</span></div>
+          <fieldset class="voice-entry-fields" id="voice-entry-fields">
+            <legend class="sr-only">Workout details</legend>
+            <label class="voice-exercise-label" for="voice-exercise">Exercise<input id="voice-exercise" name="exercise" maxlength="80" autocomplete="off" placeholder="Exercise name" required></label>
+            <label class="voice-weight-label" for="voice-weight">Weight<span class="voice-weight-controls"><input id="voice-weight" name="weight" type="number" inputmode="decimal" min="0.1" max="2000" step="0.1" placeholder="Weight" required><select id="voice-unit" name="unit" aria-label="Weight unit"><option value="kg">kg</option><option value="lb">lb</option><option value="bodyweight">Body weight</option></select></span></label>
+            <label for="voice-reps">Repetitions<input id="voice-reps" name="reps" type="number" inputmode="numeric" min="1" max="1000" step="1" placeholder="Reps" required></label>
+            <label for="voice-sets">Sets<input id="voice-sets" name="sets" type="number" inputmode="numeric" min="1" max="1000" step="1" placeholder="Sets" required></label>
+          </fieldset>
+          <button class="button" id="voice-review" type="submit" disabled>Review entry</button>
+          <div class="voice-reviewed" id="voice-reviewed" role="status" hidden><strong id="voice-reviewed-summary"></strong><p>Reviewed on this page. Nothing has been saved to an Orb account.</p></div>
+        </form>
+        <p class="voice-trial-note">This trial gives you up to 60 seconds of microphone input per page visit. You can stop at any time. Your draft stays on this page only.</p>
+        <noscript><p class="voice-trial-note">Enable JavaScript to try voice input or review a typed entry.</p></noscript>
+      </div>
+    </div>
+  </div>
+</div></section>

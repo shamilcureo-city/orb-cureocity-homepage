@@ -1,4 +1,4 @@
-/* Orb preview interactions. No analytics, health collection, microphone access or form submission. */
+/* Orb page interactions. The optional microphone trial is isolated in voice.js. */
 (() => {
   'use strict';
   const config = window.ORB_CONFIG;
@@ -38,7 +38,12 @@
     });
   });
   $$('a[href^="#"]', menu).forEach(link => link.addEventListener('click', () => menu.close()));
-  matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches && menu.open) menu.close(); });
+  matchMedia('(min-width: 901px)').addEventListener('change', event => {
+    if (event.matches && menu.open) {
+      menu.close();
+      $('.desktop-nav a')?.focus({ preventScroll: true });
+    }
+  });
   $('.dialog-close').addEventListener('click', () => actionDialog.close());
   actionDialog.addEventListener('close', updateLock);
 
@@ -78,42 +83,6 @@
   }
   document.addEventListener('click', event => { const control = event.target.closest('[data-action]'); if (control) openAction(control.dataset.action); });
 
-  let voiceTimer = null;
-  let voiceRunning = false;
-  const transcript = $('#voice-transcript');
-  const result = $('#voice-result');
-  const voicePlay = $('#voice-play');
-  const voiceStop = $('#voice-stop');
-  const utterance = 'Log bench press: 40 kilograms, 10 reps.';
-  function stopVoice(reset = true) {
-    clearTimeout(voiceTimer); voiceTimer = null; voiceRunning = false;
-    transcript.setAttribute('aria-live', 'polite');
-    $('.voice-example')?.classList.remove('is-playing');
-    voiceStop.hidden = true; voicePlay.disabled = false;
-    voicePlay.textContent = result.hidden ? 'Play example' : 'Replay example';
-    if (reset) { transcript.textContent = `“${utterance}”`; result.hidden = true; voicePlay.textContent = 'Play example'; }
-  }
-  function completeVoice() {
-    transcript.textContent = `“${utterance}”`; result.hidden = false; stopVoice(false);
-    if (!motionReduced()) result.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, easing: 'ease-out' });
-  }
-  voicePlay.addEventListener('click', () => {
-    stopVoice(); voiceRunning = true; voicePlay.disabled = true; voiceStop.hidden = false;
-    if (motionReduced()) { completeVoice(); return; }
-    $('.voice-example').classList.add('is-playing'); transcript.textContent = 'Example starting…';
-    // Keep the live region quiet while words arrive; announce the final entry as one update.
-    transcript.setAttribute('aria-live', 'off');
-    const words = utterance.split(' '); let index = 0;
-    const tick = () => {
-      transcript.textContent = `“${words.slice(0, ++index).join(' ')}${index === words.length ? '”' : '…'}`;
-      if (index < words.length) voiceTimer = setTimeout(tick, 180);
-      else voiceTimer = setTimeout(() => { transcript.setAttribute('aria-live', 'polite'); completeVoice(); }, 450);
-    };
-    voiceTimer = setTimeout(tick, 350);
-  });
-  voiceStop.addEventListener('click', () => { stopVoice(); voicePlay.focus(); });
-  document.addEventListener('visibilitychange', () => { if (document.hidden && voiceRunning) stopVoice(); });
-  reducedMotion.addEventListener('change', event => { if (event.matches && voiceRunning) completeVoice(); });
   const motionControls = $$('[data-motion-toggle], #motion-toggle');
   function updateMotionControls() {
     const paused = motionReduced();
@@ -124,7 +93,6 @@
       control.disabled = reducedMotion.matches;
       if (!control.classList.contains('motion-control')) control.textContent = label;
     });
-    if (paused && voiceRunning) completeVoice();
     document.dispatchEvent(new Event('orb:motionchange'));
   }
   motionControls.forEach(control => control.addEventListener('click', () => {
@@ -195,6 +163,10 @@
       index = Math.min(index, maxIndex());
       offset = slides[index].offsetLeft - slides[0].offsetLeft;
       track.style.setProperty('--carousel-offset', `${-offset}px`);
+      if (group.classList.contains('nl-blueprint-stages')) {
+        const media = slides[index]?.querySelector('.nl-blueprint-media');
+        if (media) group.style.setProperty('--blueprint-arrow-y', `${media.offsetHeight / 2}px`);
+      }
     }
     function select(next, focus = false, announce = true) {
       const previousIndex = index;
@@ -403,6 +375,5 @@
     }), {threshold:.08,rootMargin:'0px 0px -20px 0px'});
     $$('.reveal').forEach(node => observer.observe(node));
     const chartObserver = new IntersectionObserver(entries => {if(entries.some(e=>e.isIntersecting)){revealChart();chartObserver.disconnect();}},{threshold:.35}); chartObserver.observe(svg);
-    const voiceObserver = new IntersectionObserver(entries => {if(entries.some(e=>!e.isIntersecting) && voiceRunning) stopVoice();},{threshold:0}); voiceObserver.observe($('.voice-example'));
   } else $$('.reveal').forEach(node=>node.classList.add('is-visible'));
 })();

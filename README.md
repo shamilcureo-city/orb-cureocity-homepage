@@ -18,15 +18,20 @@ Open http://127.0.0.1:4183/. The server reads `dist`; rebuild and reload after s
 
 - `parts/`: homepage sections.
 - `app.js`: navigation, dialogs, tabs, carousels and media behavior.
+- `parts/voice.html`, `voice.js`, `voice.css`: real browser speech trial, timer, transcript and editable workout entry.
 - `styles.css`, `features.css`, `lower.css`, `carousel.css`, `motion.css`: responsive layout and motion.
 - `site-content.json`: shared pricing, plan definitions, destination configuration and synthetic example data.
 - `website-copy.json`: shared hero and final-action copy.
-- `assets/`: only the 44 assets displayed by this preview; see `ASSETS.md`.
+- `assets/`: supplied artwork, original Figma exports and selected derivatives; the build copies only referenced media. See `ASSETS.md`.
 - `dist/`: generated website, included for static preview hosting.
 
 The user-approved preview price is **₹7,999/year**, equivalent to **₹666.58/month, billed annually**. This does not advertise a monthly payment plan.
 
-Videos play silently when visible and pause offscreen. Seven carousels provide automatic rotation, progress indicators and manual controls. Motion pauses for interaction and respects reduced-motion preferences and the shared pause controls.
+Videos play silently when visible and pause offscreen. Carousels provide automatic rotation, progress indicators and labelled controls. Motion pauses for interaction and respects reduced-motion preferences and the footer pause control. The hero fills the viewport; only the navigation capsule stays fixed while the brand and Get Orb action scroll with the page.
+
+The annotated correction release restores the supplied original app screens, the original Health Vault document animation, a permanently redacted original report, and original Pro icon exports. The doctor portrait is reframed and its original Figma quotation restored.
+
+The voice trial requests microphone access only after an intentional start action. Supported browsers provide up to 60 seconds of cumulative listening per page visit, a countdown, transcript and editable result. Speech recognition is handled by the browser and may use its speech provider. Orb does not upload audio or save the draft to an account. Unsupported browsers retain typed-entry and review controls.
 
 ## Release status
 

@@ -1,72 +1,59 @@
-# Orb homepage — new Figma implementation
+# Orb annotated correction release
 
-Updated 30 October 2026. Local preview: http://127.0.0.1:4183/
+Updated 30 October 2026. This release applies the owner's nine annotated screenshots to the existing Orb preview. It preserves the same Sites project and public sharing audience; deployment status must be verified from the Sites deployment result.
 
-Latest revision adds scroll-triggered silent video playback, automatic carousel rotation, expanded motion and equal compact footer columns at the user's request. See the Motion section for behavior. Local review evidence is not part of this source export.
+## Design reference and assets
 
-## Comfortable viewing scale revision
+The authoritative source is the supplied Website Design page, node `6031:51867`, in Client App V3. Its updated desktop **Home Page** is node `6621:58204`. Figma connector access required edit permission and was unavailable; visible Figma inspection, original exports and the supplied graphics bundle are the sources for this implementation. No matching updated mobile frame was established; mobile behavior adapts the desktop composition.
 
-At the user's request, the Figma composition now uses a smaller web scale: 16px base text, 1120px content maximum, mostly44–48px desktop section headings, 16–18px body text and44–48px controls. Hero height at1440px fell from808px to640px; feature cards from631px to500px desktop and780px to630px mobile. Phone previews, portraits, free-entry cards, Blueprint, pricing, FAQs and section gaps were adjusted together. No browser zoom or whole-page scaling is applied. All seven carousels and the commercial configuration remain intact.
+The six feature-carousel visuals and Health Vault handset now use original supplied app images rather than recreated UI. Original Pro feature icons are exported from the same Figma frame. Health Vault includes the original transparent document animation. `ASSETS.md` documents provenance and the permanently raster-redacted report, which replaces the generated table while preserving the original report layout. The raw identifiable report is excluded.
 
-The measured1440px page height decreased from22,843px to17,815px (about22%). Mobile cards use separate content/image rows; meal/workout previews follow their copy in normal flow. Mobile Blueprint diagrams use readable stacked content instead of squeezing text into small fixed panels. Build/check passed. Browser checks covered all six feature slides at360,390,600,601,768,900,901,1024,1440 and1728px, plus card actions across the page and all Blueprint stages at360,768 and1440px. A mobile grid inheritance issue found during QA was fixed and retested. Screenshots and observations were retained locally.
+Original screen content is retained at the owner's explicit request and labelled illustrative. Embedded example scores, values and dates do not prove clinical validity, release status or plan eligibility. The separate CGM demonstration continues to use one coherent synthetic dataset: 26 October 2026, 06:00–18:00, mg/dL values 92, 96, 108, 118, 112, 101, 97; average 103.4, minimum 92, maximum 118, with no clinical threshold bands.
 
-## Design source
+## Layout corrections
 
-The user supplied the Website Design page URL with node 6031:51867. In the signed-in Figma browser, the updated desktop frame is **Home Page**, node 6621:58204,1728×24075. The full-resolution design export is retained locally and excluded from this repository.
+- Hero fills the viewport, with content-safe mobile sizing.
+- Header playback control is removed. The brand and Get Orb action scroll with the page; only the navigation capsule remains fixed. Mobile navigation retains keyboard/focus handling.
+- Trust points beneath the hero use a more restrained treatment.
+- Pro eyebrow is centered with the headline and price block.
+- Dr. Vijesh Vijayan's portrait is reframed to show his complete head. The original Figma quote is restored in italic double quotation marks, with the owner-requested “(Medical Director)” title.
+- Blueprint previous/next arrows sit at the sides of the media area.
+- The professionals section's Next arrow is removed. Additional professional profiles still require supplied names, roles and approved portraits; no identities are invented.
 
-The connector's create_session and get_design_context calls require edit access and were rejected. Implementation used the visible Figma properties, browser export and the user's Website Graphics 2.zip. This is browser-verified design implementation, not a successful connector import. Mobile layouts were adapted from the updated desktop composition; no matching updated mobile frame was established.
+The existing compact typography, cards and footer remain. Layout sizing is CSS-based rather than browser zoom or whole-page scaling.
 
-## Implemented
+## Real voice trial
 
-- Full-width lifestyle video hero and floating capsule navigation, matching the new composition.
-- Free/Pro phone cards; two free-entry video cards; three independently illustrated connected-information scenes, including the restored daily-plan kitchen and professional-support sofa scenes.
-- Six real feature slides with matching Figma artwork and adjacent-card previews, professional portrait, ten-item feature overview, corrected Health Vault and voice example.
-- Blueprint online/centre modes with five sliding stages each, supplied assessment/consultation/nutrition videos, sliding doctor profiles and three support choices.
-- Family Circle, five-image Pro gallery, food/movement cards, supplied member portraits, nine FAQs, final banner and footer.
-- Native responsive HTML/CSS, interactive controls, keyboard tabs, dialog focus handling, Escape, menu breakpoint reset and visible focus.
-- Seven independent carousel tracks contain 29 real slides across connected information, features, both Blueprint modes, doctors, Pro and members. Arrows, labelled tabs, thumbnails, pointer dragging and keyboard controls share the same state. Inactive slides are inert; inactive videos pause.
-- Source bundle safely extracted; images optimized to WebP. Build packages only 44 referenced assets. Unused identifiable reports and contradictory graphics are excluded from dist. The voice-section still now comes from the exact Figma video layer 6655:1467; the original video is now used for the scrolling voice-section scene.
+The old simulated voice block is removed. `parts/voice.html`, `voice.js` and `voice.css` provide an actual browser-managed speech-recognition trial with an intentional Start action, microphone permission, a visible countdown and up to 60 seconds of cumulative listening during one page visit. Start/stop attempts share the same remaining-time budget.
+
+The transcript and parsed exercise, weight, repetitions and sets can be reviewed and edited. A reviewed entry remains on this page; it is not saved to an Orb account. Orb does not upload or persist audio. The browser may send audio to its speech provider, which the interface explains before starting. Unsupported browsers provide typed entry and an honest availability message. Denial, unavailable microphone, recognition errors, time expiry and page hiding have explicit handling.
+
+This limited website trial is separate from paid app entitlements. Parser/state checks do not establish real microphone recognition quality. Genuine microphone testing, browser/provider compatibility and physical-device testing must be reported separately from build and UI checks.
+
+## Motion and accessibility
+
+Ambient videos play muted and inline while in view, and pause offscreen, in hidden panels, behind dialogs, when the page hides or motion is paused/reduced. Carousels rotate only when visible and appropriate, with progress indicators and labelled controls; interaction pauses rotation. Original Health Vault animation participates in the same system. The footer global motion control remains available after removal of the header playback control.
+
+Section and slide entrances use restrained opacity and small translations. Keyboard navigation, visible focus, inactive-slide isolation, dialog focus return and reduced-motion behavior remain required. Microphone access never starts from scrolling or autoplay.
 
 ## Commercial and destination confirmations
 
-**₹7,999/year was explicitly confirmed by the user on29 October 2026.** One configuration controls every price. Equivalent to ₹666.58/month, billed annually; no monthly payment plan is advertised.
+The user-approved price remains **₹7,999/year**, equivalent to **₹666.58/month, billed annually**. No monthly payment option is advertised. One shared configuration controls displayed pricing.
 
-Still pending before a public release:
+Still pending for a commercial release:
 
-1. Verified App Store/Google Play links and actual free diet/fitness entry URLs/account requirements.
-2. Pro entitlements and Free-versus-Pro distinctions, including biological age, training, deeper insights and CGM analysis; final tax/billing terms.
-3. Supported device/CGM models, data types, markets and availability.
-4. Care/Blueprint/hub booking destinations, service availability and package details.
-5. Approved privacy/terms/data-request/help/contact/professional destinations and released sharing controls.
-6. Final approval of supplied professional role wording and member-photo usage. No member names, quotes, outcomes or counts were invented.
+1. Verified app-store destinations and free diet/fitness entry URLs and account requirements.
+2. Free/Pro entitlements, final tax/billing terms, supported devices/CGM inputs and available markets.
+3. Care, Blueprint and hub service/package details and booking destinations.
+4. Approved privacy, terms, data-request, help, contact and professional destinations; released sharing controls.
+5. Approved details/assets for additional professionals, and final member-photo usage approval.
 
-Actions with missing destinations open distinct informational preview panels. They do not submit data, create accounts, perform assessments, record audio, save workouts or claim successful booking. Public build remains blocked until the configuration is approved. Publishing the source to GitHub does not approve these pending items or deploy the website.
+Missing destinations open specific preview information panels. They do not falsely claim account creation, payment, assessment completion or booking. `mode: design-preview` remains; `ORB_PUBLIC_BUILD=1` is a commercial-release guard, not the visitor-sharing setting. Actual public preview access is controlled by Sites, with `audience` in the content configuration descriptive only.
 
-## Intentional differences from flawed reference examples
+## Verification and publication
 
-- The₹20,000 comparative-value claim and unverified professional quote were omitted.
-- Phone previews use corrected synthetic examples: morning time/greeting, distinct daily actions, meaningful record counts, coherent meal estimates, workout-log labelling and cycle estimates.
-- The report sample is fictitious, with no identifiers, contacts, QR or barcode.
-- CGM uses one seven-point dataset,26 October 2026,06:00–18:00,mg/dL:92,96,108,118,112,101,97. Average103.4,min92,max118; no clinical bands.
-- Blueprint shows history,reports,movement and consultations leading to findings,priorities and next steps, never face scanning as organ assessment.
-- Added annual billing language, explicit illustrative captions, accessible controls and small contrast improvements.
+The integrated `npm run build`, `npm run check` and whitespace checks passed. All 71 local runtime files (including 60 displayed assets) returned HTTP 200/206. Browser checks at 360, 390, 768, 900, 901, 1024, 1440 and 1728 px found no page overflow. Tablet arrow bounds were corrected and rechecked. The hero measured one viewport, only the navigation capsule stayed fixed, and the original Health Vault animation played muted without controls. All six original feature images and ten icon exports loaded. Feature and report tabs passed keyboard checks; the mobile menu closed with Escape and restored visible focus across the desktop breakpoint. The global motion control stopped all videos.
 
-## Motion
+A typed workout phrase parsed and reviewed correctly without an account-save claim. Simulated speech lifecycle and parser regression checks passed, including the cumulative 60-second limit, denial, timeout, late callbacks, page hiding and manual fallback. No live microphone or external speech-provider session was run. Representative screenshots are retained outside the publishing checkout under `orb-homepage/evidence/annotations/`. Existing earlier screenshots predate these corrections.
 
-The user requested automatic media and slides on30 October2026, superseding the earlier no-auto-rotation direction. All12 videos now play muted, inline and looping when at least20% visible, and pause offscreen, in hidden slides/tabs, behind dialogs, on page hiding or when motion is reduced. Native player controls and per-video play/pause overlays are removed. The exact voice-section source footage now plays behind the explicit simulated workout example.
-
-Seven carousel tracks advance every6.5–10seconds while visible; tracks with all cards already visible remain still. Progress lines indicate the next transition. Rotation pauses for hover, keyboard focus, dragging, an expanded detail, dialogs, offscreen content or reduced motion. Manual arrows/tabs/dragging remain available. Each slider has a pause toggle, plus synchronized global controls in the sticky header and footer. Explicit resume works while the slider toggle retains keyboard focus. Automatic transitions do not announce continually to screen readers.
-
-Section reveals use480–560ms opacity/14–20px movement with short card staggering. Slide copy enters in a450ms stagger; media crossfades, carousel tracks slide460ms, the last-to-first reset uses a350ms fade, and button arrows/cards have subtle hover feedback. Motion respects both the operating-system setting and the site pause controls. No autoplay audio or microphone request is introduced.
-
-The footer now uses a compact brand plus three equal desktop navigation columns; tablets keep three equal columns below the brand, and mobile groups use two equal link columns. All existing destinations are preserved.
-
-## Validation and evidence
-
-`npm run build` and `npm run check` passed after the slider revision. Browser checks covered 360,390,768,900,901,1024,1440 and1728px: all48 feature-slide/width combinations, all10 Blueprint stages, all4 Pro thumbnails, lower carousels on mobile, keyboard endpoints and visible focus, pointer dragging, inactive-video pause and reduced motion. Additional mobile copy/visual spacing checks covered360,374,375,390 and600px. No page overflow, clipped main feature actions, visible broken images or console warnings/errors observed. Physical-device touch testing remains unperformed; drag behavior was exercised in the browser at mobile and desktop viewport sizes.
-
-Screenshots, browser logs and full Figma exports are retained locally rather than published with the source. Earlier implementation history remains available in Git.
-
-## GitHub source export
-
-The repository contains the current source, generated preview and exactly 44 displayed assets. Unused raw graphics, identifiable source reports and local review evidence are excluded. The store badges use rounded edge clipping to remove the unwanted white border visible in the supplied artwork. Export validation rebuilds and checks the project, then compares the generated files byte-for-byte with the current local preview.
+Only referenced deployment media is copied into `dist/assets`; use build output for the current count. Local review screenshots, full Figma exports, raw unused graphics and the identifiable source report remain excluded. Keep GitHub source, Sites source commit and deployed archive aligned, and confirm the returned live URL and public access after deployment.
