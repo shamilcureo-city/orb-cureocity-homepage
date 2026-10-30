@@ -1,0 +1,30 @@
+/* One motion and input system for the Figma's horizontal compositions. */
+[data-carousel-viewport]{position:relative;touch-action:pan-y;outline-offset:6px}
+[data-carousel-track]{position:relative;display:flex;align-items:stretch;gap:28px;min-width:0}
+[data-carousel-slide]{flex:0 0 100%;min-width:0;position:relative}
+.carousel-ready [data-carousel-track]{transform:translate3d(var(--carousel-offset,0px),0,0);transition:transform .46s cubic-bezier(.22,.7,.18,1)}
+.carousel-ready [data-carousel-viewport]{cursor:grab}
+.carousel-ready.is-dragging [data-carousel-track]{transition:none;user-select:none}
+.carousel-ready.is-dragging [data-carousel-viewport]{cursor:grabbing}
+[data-carousel-track] img{-webkit-user-drag:none;user-select:none}
+.carousel-controls{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:24px;min-height:46px}
+.carousel-controls button{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;padding:0;border:1px solid #10182924;border-radius:50%;background:#ffffffd9;color:#101829;transition:background .18s,opacity .18s}
+.carousel-controls button:hover{background:#fff}
+.carousel-controls button:disabled{opacity:.35;cursor:default}
+.carousel-controls button .icon{width:20px;height:20px}
+.carousel-controls [data-carousel-prev] .icon{transform:rotate(180deg)}
+[data-carousel-status]{margin-right:auto;font-size:14px;line-height:1.45;font-weight:500;color:inherit;min-width:0}
+[data-carousel-go]{transition:opacity .18s,outline .18s}
+[data-carousel-go][aria-pressed=true]{outline:2px solid #101829;outline-offset:3px}
+@media(max-width:600px){[data-carousel-track]{gap:16px}.carousel-controls{margin-top:18px;gap:9px}[data-carousel-status]{font-size:12px;max-width:calc(100% - 110px)}}
+@media(prefers-reduced-motion:reduce){.carousel-ready [data-carousel-track]{transition:none}}
+.reduce-motion .carousel-ready [data-carousel-track]{transition:none}
+.carousel-ready.is-resetting [data-carousel-track]{transition:none}
+.motion-pause-icon{display:block;width:14px;height:16px;border-left:4px solid currentColor;border-right:4px solid currentColor}
+[aria-pressed=true]>.motion-pause-icon{width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:12px solid currentColor;border-right:0;margin-left:3px}
+.motion-control{border:1px solid #ffffff45;color:#fff;width:44px;height:44px;min-width:44px;padding:12px}
+.motion-control:hover{background:#ffffff20}
+.motion-control:disabled{opacity:.5}
+.carousel-auto-toggle .motion-pause-icon{width:12px;height:14px;border-left-width:3px;border-right-width:3px}
+.carousel-auto-toggle[aria-pressed=true]>.motion-pause-icon{width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:10px solid currentColor;border-right:0}
+@media(max-width:600px){.brand-logo{width:128px}.header-actions{gap:4px}.header-inner{gap:8px}.carousel-controls [data-carousel-status]{max-width:calc(100% - 165px)}}

@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {readFile,stat} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+const html=await readFile(new URL('dist/index.html',import.meta.url),'utf8');
+const config=JSON.parse(await readFile(new URL('site-content.json',import.meta.url),'utf8'));
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+assert.equal(new Set(ids).size,ids.length,'HTML IDs must be unique');
+for(const [,id] of html.matchAll(/(?:href="#|aria-controls=")([^"#]+)"/g))assert.ok(ids.includes(id),`Missing internal target ${id}`);
+for(const [,action] of html.matchAll(/data-action="([^"]+)"/g))assert.ok(config.actions[action],`Unknown action ${action}`);
+for(const [key,action] of Object.entries(config.actions))assert.ok(action.urlKey in config.destinations,`Missing URL config for ${key}`);
+for(const [,src] of html.matchAll(/(?:src|poster|href)="((?:assets\/|(?:app|config)\.js|(?:styles|carousel|features|lower|motion)\.css|favicon\.svg)[^"]*)"/g))assert.ok((await stat(new URL(`dist/${decodeURIComponent(src)}`,import.meta.url))).size>0,`Empty or missing ${src}`);
+assert.ok(!html.includes('{{'),'No unexpanded content tokens');
+for(const bad of ['₹7,000','₹7,500','write faster','think clearer','Continues Glucose','1200 Kcal of 264','6:15 PM','liver risk'])assert.ok(!html.includes(bad),`Obsolete copy: ${bad}`);
+const annual=new Intl.NumberFormat('en-IN',{style:'currency',currency:config.commerce.currency,maximumFractionDigits:0}).format(config.commerce.annualPrice);
+assert.ok(html.split(annual).length-1>=4,'Shared annual price appears across the page');
+assert.ok(html.includes('Equivalent to ₹666.58/month, billed annually.'),'Correct annual equivalent');
+const tabs=[...html.matchAll(/<button\b[^>]*role="tab"[^>]*>/g)].map(m=>m[0]);
+assert.ok(tabs.length>=20,'All new tab modules are present');
+for(const tab of tabs){const id=/\bid="([^"]+)"/.exec(tab)?.[1];const panel=/aria-controls="([^"]+)"/.exec(tab)?.[1];assert.ok(id&&panel, 'Tabs identify their associated panel');assert.ok(html.includes(`aria-labelledby="${id}"`),`Panel labels its tab ${id}`);}
+assert.equal(tabs.length,(html.match(/role="tabpanel"/g)||[]).length,'Every tab has one panel');
+const result=spawnSync(process.execPath,['build.mjs'],{env:{...process.env,ORB_PUBLIC_BUILD:'1'},encoding:'utf8'});
+assert.notEqual(result.status,0,'Unverified configuration must not build for public release');
+assert.match(result.stderr,/Public build blocked/);
+console.log('Passed: IDs, anchors, action destinations, local assets, copy/price consistency, all tab relationships, and public-release blocking.');
