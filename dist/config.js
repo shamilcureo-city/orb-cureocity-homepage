@@ -2,7 +2,7 @@
 window.ORB_CONFIG={
   "mode": "design-preview",
   "sourceBrief": "Cureocity_Orb_Product_and_Website_Brief.pdf",
-  "audience": "owner-private",
+  "audience": "anyone-with-link",
   "destinations": {
     "appStoreUrl": null,
     "googlePlayUrl": null,

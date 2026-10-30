@@ -32,4 +32,4 @@ Videos play silently when visible and pause offscreen. Seven carousels provide a
 
 This repository publishes the preview source. It does not establish commercial release readiness. Unconfirmed destinations open distinct information panels; no account creation, booking, payment or form submission is simulated as successful. `ORB_PUBLIC_BUILD=1 npm run build` intentionally fails until product claims, destinations, integrations and commercial details are approved. See `HANDOFF.md`.
 
-Local review screenshots, full Figma exports and unused original graphics are excluded. Earlier design notes are retained under `docs/archive` for historical context. Existing `.openai/hosting.json` is preserved; this source update does not perform a deployment.
+Local review screenshots, full Figma exports and unused original graphics are excluded. Earlier design notes are retained under `docs/archive` for historical context. Existing `.openai/hosting.json` identifies the hosted preview. Sharing access is controlled by Sites; `audience` in the content configuration is descriptive metadata.
