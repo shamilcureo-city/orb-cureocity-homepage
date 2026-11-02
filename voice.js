@@ -77,7 +77,8 @@ export function initVoiceTrial(root) {
     const busy=phase!=='idle';
     start.hidden=!supported;start.disabled=busy||budget.remaining()<=0;
     stop.hidden=!busy;stop.disabled=phase==='stopping';stop.textContent=phase==='requesting'?'Cancel':'Stop microphone';
-    words.readOnly=busy;parse.disabled=busy||!words.value.trim();fieldset.disabled=busy;review.disabled=busy;
+    words.readOnly=busy;parse.disabled=busy||!words.value.trim();fieldset.disabled=busy||form.hidden;review.disabled=busy||form.hidden;
+    parse.setAttribute('aria-expanded',String(!form.hidden));
     root.classList.toggle('is-listening',phase==='listening');
     root.setAttribute('data-voice-phase',phase);
     renderTimer();
@@ -85,7 +86,7 @@ export function initVoiceTrial(root) {
   function applyWords(){
     const entry=parseWorkoutWords(words.value);
     for(const [key,field] of Object.entries(fields)){field.value=entry[key];field.setCustomValidity('');}
-    updateWeight();reviewed.hidden=true;
+    updateWeight();reviewed.hidden=true;form.hidden=!words.value.trim();
   }
   function updateWeight(){const bodyweight=fields.unit.value==='bodyweight';fields.weight.disabled=bodyweight;fields.weight.required=!bodyweight;if(bodyweight)fields.weight.value='';}
   function finish(token){
@@ -96,8 +97,8 @@ export function initVoiceTrial(root) {
     const captured=[finalWords,interimWords].filter(Boolean).join(' ').trim();
     if(captured){words.value=captured;applyWords();}
     if(errorMessage) say(errorMessage);
-    else if(endReason==='expired'||budget.remaining()<=0) say('Your one-minute voice trial is complete. You can still edit and review your entry below.');
-    else if(endReason==='hidden') say('Microphone stopped because you left this page. Your draft remains here.');
+    else if(endReason==='expired'||budget.remaining()<=0) say(captured?'Your one-minute voice trial is complete. You can still edit and review your entry below.':'Your one-minute voice trial is complete. No speech was captured. You can type an entry below.');
+    else if(endReason==='hidden') say(captured?'Microphone stopped because you left this page. Your draft remains here.':'Microphone stopped because you left this page. No speech was captured.');
     else if(captured) say('Microphone stopped. Check the words and details below before reviewing your entry.');
     else say('Microphone stopped. No speech was captured. You can start again or type an entry below.');
     if(interimWords) status.textContent+=' Some words were unfinished; check the draft carefully.';
@@ -114,7 +115,7 @@ export function initVoiceTrial(root) {
   }
   function begin(){
     if(!supported||phase!=='idle'||budget.remaining()<=0)return;
-    const token=++epoch;finalWords='';interimWords='';endReason='';errorMessage='';interim.textContent='';reviewed.hidden=true;restoreFocus=false;
+    const token=++epoch;finalWords='';interimWords='';endReason='';errorMessage='';interim.textContent='';reviewed.hidden=true;form.hidden=true;restoreFocus=false;
     phase='requesting';syncControls();stop.focus();say('Allow microphone access when your browser asks. Listening time starts once the microphone is ready.');
     try{engine=new Recognition();}catch{errorMessage='Speech recognition could not start in this browser. Type your entry below.';finish(token);return;}
     const current=engine;
@@ -148,12 +149,12 @@ export function initVoiceTrial(root) {
   }
   start.addEventListener('click',begin);
   stop.addEventListener('click',()=>end('user'));
-  words.addEventListener('input',()=>{parse.disabled=phase!=='idle'||!words.value.trim();reviewed.hidden=true;});
-  parse.addEventListener('click',()=>{applyWords();say('Draft updated from your words. Check the fields and add any missing details.');fields.exercise.focus();});
+  words.addEventListener('input',()=>{form.hidden=true;reviewed.hidden=true;syncControls();});
+  parse.addEventListener('click',()=>{if(phase!=='idle'||!words.value.trim())return;applyWords();syncControls();say('Draft updated from your words. Check the fields and add any missing details.');fields.exercise.focus();});
   fields.unit.addEventListener('change',updateWeight);
   form.addEventListener('input',()=>{reviewed.hidden=true;});
   form.addEventListener('submit',event=>{
-    event.preventDefault();if(phase!=='idle'||!form.reportValidity())return;
+    event.preventDefault();if(phase!=='idle'||form.hidden||!form.reportValidity())return;
     const exercise=fields.exercise.value.trim();
     if(!exercise){fields.exercise.setCustomValidity('Enter an exercise name.');fields.exercise.reportValidity();return;}
     fields.exercise.setCustomValidity('');
@@ -169,7 +170,7 @@ export function initVoiceTrial(root) {
   document.querySelectorAll('dialog').forEach(dialog=>dialogs.observe(dialog,{attributes:true,attributeFilter:['open']}));
   if(!supported){say('Voice input is not available in this browser. Type an entry below, or open this page in a browser that supports speech recognition.');$('#voice-budget').hidden=true;}
   else say('Try up to one minute of microphone input during this page visit. Each new recording replaces the words in this draft.');
-  updateWeight();syncControls();
+  form.hidden=true;updateWeight();syncControls();
 }
 
 if(typeof document!=='undefined') initVoiceTrial(document.querySelector('[data-voice-trial]'));

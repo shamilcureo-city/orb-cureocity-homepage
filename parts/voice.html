@@ -17,9 +17,9 @@
         <label class="voice-transcript-label" for="voice-words">Your words — speak or type</label>
         <textarea id="voice-words" rows="2" maxlength="1000" placeholder="For example: Log bench press, 40 kilograms, 10 reps, 1 set."></textarea>
         <p class="voice-interim" id="voice-interim" aria-live="off"></p>
-        <button class="voice-parse" id="voice-parse" type="button" disabled>Use these words to fill the entry</button>
-        <form class="voice-entry-form" id="voice-entry-form">
-          <div class="voice-entry-heading"><h3>Review your entry</h3><span>Workout draft</span></div>
+        <button class="voice-parse" id="voice-parse" type="button" aria-controls="voice-entry-form" aria-expanded="false" disabled>Use these words to fill the entry</button>
+        <form class="voice-entry-form" id="voice-entry-form" aria-labelledby="voice-entry-title" hidden>
+          <div class="voice-entry-heading"><h3 id="voice-entry-title">Review your entry</h3><span>Workout draft</span></div>
           <fieldset class="voice-entry-fields" id="voice-entry-fields">
             <legend class="sr-only">Workout details</legend>
             <label class="voice-exercise-label" for="voice-exercise">Exercise<input id="voice-exercise" name="exercise" maxlength="80" autocomplete="off" placeholder="Exercise name" required></label>

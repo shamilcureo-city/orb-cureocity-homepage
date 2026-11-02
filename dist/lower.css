@@ -377,3 +377,57 @@
   .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-prev]{left:8px}
   .nl-blueprint-stages>.nl-blueprint-side-arrow[data-carousel-next]{right:8px}
 }
+
+/* Editor feedback: two static professionals and original artwork framing. */
+.nl-doctor-profiles{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;
+  margin:34px 0 0;width:100%;
+}
+.nl-doctor-profiles .nl-doctor{min-width:0}
+.nl-support-card{
+  --support-inset:20px;display:flex;flex-direction:column;align-items:center;
+  min-height:0;padding:24px var(--support-inset) 0;
+}
+.nl-support-card p{flex:1}
+.nl-support-card .button{flex:none}
+.nl-support-art{
+  display:flex;align-items:flex-end;justify-content:center;flex:none;
+  width:calc(100% + var(--support-inset) * 2);aspect-ratio:396/414;margin-top:22px;
+}
+.nl-support-art>img{display:block;width:100%;height:auto;max-width:none}
+.nl-support-app .nl-support-art>img{width:84%}
+.nl-start-fitness-phone{left:50%;transform:translateX(-50%)}
+.nl-final-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,29%);align-items:end}
+.nl-final-copy{max-width:none;padding:32px 0 32px 36px;align-self:center}
+.nl-final-phone{
+  position:static;display:block;width:100%;max-width:100%;height:auto;
+  margin-top:34px;align-self:end;justify-self:end;transform:none;
+}
+@media(min-width:761px) and (max-width:1000px){
+  .nl-support-card{--support-inset:16px}
+}
+@media(max-width:760px){
+  .nl-doctor-profiles{grid-template-columns:1fr;gap:28px;margin-top:28px}
+  .nl-support-card{--support-inset:22px;padding-top:22px}
+  .nl-start-fitness-phone{
+    left:auto;transform:none;align-self:center;margin:28px auto 0;
+    width:min(290px,100%);max-width:100%;height:340px;object-fit:cover;object-position:center top;
+  }
+  .nl-final-panel{grid-template-columns:minmax(0,1fr)}
+  .nl-final-copy{padding:28px 24px 0}
+  .nl-final-phone{width:min(82%,280px);margin-top:28px;justify-self:end}
+}
+@media(min-width:700px) and (max-width:900px){
+  .nl-doctor-profiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .nl-doctor-profiles .nl-doctor{grid-template-columns:100px minmax(0,1fr);gap:16px}
+  .nl-doctor-profiles .nl-doctor>img{width:100px;height:145px}
+  .nl-doctor-profiles .nl-doctor h3{font-size:18px}
+  .nl-support-card{--support-inset:14px;padding-top:22px}
+  .nl-start-fitness-phone{
+    left:auto;transform:none;align-self:center;margin:26px auto 0;
+    width:min(285px,100%);max-width:100%;height:330px;object-fit:cover;object-position:center top;
+  }
+  .nl-final-panel{grid-template-columns:minmax(0,1fr) minmax(180px,29%)}
+  .nl-final-copy{padding:28px 0 28px 26px}
+  .nl-final-phone{width:100%;margin-top:28px}
+}

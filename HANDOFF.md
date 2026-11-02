@@ -1,5 +1,37 @@
 # Orb annotated correction release
 
+## Current editor-feedback pass — 2 November 2026
+
+The supplied `Orb_Website_Annotated_Editor_Feedback.pdf` requests thirteen changes. This pass restores source artwork and uncropped media in the marked areas while preserving the established hero, approved ₹7,999 annual preview price, integrations and action behavior. The prior compact-layout measurements below are historical and must not be reported as measurements of this new pass.
+
+| Item | Requested correction | Current implementation checkpoint |
+| --- | --- | --- |
+| 1 | Original hero-strip icons and alignment | Four original Figma SVG exports installed; alignment, padding and text baselines updated. |
+| 2 | Original Free and Pro phone artwork | Original image assets replace recreated HTML phones in both introductory cards. |
+| 3 | Full diet and fitness videos | Matching natural 3:4 media areas replace clipped fixed-height rendering and preserve both complete videos. |
+| 4 | Connected-health height and numbered controls | Height and numbered-control alignment, gaps and copy spacing restored. |
+| 5 | Actual carousel screens, no captions, bottom alignment | Exact expanded daily-insights handset exported from node `6680:1738`; other five matching originals retained. Captions removed and all artwork bottom-aligned. |
+| 6 | Uncropped doctor-led panel | Natural portrait aspect ratio, larger media and centered copy alignment implemented. |
+| 7 | Complete Health Vault hero phone | Full 403 × 823 original exported from Figma node `6655:1445`; content-driven stage prevents crop. |
+| 8 | Report sizing and original review state | Redacted report fills its panel without a separate caption. Review tab uses the original 377 × 483 `Group 2085666068 3` variant. |
+| 9 | Voice first, review after transcription | Review form hidden initially and revealed after captured transcription or intentional typed-entry parsing. |
+| 10 | Two static doctor profiles | Two-profile layout implemented without doctor pause or carousel controls. |
+| 11 | Three support-card graphics fill their area | All three graphics widened and aligned to their card bottoms. |
+| 12 | Center fitness phone in second food/movement card | Second-card fitness handset centered within its card. |
+| 13 | Final CTA phone framing | Original phone aligned within its own layout column with intended framing. |
+
+All thirteen requested implementation changes and the required original-asset replacements are present in source. This is an implementation record, not a deployment claim.
+
+### Verification and publication for this pass
+
+The integrated build packages 67 displayed assets. `npm run check`, `node tests/voice-trial.test.mjs` and `git diff --check` pass. Browser geometry checks at 360, 390, 600, 601, 758, 768, 900, 901, 1024, 1440 and 1728 px found no horizontal page overflow. Both free-offer videos retain their native 3:4 ratio with contain fitting. Desktop, tablet and mobile visual inspections cover the original intro/carousel artwork, complete Vault phone and both tab states, static doctors, support graphics, fitness centering and final banner.
+
+All six feature tabs load their original images with no phone captions. Vault arrow-key navigation exposes the matching panel with a visible focus outline. Mobile navigation closes with Escape and restores focus. Global motion pause stops every video; visible videos play muted without player controls. The voice review form starts hidden, deliberate typed input parses Bench press / 40 kg / 10 reps / 1 set correctly, and review reports only a page-local result. Simulated speech lifecycle tests pass; no real microphone or external speech-provider session was run. OS reduced-motion emulation was not changed; the existing CSS and JavaScript preference handling is retained.
+
+Representative screenshots are stored outside the publishing checkout in `orb-homepage/evidence/editor-feedback/`. The same public Sites project is retained. The deployment result and source SHA are recorded in the release response; this document does not pre-claim publication. Original embedded Figma sample text is retained for requested design fidelity and remains illustrative; commercial destinations and entitlement confirmations described below remain open.
+
+## Previous release record
+
 Updated 30 October 2026. This release applies the owner's nine annotated screenshots to the existing Orb preview. It preserves the same Sites project and public sharing audience; deployment status must be verified from the Sites deployment result.
 
 ## Design reference and assets
