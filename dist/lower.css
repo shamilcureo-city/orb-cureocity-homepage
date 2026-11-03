@@ -281,25 +281,9 @@
  .nl-source-arrow{transform:none;font-size:26px}.nl-blueprint-document{padding:22px}.nl-blueprint-document h3{font-size:24px}
  .nl-consultation-preview,.nl-centre-preview,.nl-blueprint-results{grid-template-columns:1fr 1fr;min-height:360px}
  .nl-consultation-preview>img,.nl-centre-preview>img,.nl-blueprint-results>img{height:100%;min-height:360px}
- .nl-support-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;gap:16px;margin-top:28px}
- .nl-support-card{min-height:0;padding:22px 14px 190px}.nl-support-card>img{height:175px}
- .nl-support-tag{font-size:13px;padding:8px 10px;min-height:40px}.nl-support-card h3{font-size:20px;line-height:1.3;margin-top:16px}
- .nl-support-card p{font-size:16px;line-height:1.5;margin-bottom:18px}.nl-support-card .button{font-size:14px;padding:10px 13px;min-height:44px}
  .nl-family-grid{grid-template-columns:1fr 1fr;max-width:none}.nl-family-photo figcaption{font-size:18px;bottom:22px}
- .nl-pro-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;max-width:none}
- .nl-pro-copy h2{font-size:32px}.nl-pro-copy>p:not(.nl-small-note):not(.nl-pro-billing){font-size:16px;line-height:1.55}
- .nl-pro-copy li{font-size:16px;padding-left:31px;margin-bottom:12px}.nl-pro-price{margin:20px 0}.nl-pro-price strong{font-size:32px}
- .nl-care-strip{display:flex;align-items:center;gap:24px;padding:24px;margin-top:36px}.nl-care-strip>.button{margin-top:0}
- .nl-plan-start-grid{grid-template-columns:1fr 1fr;max-width:none;gap:20px;margin-top:28px}
- .nl-start-card{display:flex;flex-direction:column;align-items:center;min-height:0;padding:24px 20px 0}
- .nl-start-card h3{font-size:24px}.nl-start-card>p{font-size:16px}.nl-start-card>.button{min-height:44px;font-size:15px}
- .nl-meal-phone,.nl-start-fitness-phone{position:relative;top:auto;left:auto;transform:none;margin:26px auto 0;flex:none}
- .nl-meal-phone{width:264px;max-width:100%;height:350px;min-height:350px;overflow:hidden;border-bottom:0;border-radius:50px 50px 0 0}
- .nl-start-fitness-phone{width:285px;max-width:none;height:330px;object-fit:cover;object-position:left top;align-self:flex-start;margin-left:23%}
  .nl-member-carousel{--carousel-visible:3;margin-top:28px}.nl-member-carousel .nl-member-grid{gap:16px}
  .nl-member-grid>.nl-member-slide{flex-basis:calc((100% - 32px)/3)}.nl-member-carousel>.carousel-controls{display:none}
- .nl-final-copy{padding:28px 26px;max-width:calc(100% - 160px)}.nl-final-copy h2{font-size:28px}
- .nl-final-phone{width:200px;right:-35px;top:auto;bottom:-20px}
 }
 
 /* Compact footer: three equal navigation columns share one baseline. */
@@ -417,17 +401,48 @@
   .nl-final-copy{padding:28px 24px 0}
   .nl-final-phone{width:min(82%,280px);margin-top:28px;justify-self:end}
 }
-@media(min-width:700px) and (max-width:900px){
-  .nl-doctor-profiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-  .nl-doctor-profiles .nl-doctor{grid-template-columns:100px minmax(0,1fr);gap:16px}
-  .nl-doctor-profiles .nl-doctor>img{width:100px;height:145px}
-  .nl-doctor-profiles .nl-doctor h3{font-size:18px}
-  .nl-support-card{--support-inset:14px;padding-top:22px}
-  .nl-start-fitness-phone{
-    left:auto;transform:none;align-self:center;margin:26px auto 0;
-    width:min(285px,100%);max-width:100%;height:330px;object-fit:cover;object-position:center top;
+/* Split laptop windows keep readable copy widths without shrinking the artwork. */
+@media(min-width:601px) and (max-width:900px){
+  .nl-doctor-profiles{grid-template-columns:minmax(0,1fr);gap:28px;max-width:600px;margin-inline:auto}
+  .nl-doctor-profiles .nl-doctor{grid-template-columns:132px minmax(0,1fr);gap:24px}
+  .nl-doctor-profiles .nl-doctor>img{width:132px;height:170px}
+  .nl-doctor-profiles .nl-doctor h3{font-size:20px}
+  .nl-support-grid{grid-template-columns:minmax(0,1fr);max-width:760px;gap:20px;margin-inline:auto}
+  .nl-support-card{
+    --support-inset:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,38%);
+    grid-template-rows:auto auto 1fr auto;column-gap:24px;align-items:start;
+    min-height:0;padding:24px var(--support-inset) 0;text-align:left;
   }
-  .nl-final-panel{grid-template-columns:minmax(0,1fr) minmax(180px,29%)}
+  .nl-support-card .nl-support-tag,.nl-support-card .button{justify-self:start}
+  .nl-support-card h3{font-size:24px;line-height:1.25}
+  .nl-support-card p{max-width:none;margin-inline:0;font-size:16px;line-height:1.55}
+  .nl-support-card .button{margin-bottom:24px;font-size:15px}
+  .nl-support-art{
+    grid-column:2;grid-row:1 / 5;align-self:end;
+    width:calc(100% + var(--support-inset));aspect-ratio:auto;margin-top:0;
+  }
+  .nl-pro-grid{grid-template-columns:minmax(0,1fr);gap:32px;max-width:600px;margin-inline:auto}
+  .nl-pro-gallery{width:100%;max-width:440px;justify-self:center}
+  .nl-pro-copy{min-width:0}
+  .nl-pro-copy h2{font-size:34px}
+  .nl-pro-copy>p:not(.nl-small-note):not(.nl-pro-billing){font-size:17px}
+  .nl-care-strip{display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding:24px;margin-top:36px}
+  .nl-care-strip>.button{margin-top:0}
+  .nl-plan-start-grid{grid-template-columns:minmax(0,1fr);max-width:480px;gap:24px;margin-inline:auto}
+  .nl-start-card{display:flex;flex-direction:column;align-items:center;min-height:0;padding:28px 28px 0}
+  .nl-start-card h3{font-size:26px}
+  .nl-start-card h3,.nl-start-card>p{width:100%}
+  .nl-start-card>.button{flex:none}
+  .nl-meal-phone,.nl-start-fitness-phone{position:relative;top:auto;left:auto;transform:none;flex:none;margin:28px auto 0}
+  .nl-meal-phone{width:288px;max-width:100%;height:auto;min-height:0;border-bottom:7px solid #111;border-radius:54px;margin-bottom:28px}
+  .nl-start-fitness-phone{
+    align-self:center;width:min(285px,100%);max-width:100%;height:auto;object-fit:contain;
+  }
+  .nl-final-panel{grid-template-columns:minmax(0,1fr) minmax(160px,28%)}
   .nl-final-copy{padding:28px 0 28px 26px}
-  .nl-final-phone{width:100%;margin-top:28px}
+  .nl-final-copy h2{font-size:28px}
+  .nl-final-copy>p br{display:none}
+  .nl-final-actions{display:flex;flex-wrap:wrap;gap:16px}
+  .nl-final-actions>div{margin-top:0}
+  .nl-final-phone{width:100%;height:auto;margin-top:28px;object-fit:contain}
 }

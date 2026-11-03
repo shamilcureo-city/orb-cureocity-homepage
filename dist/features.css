@@ -274,3 +274,20 @@
 
 /* Exact icon tiles exported at 2x from the approved Figma homepage. */
 .mid-pro-icon.mid-original-icon{display:block;object-fit:contain;background:transparent;border-radius:0}
+
+/* Let laptop-window copy determine the card height. Both columns occupy real
+   grid tracks, so longer headings and larger text cannot run behind a phone. */
+@media(min-width:601px) and (max-width:1100px){
+  .mid-agent-panel{height:auto;min-height:430px;display:grid}
+  .mid-feature-card{height:auto;min-height:430px;display:grid;grid-template-columns:minmax(0,57fr) minmax(0,43fr)}
+  .mid-feature-card .mid-feature-copy{width:auto;height:auto;max-height:none;min-width:0;padding:30px 24px 28px}
+  .mid-feature-card .mid-original-visual{position:relative;inset:auto;width:auto;height:auto;min-height:398px;margin:32px 18px 0 0;padding:0;overflow:visible}
+  .mid-original-visual>.mid-original-screen{position:absolute;inset:0;width:100%;height:100%;max-width:100%;max-height:100%}
+}
+@media(max-width:600px){
+  .mid-agent-panel{height:auto;min-height:610px;display:grid}
+  .mid-feature-card{height:auto;min-height:610px;grid-template-rows:auto minmax(280px,1fr)}
+  .mid-feature-card .mid-feature-copy{height:auto;max-height:none}
+  .mid-feature-card .mid-original-visual{height:auto;min-height:280px;align-self:stretch}
+  .mid-original-visual>.mid-original-screen{position:absolute;top:20px;left:22px;width:calc(100% - 44px);height:calc(100% - 20px);max-width:none}
+}

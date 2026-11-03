@@ -1,5 +1,15 @@
 # Orb annotated correction release
 
+## MacBook responsive pass — 3 November 2026
+
+The owner reported that the 16:9 monitor composition looked correct but the 16-inch MacBook layout did not. At desktop widths on taller displays, the hero now keeps its wide-screen framing instead of stretching its video to the entire viewport height. Its height can still grow to accommodate copy. The existing 16:9 monitor layout and original assets are preserved.
+
+Feature cards use content-driven grid tracks at 601–1100px so copy and original phone artwork remain separate, with a safe minimum illustration area on mobile. At 601–900px, care choices become horizontal rows, the two approved doctors stack, and Pro/starting-point content has a readable column width. These replace conflicting rules that forced three care cards into a narrow window.
+
+`npm run build`, `npm run check`, simulated voice lifecycle checks and `git diff --check` pass. With the owner's approval, local headless Chrome at device scale factor 2 checked 21 viewport combinations from 360px to 1920px, including 1440 × 810, 1440 × 900, 1512 × 982, 1536 × 960, 1728 × 1019 and 1728 × 1117. No horizontal page overflow, overlapping feature copy/artwork, clipped card actions or header collisions were found. Six feature tabs and their original images, arrow-key tab navigation, download dialog, Escape/focus return, responsive menu closure and reduced-motion video pause passed. Screenshots were visually reviewed and retained outside the checkout in `orb-homepage/evidence/macbook-responsive/`.
+
+This is viewport emulation in Chrome, not a physical MacBook or Safari test. The existing public Sites project and sharing audience are retained; publication is confirmed separately by the deployment result.
+
 ## Current editor-feedback pass — 2 November 2026
 
 The supplied `Orb_Website_Annotated_Editor_Feedback.pdf` requests thirteen changes. This pass restores source artwork and uncropped media in the marked areas while preserving the established hero, approved ₹7,999 annual preview price, integrations and action behavior. The prior compact-layout measurements below are historical and must not be reported as measurements of this new pass.

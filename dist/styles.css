@@ -277,3 +277,17 @@ h3{font-size:clamp(24px,2.1vw,29px)}
   .connect-faqs{margin-top:36px}
   .connect-controls{right:20px}
 }
+
+/* Taller laptop displays keep the wide-screen hero framing instead of
+   stretching the video to the full height of a 16:10 display. Copy can grow. */
+@media(min-width:901px) and (max-aspect-ratio:17/10){
+  .hero-new{min-height:min(100svh,max(620px,56.25vw))}
+  .hero-content{padding-top:clamp(144px,11.25vw,216px);padding-bottom:clamp(44px,4vw,76px)}
+}
+/* Narrow windows get enough room for the complete offer and its native video. */
+@media(min-width:601px) and (max-width:760px){
+  .free-card,.free-card.reverse{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .free-card-copy{padding:24px}
+  .free-card-copy h3{font-size:26px;line-height:1.2}
+  .free-card-copy .button{white-space:normal;text-align:center}
+}
