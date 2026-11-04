@@ -1,18 +1,11 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
+import {validateContentConfiguration,assertPublicReady,configuredAssets,assetPath} from './site-validation.mjs';
 const root = import.meta.url;
 const content = JSON.parse(await readFile(new URL('site-content.json', root),'utf8'));
 const copy = JSON.parse(await readFile(new URL('website-copy.json', root),'utf8'));
 const publicBuild = process.env.ORB_PUBLIC_BUILD === '1' || content.mode === 'public';
-for (const [key, value] of Object.entries(content.destinations)) {
-  if(value === null) continue;
-  let valid = false; try { valid = new URL(value).protocol === 'https:'; } catch {}
-  if(!valid) throw new Error(`${key} must be null or a verified HTTPS destination.`);
-}
-if (publicBuild) {
-  const pending = content.features.filter(f => f.availability !== 'live' || f.claimApproval !== 'approved');
-  const missing = Object.entries(content.destinations).filter(([,value])=>!value).map(([key])=>key);
-  if(pending.length || missing.length || content.commerce.entitlementStatus !== 'approved' || content.commerce.taxTreatment === 'unconfirmed' || content.integrations.status !== 'approved') throw new Error(`Public build blocked: ${pending.length} feature claims await approval; missing destinations: ${missing.join(', ')}; commercial and integration approval also required. See HANDOFF.md.`);
-}
+validateContentConfiguration(content);
+if (publicBuild) assertPublicReady(content);
 const money = value => new Intl.NumberFormat('en-IN',{style:'currency',currency:content.commerce.currency,maximumFractionDigits:0}).format(value);
 const escape = value => String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const annualPrice=money(content.commerce.annualPrice), monthlyEquivalent=new Intl.NumberFormat('en-IN',{style:'currency',currency:content.commerce.currency,maximumFractionDigits:2}).format(content.commerce.annualPrice/12);
@@ -21,7 +14,10 @@ const glucoseValues=glucose.readings.map(r=>r.value);
 const glucoseDate=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(glucose.date+'T00:00:00Z'));
 const glucosePeriod=`${glucoseDate} · ${glucose.readings[0].time}–${glucose.readings.at(-1).time}`;
 const glucoseAlt=`Illustrative glucose readings in ${glucose.unit} on ${glucoseDate}: ${glucose.readings.map(r=>`${r.time}: ${r.value}`).join('; ')}.`;
-const replacements={...copy,annualPrice,monthlyEquivalent,glucosePeriod,glucoseAlt,glucoseAverage:(glucoseValues.reduce((a,b)=>a+b,0)/glucoseValues.length).toFixed(1),glucoseMin:Math.min(...glucoseValues),glucoseMax:Math.max(...glucoseValues),glucoseUnit:glucose.unit,billingCopy:content.commerce.billingCopy.replace('{monthlyEquivalent}',monthlyEquivalent),freeFeatures:content.commerce.plans.free.features.map(f=>`<li>${escape(f)}</li>`).join(''),proFeatures:content.commerce.plans.pro.features.map(f=>`<li>${escape(f)}</li>`).join('')};
+const capabilities = new Map(content.commerce.capabilities.map(feature => [feature.id, feature]));
+const proFeatures = content.commerce.plans.pro.featureIds.map(id => capabilities.get(id));
+const proCapabilities = content.commerce.capabilities.map(feature => `<article class="mid-pro-feature" data-capability="${escape(feature.id)}"><img class="mid-pro-icon mid-original-icon" src="${escape(feature.icon)}" alt="" width="138" height="138" loading="lazy"><div><h3>${escape(feature.title)}</h3><p>${escape(feature.description)}</p></div></article>`).join('\n');
+const replacements={proCapabilities,...copy,annualPrice,monthlyEquivalent,glucosePeriod,glucoseAlt,glucoseAverage:(glucoseValues.reduce((a,b)=>a+b,0)/glucoseValues.length).toFixed(1),glucoseMin:Math.min(...glucoseValues),glucoseMax:Math.max(...glucoseValues),glucoseUnit:glucose.unit,billingCopy:content.commerce.billingCopy.replace('{monthlyEquivalent}',monthlyEquivalent),freeFeatures:content.commerce.plans.free.features.map(f=>`<li>${escape(f)}</li>`).join(''),proFeatures:proFeatures.map(f=>`<li data-plan-capability="${escape(f.id)}">${escape(f.summary || f.title)}</li>`).join('')};
 const parts=await Promise.all(['head','hero','features','voice','lower','end'].map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
 let html=parts.join('\n').replace(/\{\{(\w+)\}\}/g,(_,key)=>{if(!(key in replacements))throw new Error(`Unknown content key ${key}`);return replacements[key];});
 await mkdir(new URL('dist/',root),{recursive:true});
@@ -30,8 +26,9 @@ await writeFile(new URL('dist/config.js',root),`/* Generated from site-content.j
 for(const file of ['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','app.js','voice.js','favicon.svg']) await cp(new URL(file,root),new URL(`dist/${file}`,root));
 // Package only displayed assets; source bundle and unused private report samples stay outside dist.
 const css=await Promise.all(['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css'].map(file=>readFile(new URL(file,root),'utf8')));
-const assetPaths=new Set([...html.matchAll(/(?:src|poster|href)="(assets\/[^"#]+)"/g)].map(m=>decodeURIComponent(m[1])));
-for(const source of css) for(const match of source.matchAll(/url\(['"]?(assets\/[^)'"\n]+)['"]?\)/g)) assetPaths.add(decodeURIComponent(match[1]));
+const assetPaths=new Set([...html.matchAll(/(?:src|poster|href)="(assets\/[^"#]+)"/g)].map(m=>assetPath(m[1])));
+for(const source of css) for(const match of source.matchAll(/url\(['"]?(assets\/[^)'"\n]+)['"]?\)/g)) assetPaths.add(assetPath(match[1]));
+for(const asset of configuredAssets(content)) assetPaths.add(asset);
 await rm(new URL('dist/assets/',root),{recursive:true,force:true});
 for(const asset of assetPaths){const target=new URL(`dist/${asset}`,root);await mkdir(new URL('./',target),{recursive:true});await cp(new URL(asset,root),target);}
 console.log(`Packaged ${assetPaths.size} displayed assets.`);

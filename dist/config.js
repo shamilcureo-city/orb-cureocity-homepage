@@ -6,7 +6,6 @@ window.ORB_CONFIG={
   "destinations": {
     "appStoreUrl": null,
     "googlePlayUrl": null,
-    "enquiryUrl": null,
     "privacyUrl": null,
     "termsUrl": null,
     "supportUrl": null,
@@ -26,7 +25,8 @@ window.ORB_CONFIG={
     "familyUrl": null,
     "proUrl": null,
     "cycleUrl": null,
-    "biologicalAgeUrl": null
+    "biologicalAgeUrl": null,
+    "orbUrl": null
   },
   "features": [
     {
@@ -196,15 +196,82 @@ window.ORB_CONFIG={
       "pro": {
         "name": "Pro",
         "subtitle": "For personalised plans and deeper insights.",
-        "features": [
-          "Daily health insights",
-          "Biological age",
-          "Personalised nutrition & meal plans",
-          "AI fitness assessment & training",
-          "CGM metrics & analysis"
+        "featureIds": [
+          "daily-insights",
+          "biological-age",
+          "meal-plan",
+          "fitness-trainer",
+          "cgm"
         ]
       }
-    }
+    },
+    "capabilities": [
+      {
+        "id": "ai-coach",
+        "title": "AI health coach",
+        "description": "Bring useful context into your next step.",
+        "icon": "assets/original/icons/ai-health-coach.png"
+      },
+      {
+        "id": "daily-insights",
+        "title": "Daily health insights",
+        "description": "Review what matters in your everyday information.",
+        "icon": "assets/original/icons/daily-insights.png",
+        "summary": "Daily health insights"
+      },
+      {
+        "id": "biological-age",
+        "title": "Biological age",
+        "description": "Explore the context behind available estimates.",
+        "icon": "assets/original/icons/biological-age.png",
+        "summary": "Biological age"
+      },
+      {
+        "id": "workout-plan",
+        "title": "Workout plan",
+        "description": "Plan around your goals, time and equipment.",
+        "icon": "assets/original/icons/workout-plan.png"
+      },
+      {
+        "id": "meal-plan",
+        "title": "Meal plan",
+        "description": "Make room for your food and your routine.",
+        "icon": "assets/original/icons/meal-plan.png",
+        "summary": "Personalised nutrition & meal plans"
+      },
+      {
+        "id": "fitness-trainer",
+        "title": "AI fitness trainer",
+        "description": "Connect assessment, planning and workout logs.",
+        "icon": "assets/original/icons/fitness-trainer.png",
+        "summary": "AI fitness assessment & training"
+      },
+      {
+        "id": "cgm",
+        "title": "CGM insights & reports",
+        "description": "Review supported glucose data with your day.",
+        "icon": "assets/original/icons/cgm.png",
+        "summary": "CGM metrics & analysis"
+      },
+      {
+        "id": "voice-logging",
+        "title": "Voice logging",
+        "description": "Say what you did, then review the entry.",
+        "icon": "assets/original/icons/voice-logging.png"
+      },
+      {
+        "id": "health-vault",
+        "title": "Health Vault",
+        "description": "Keep your reports, dates and sources together.",
+        "icon": "assets/original/icons/health-vault.png"
+      },
+      {
+        "id": "family-circle",
+        "title": "Family Circle",
+        "description": "Explore selected sharing with people you trust.",
+        "icon": "assets/original/icons/family-circle.png"
+      }
+    ]
   },
   "leadGeneration": {
     "freeOffers": [
@@ -241,27 +308,69 @@ window.ORB_CONFIG={
     "daily": {
       "title": "Daily insights in Orb",
       "body": "Explore sleep, activity and your own notes together in the illustrative daily view. The released feature scope and app destination are awaiting confirmation.",
-      "urlKey": "dailyUrl"
+      "urlKey": "dailyUrl",
+      "preview": {
+        "image": "assets/original/daily-insight-phone.png",
+        "alt": "Illustrative daily insights screen",
+        "steps": [
+          "See sleep and activity alongside your own notes.",
+          "Review the context behind a suggested next step."
+        ]
+      }
     },
     "nutrition": {
       "title": "Meal planning in Orb",
       "body": "The preview shows how preferences, portions, meal records and feedback can shape a routine. The released planning features and destination are awaiting confirmation.",
-      "urlKey": "nutritionUrl"
+      "urlKey": "nutritionUrl",
+      "preview": {
+        "image": "assets/original/Frame 2147228749 1.png",
+        "alt": "Illustrative meal planning screen",
+        "steps": [
+          "Plan around your food preferences and routine.",
+          "Review portions and estimated nutrition.",
+          "Use feedback to adjust your plan."
+        ]
+      }
     },
     "fitness": {
       "title": "Fitness in Orb",
-      "body": "The preview connects movement assessment, workout planning and session logging. Its voice example is simulated. The released training features and app destination are awaiting confirmation.",
-      "urlKey": "fitnessUrl"
+      "body": "This example connects movement assessment, workout planning and session logging. The optional voice trial on this page uses browser speech recognition after you choose to start, or you can type an entry. It creates a review draft only; it does not save a workout to Orb.",
+      "urlKey": "fitnessUrl",
+      "preview": {
+        "image": "assets/original/Group 2085666069 1.png",
+        "alt": "Illustrative workout planning screen",
+        "steps": [
+          "Start with your movement assessment and goals.",
+          "Review a routine for your equipment and available days.",
+          "Log and review each exercise."
+        ]
+      }
     },
     "vault": {
-      "title": "Explore Health Vault",
-      "body": "The preview illustrates original reports, dates and sources. Supported formats, sharing controls and the Health Vault destination are awaiting confirmation. No report is uploaded here.",
-      "urlKey": "vaultUrl"
+      "title": "How Health Vault works",
+      "body": "Explore an illustrative records view. This website cannot open your personal health records or upload a report. Supported formats and sharing controls still need release confirmation.",
+      "urlKey": "vaultUrl",
+      "preview": {
+        "image": "assets/original/health-vault-complete.png",
+        "alt": "Illustrative Health Vault screen with reports, dates and sources",
+        "steps": [
+          "Find a report by its date and source.",
+          "Keep the original alongside the information you review.",
+          "Check supported sharing controls before sharing with a professional."
+        ]
+      }
     },
     "integrations": {
       "title": "Supported integrations",
       "body": "The approved compatibility list is not connected to this preview. Device models, glucose sources, regions and plan eligibility must be confirmed before connecting information.",
-      "urlKey": "integrationsUrl"
+      "urlKey": "integrationsUrl",
+      "preview": {
+        "steps": [
+          "Begin with your existing reports and everyday inputs.",
+          "Check device, region and plan compatibility in the released app.",
+          "Review the source and freshness of connected information."
+        ]
+      }
     },
     "care": {
       "title": "Explore professional care",
@@ -281,7 +390,14 @@ window.ORB_CONFIG={
     "family": {
       "title": "Explore Family Circle",
       "body": "This preview demonstrates selected summaries shared with people you trust. Released permissions, invitation controls and the app destination require confirmation. No health information is shared here.",
-      "urlKey": "familyUrl"
+      "urlKey": "familyUrl",
+      "preview": {
+        "steps": [
+          "Choose a person you trust.",
+          "Review which summaries would be shared.",
+          "Confirm the available permissions in the released app."
+        ]
+      }
     },
     "pro": {
       "title": "Explore Orb Pro",
@@ -317,7 +433,15 @@ window.ORB_CONFIG={
       "title": "Cycle and personal check-ins",
       "body": "Explore logging periods and symptoms, reviewing your history and estimated upcoming dates. The released feature, eligibility and entry destination are awaiting confirmation.",
       "note": "Upcoming dates are estimates. This preview does not log or store cycle information.",
-      "urlKey": "cycleUrl"
+      "urlKey": "cycleUrl",
+      "preview": {
+        "image": "assets/original/Cycle Tracker 1.png",
+        "alt": "Illustrative cycle tracking screen with estimated dates",
+        "steps": [
+          "Log periods and symptoms.",
+          "Review your history and estimated upcoming dates."
+        ]
+      }
     },
     "professionals": {
       "title": "Cureocity for professionals",
@@ -327,7 +451,46 @@ window.ORB_CONFIG={
     "biological-age": {
       "title": "Biological age in Orb",
       "body": "The illustrative screen shows an estimated biological age, not a diagnosis. The released feature, calculation method, required information and eligibility are awaiting confirmation. This preview does not calculate your biological age.",
-      "urlKey": "biologicalAgeUrl"
+      "urlKey": "biologicalAgeUrl",
+      "preview": {
+        "image": "assets/original/bioage 1.png",
+        "alt": "Illustrative biological age screen",
+        "steps": [
+          "An estimate is different from a diagnosis.",
+          "Review its information sources and limitations."
+        ]
+      }
+    },
+    "doctor-lubna": {
+      "kind": "profile",
+      "profileId": "lubna",
+      "title": "Dr Lubna Ali",
+      "body": "Medical director, Cureocity"
+    },
+    "doctor-vijesh": {
+      "kind": "profile",
+      "profileId": "vijesh",
+      "title": "Dr Vijesh Vijayan",
+      "body": "Medical director, Cureocity"
+    },
+    "orb": {
+      "title": "A conversation with Orb",
+      "body": "An illustrative conversation showing how everyday context could inform your next step. This is a scripted example, not a live chat or a personalised recommendation.",
+      "urlKey": "orbUrl",
+      "conversation": [
+        {
+          "speaker": "Orb",
+          "text": "Your sleep was shorter than usual last night. How are you feeling this morning?"
+        },
+        {
+          "speaker": "Member",
+          "text": "A little tired. I have about 20 minutes to exercise."
+        },
+        {
+          "speaker": "Orb",
+          "text": "Would you like to review a shorter workout option for today?"
+        }
+      ]
     }
   },
   "confirmationGaps": [
@@ -342,7 +505,8 @@ window.ORB_CONFIG={
     "Supported wearable/CGM models, data types, regions and release status",
     "Family Circle and Health Vault released sharing controls",
     "Care, Blueprint and hub availability, package inclusions and destinations",
-    "Approved privacy, terms, support, contact and data-request destinations"
+    "Approved privacy, terms, support, contact and data-request destinations",
+    "Orb conversation and feature-specific app entry destinations"
   ],
   "examples": {
     "glucose": {
@@ -379,6 +543,18 @@ window.ORB_CONFIG={
           "value": 97
         }
       ]
+    }
+  },
+  "profiles": {
+    "lubna": {
+      "name": "Dr Lubna Ali",
+      "role": "Medical director, Cureocity",
+      "image": "assets/optimized/lubna-portrait.webp"
+    },
+    "vijesh": {
+      "name": "Dr Vijesh Vijayan",
+      "role": "Medical director, Cureocity",
+      "image": "assets/optimized/vijesh-portrait.webp"
     }
   }
 };

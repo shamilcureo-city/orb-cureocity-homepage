@@ -59,12 +59,24 @@
     if (!action) return;
     if (menu.open) menu.close();
     const url = safeUrl(config.destinations[action.urlKey]);
-    if (url && key !== 'download') { location.assign(url); return; }
+    const hasExample = Boolean(action.preview || action.conversation);
+    if (url && key !== 'download' && !hasExample) { location.assign(url); return; }
     $('#action-title').textContent = action.title;
     $('#action-body').textContent = action.body;
-    $('#action-kicker').textContent = 'Website preview';
+    $('#action-kicker').textContent = action.kind === 'profile' ? 'Meet the team' : hasExample ? 'Illustrative example' : 'Website preview';
+    actionDialog.classList.toggle('has-preview', hasExample);
+    actionDialog.classList.toggle('has-profile', action.kind === 'profile');
     const content = $('#action-content'); content.replaceChildren();
-    if (key === 'download') {
+    if (action.kind === 'profile') {
+      const profile = config.profiles[action.profileId];
+      $('#action-title').textContent = profile.name;
+      $('#action-body').textContent = profile.role;
+      const image = element('img', '', 'dialog-portrait'); image.src = profile.image; image.alt = profile.name; image.width = 750; image.height = 1000;
+      const detail = element('div');
+      detail.append(element('p', 'Explore professional care separately from your Orb app plan. Consultation availability and booking details are awaiting confirmation.'));
+      const care = element('button', 'Explore care options', 'button'); care.type = 'button'; care.dataset.action = 'care'; detail.append(care);
+      const profilePanel = element('div', '', 'dialog-profile'); profilePanel.append(image, detail); content.append(profilePanel);
+    } else if (key === 'download') {
       const available = [config.destinations.appStoreUrl, config.destinations.googlePlayUrl].some(safeUrl);
       $('#action-body').textContent = available ? 'Choose an available Orb store listing for your device. Unavailable store links are shown below.' : 'Verified Orb store links are awaiting confirmation. You can explore the app experience and free starting points on this page. No download or account is started here.';
       const choices = element('div', '', 'download-choices');
@@ -78,8 +90,35 @@
       }
       content.append(choices);
       const link = element('a', 'Explore the free starting points', 'text-link'); link.href = '#free-tools'; link.addEventListener('click', () => actionDialog.close()); content.append(link);
-    } else if (action.note) content.append(element('p', action.note, 'dialog-note'));
-    actionDialog.showModal(); updateLock();
+    } else if (hasExample) {
+      if (action.conversation) {
+        const conversation = element('ol', '', 'dialog-conversation');
+        for (const message of action.conversation) {
+          const item = element('li', '', message.speaker === 'Member' ? 'member' : '');
+          item.append(element('strong', message.speaker), element('p', message.text)); conversation.append(item);
+        }
+        content.append(conversation);
+      }
+      if (action.preview) {
+        const preview = element('div', '', 'dialog-preview');
+        if (action.preview.image) {
+          const figure = element('figure'); const image = element('img');
+          image.src = action.preview.image; image.alt = action.preview.alt;
+          figure.append(image, element('figcaption', 'Illustrative app screen')); preview.append(figure);
+        }
+        const explanation = element('div'); explanation.append(element('h3', 'What the example shows'));
+        const steps = element('ol'); for (const step of action.preview.steps) steps.append(element('li', step));
+        explanation.append(steps); preview.append(explanation); content.append(preview);
+      }
+      const access = element('div', '', 'dialog-access'); access.append(element('h3', 'Use this in Orb'));
+      if (url) {
+        const link = element('a', 'Open in Orb', 'text-link'); link.href = url; access.append(link);
+      } else access.append(element('p', 'App access is not connected to this preview. No personal records, plans or account are opened here.'));
+      content.append(access);
+    }
+    if (action.note) content.append(element('p', action.note, 'dialog-note'));
+    if (!actionDialog.open) actionDialog.showModal();
+    actionDialog.scrollTop = 0; $('.dialog-close').focus({preventScroll: true}); updateLock();
   }
   document.addEventListener('click', event => { const control = event.target.closest('[data-action]'); if (control) openAction(control.dataset.action); });
 

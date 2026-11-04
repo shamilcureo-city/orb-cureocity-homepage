@@ -1,5 +1,38 @@
 import assert from 'node:assert/strict';
-import { initVoiceTrial } from '../voice.js';
+import { initVoiceTrial, parseWorkoutWords } from '../voice.js';
+
+// A single review entry must never combine details from different exercises or alternatives.
+const clearEntry={exercise:'Bench press',weight:'40',unit:'kg',reps:'10',sets:'1'};
+for(const words of [
+  'Log bench press 40 kg and 10 reps and 1 set',
+  'I completed bench press with forty kilograms for ten repetitions and one set',
+  'Log 1 set of bench press at 40 kg for 10 reps',
+  'Log bench press for 1 set of 10 reps at 40 kg'
+]) assert.deepEqual(parseWorkoutWords(words),clearEntry,words);
+assert.deepEqual(parseWorkoutWords('Log clean and jerk 40 kg 10 reps 1 set'),{...clearEntry,exercise:'Clean and jerk'},'a compound exercise name is not a second exercise');
+assert.deepEqual(parseWorkoutWords('Log row twenty five point five kilograms, eight reps'),{exercise:'Row',weight:'25.5',unit:'kg',reps:'8',sets:''},'missing sets stay empty for manual review');
+assert.equal(parseWorkoutWords('Log squat one hundred and forty kilograms ten reps one set').weight,'140','and inside a single spoken number remains supported');
+const ambiguousExamples=[
+  'Log bench press 40 kg 10 reps then squat 60 kg 8 reps 2 sets',
+  'Log bench press and squat 40 kg 10 reps 2 sets',
+  'Log bench press, squat 40 kg 10 reps 2 sets',
+  'Log bench press 40 kg 10 reps 1 set and squat',
+  'Log bench press 40 kg actually 50 kg 10 reps 1 set',
+  'Log bench press 40 kg 10 reps 1 set, make that 2',
+  'Log bench press 40 kg 50 kg 10 reps 1 set',
+  'Log bench press 40 kg 10 reps 8 reps 1 set',
+  'Log bench press 40 kg 10 reps 1 set 2 sets',
+  'Log bench press 40 or 50 kg 10 reps 1 set',
+  'Log bench press forty and fifty kilograms 10 reps 1 set',
+  'Log bench press 40 kg 10 reps 1 set 50',
+  'Log squat bodyweight 40 kg 10 reps 1 set'
+];
+for(const words of ambiguousExamples){
+  const entry=parseWorkoutWords(words);
+  assert.match(entry.ambiguity,/one exercise and one value each/,words);
+  const {ambiguity,...values}=entry;
+  assert.deepEqual(values,{exercise:'',weight:'',unit:'kg',reps:'',sets:''},`no guessed draft for: ${words}`);
+}
 let time=0,nextTimer=1;
 const pending=new Map();
 globalThis.performance={now:()=>time};
@@ -95,3 +128,38 @@ t.el('voice-words').value='';t.el('voice-words').emit('input');
 assert.equal(t.el('voice-entry-form').hidden,true,'clearing transcript hides stale review');
 t.el('voice-parse').emit('click');assert.equal(t.el('voice-entry-form').hidden,true,'empty parse cannot reveal review');
 console.log('Passed review sequencing: initial hidden state, permission/no-speech/empty timeout, captured speech, unfinished transcript, retry, explicit typed fallback and cleared text.');
+
+// Ambiguity is a recoverable editor state, including after an earlier entry was reviewed.
+t=fixture(false);t.el('voice-words').value='Log squat 60 kg 8 reps 2 sets';t.el('voice-parse').emit('click');
+t.el('voice-entry-form').emit('submit',{preventDefault(){}});
+assert.equal(t.el('voice-reviewed').hidden,false);
+for(const original of ambiguousExamples){
+  t.el('voice-words').value=original;t.el('voice-words').emit('input');t.el('voice-parse').emit('click');
+  assert.equal(t.el('voice-words').value,original,'original transcript must remain available to correct');
+  assert.equal(t.el('voice-entry-form').hidden,true,'ambiguous words must not reveal a misleading draft');
+  assert.equal(t.el('voice-entry-fields').disabled,true);
+  assert.equal(t.el('voice-review').disabled,true);
+  assert.equal(t.el('voice-parse')['aria-expanded'],'false');
+  assert.equal(t.el('voice-reviewed').hidden,true);
+  assert.equal(t.el('voice-reviewed-summary').textContent,'','a previous reviewed result is cleared');
+  for(const field of ['exercise','weight','reps','sets'])assert.equal(t.el(`voice-${field}`).value,'','no stale or mixed field remains');
+  assert.match(t.el('voice-status').textContent,/Edit your words.*one exercise and one value each/);
+  assert.equal(t.doc.activeElement,t.el('voice-words'),'typed ambiguity returns focus to the correction');
+  t.el('voice-entry-form').emit('submit',{preventDefault(){}});
+  assert.equal(t.el('voice-reviewed').hidden,true,'a hidden ambiguous entry cannot be reviewed');
+}
+t.el('voice-words').value='Log bench press 50 kg and 10 reps and 1 set';t.el('voice-words').emit('input');t.el('voice-parse').emit('click');
+assert.equal(t.el('voice-entry-form').hidden,false,'correcting the transcript restores review');
+assert.equal(t.el('voice-exercise').value,'Bench press');assert.equal(t.el('voice-weight').value,'50');
+assert.equal(t.doc.activeElement,t.el('voice-exercise'));
+t.el('voice-entry-form').emit('submit',{preventDefault(){}});
+assert.equal(t.el('voice-reviewed-summary').textContent,'Bench press · 50 kg · 10 reps · 1 set');
+t=fixture();t.el('voice-start').emit('click');r=t.instances[0];r.onstart();
+t.result(r,ambiguousExamples[0]);t.el('voice-end').emit('click');r.onend();
+assert.equal(t.el('voice-words').value,ambiguousExamples[0],'recorded ambiguous words also remain intact');
+assert.equal(t.el('voice-entry-form').hidden,true);
+assert.equal(t.el('voice-reviewed').hidden,true);
+assert.equal(t.root['data-voice-phase'],'idle');assert.equal(t.el('voice-words').readOnly,false);
+assert.match(t.el('voice-status').textContent,/Microphone stopped.*needs clarification/,'recording completion must not overwrite the clarification message');
+assert.doesNotMatch(t.el('voice-status').textContent,/before reviewing your entry/);
+console.log('Passed ambiguity regressions: multiple exercises, competing quantities, spoken corrections, original transcript preservation, no stale/mixed review, safe correction and ordinary single-exercise conjunctions.');

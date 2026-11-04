@@ -15,7 +15,8 @@
       <p class="voice-trial-privacy" id="voice-privacy"><strong>You choose when the microphone starts.</strong> Your browser handles speech recognition and may send audio to its speech provider. Orb does not upload audio or save this trial to your account.</p>
       <div class="voice-trial-editor">
         <label class="voice-transcript-label" for="voice-words">Your words — speak or type</label>
-        <textarea id="voice-words" rows="2" maxlength="1000" placeholder="For example: Log bench press, 40 kilograms, 10 reps, 1 set."></textarea>
+        <textarea id="voice-words" rows="2" maxlength="1000" aria-describedby="voice-entry-help" placeholder="For example: Log bench press, 40 kilograms, 10 reps, 1 set."></textarea>
+        <p class="voice-trial-note" id="voice-entry-help">Use one exercise at a time, with one value for each detail. If you change your mind while speaking, edit the words to keep only the details you want to log.</p>
         <p class="voice-interim" id="voice-interim" aria-live="off"></p>
         <button class="voice-parse" id="voice-parse" type="button" aria-controls="voice-entry-form" aria-expanded="false" disabled>Use these words to fill the entry</button>
         <form class="voice-entry-form" id="voice-entry-form" aria-labelledby="voice-entry-title" hidden>

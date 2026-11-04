@@ -13,19 +13,40 @@ function spokenNumber(phrase) {
   return digits?`${whole}.${digits}`:String(whole);
 }
 
-/** Only extracts stated values; missing sets, weights and repetitions stay empty. */
+const AMBIGUOUS_WORKOUT_COPY='This entry needs clarification. Edit your words to include one exercise and one value each for weight, repetitions and sets. Remove any alternatives or corrections, then try again. Your original words are still here.';
+const emptyWorkout=()=>({exercise:'',weight:'',unit:'kg',reps:'',sets:''});
+const DIGIT_WORDS=Object.keys(NUMBER_WORDS).filter(word=>NUMBER_WORDS[word]<10).join('|');
+const UNDER_HUNDRED=`(?:${Object.keys(NUMBER_WORDS).filter(word=>NUMBER_WORDS[word]<20).join('|')}|(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)(?: (?:${DIGIT_WORDS}))?)`;
+const SPOKEN_QUANTITY=new RegExp(`^(?:(?:${DIGIT_WORDS}) hundred(?: (?:and )?${UNDER_HUNDRED})?|${UNDER_HUNDRED})(?: point (?:${DIGIT_WORDS})(?: (?:${DIGIT_WORDS}))*)?$`);
+
+/** Extracts one stated exercise. Ambiguous input returns empty fields plus an ambiguity message. */
 export function parseWorkoutWords(input) {
-  const normalized=String(input||'').slice(0,1000).toLowerCase().replace(WORD_NUMBER,spokenNumber).replace(/[–—]/g,'-').replace(/\bminus\s+(?=\d)/g,'-');
-  const weight=normalized.match(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*(kg|kgs|kilograms?|kilos?|pounds?|lbs?)\b/);
-  const reps=normalized.match(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*(reps?|repetitions?)\b/);
-  const sets=normalized.match(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*sets?\b/);
-  let exercise=normalized
+  let unclearNumber=false;
+  const normalized=String(input||'').slice(0,1000).toLowerCase().replace(WORD_NUMBER,phrase=>{
+    if(!SPOKEN_QUANTITY.test(phrase.replace(/-/g,' '))){unclearNumber=true;return phrase;}
+    return spokenNumber(phrase);
+  }).replace(/[–—]/g,'-').replace(/\bminus\s+(?=\d)/g,'-');
+  const weights=[...normalized.matchAll(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*(kg|kgs|kilograms?|kilos?|pounds?|lbs?)\b/g)];
+  const repetitions=[...normalized.matchAll(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*(reps?|repetitions?)\b/g)];
+  const setCounts=[...normalized.matchAll(/(?<![\w.-])(-?\d+(?:\.\d+)?)\s*sets?\b/g)];
+  const [weight]=weights,[reps]=repetitions,[sets]=setCounts;
+  const instruction=normalized
     .replace(/^\s*(?:(?:please\s+)?(?:log|record|add)\s+(?:my\s+)?|i\s+(?:did|completed|finished)\s+)/,'')
-    .replace(/^\s*\d+\s*sets?\s+(?:of\s+)?/,'')
-    .split(/(?<![\w.-])(?:at\s+)?-?\d+(?:\.\d+)?\s*(?:kg|kgs|kilograms?|kilos?|pounds?|lbs?|reps?|repetitions?|sets?)\b/)[0]
+    .replace(/^\s*\d+\s*sets?\s+(?:of\s+)?/,'');
+  const valuePattern=/(?<![\w.-])(?:at\s+)?-?\d+(?:\.\d+)?\s*(?:kg|kgs|kilograms?|kilos?|pounds?|lbs?|reps?|repetitions?|sets?)\b/g;
+  const firstValue=instruction.search(valuePattern);
+  let exercise=(firstValue<0?instruction:instruction.slice(0,firstValue))
     .replace(/[,;:.!?\s]+$/g,'')
     .replace(/\b(?:with|using|for|at|and|body\s*weight)\s*$/g,'').trim();
   const bodyweight=/\bbody\s*weight\b/.test(normalized);
+  // Never choose the first of competing values or silently attach a later exercise's sets.
+  const correction=/\b(?:actually|instead|rather|sorry|correction|correct that|make that|i mean|not|no|or)\b/.test(normalized);
+  const sequence=/\b(?:then|followed by|next exercise|another exercise|superset)\b/.test(normalized);
+  const multipleNames=/[,;+/&]|\band\b/.test(exercise)&&!/^\s*(?:(?:barbell|dumbbell|kettlebell|single arm)\s+)?clean and (?:jerk|press)\s*$/.test(exercise);
+  const tail=firstValue<0?'':instruction.slice(firstValue).replace(valuePattern,' ').replace(/\b(?:body\s*weight|and|with|using|for|at|of|each|in total|total|today|please)\b/g,' ').replace(/[\s,;:.!?+&]+/g,'');
+  if(unclearNumber||correction||sequence||multipleNames||weights.length>1||repetitions.length>1||setCounts.length>1||(bodyweight&&weight)||tail) {
+    return {...emptyWorkout(),ambiguity:AMBIGUOUS_WORKOUT_COPY};
+  }
   if(exercise.length>80) exercise='';
   return {
     exercise:exercise?exercise.charAt(0).toUpperCase()+exercise.slice(1):'',
@@ -86,7 +107,8 @@ export function initVoiceTrial(root) {
   function applyWords(){
     const entry=parseWorkoutWords(words.value);
     for(const [key,field] of Object.entries(fields)){field.value=entry[key];field.setCustomValidity('');}
-    updateWeight();reviewed.hidden=true;form.hidden=!words.value.trim();
+    updateWeight();reviewed.hidden=true;summary.textContent='';form.hidden=!!entry.ambiguity||!words.value.trim();
+    return entry.ambiguity;
   }
   function updateWeight(){const bodyweight=fields.unit.value==='bodyweight';fields.weight.disabled=bodyweight;fields.weight.required=!bodyweight;if(bodyweight)fields.weight.value='';}
   function finish(token){
@@ -95,8 +117,10 @@ export function initVoiceTrial(root) {
     epoch++; // Ignore late results/end callbacks after this session has finished.
     budget.pause();clearTimers();engine=null;phase='idle';interim.textContent='';
     const captured=[finalWords,interimWords].filter(Boolean).join(' ').trim();
-    if(captured){words.value=captured;applyWords();}
-    if(errorMessage) say(errorMessage);
+    let ambiguity;
+    if(captured){words.value=captured;ambiguity=applyWords();}
+    if(ambiguity) say(`${errorMessage||'Microphone stopped.'} ${ambiguity}`);
+    else if(errorMessage) say(errorMessage);
     else if(endReason==='expired'||budget.remaining()<=0) say(captured?'Your one-minute voice trial is complete. You can still edit and review your entry below.':'Your one-minute voice trial is complete. No speech was captured. You can type an entry below.');
     else if(endReason==='hidden') say(captured?'Microphone stopped because you left this page. Your draft remains here.':'Microphone stopped because you left this page. No speech was captured.');
     else if(captured) say('Microphone stopped. Check the words and details below before reviewing your entry.');
@@ -150,7 +174,7 @@ export function initVoiceTrial(root) {
   start.addEventListener('click',begin);
   stop.addEventListener('click',()=>end('user'));
   words.addEventListener('input',()=>{form.hidden=true;reviewed.hidden=true;syncControls();});
-  parse.addEventListener('click',()=>{if(phase!=='idle'||!words.value.trim())return;applyWords();syncControls();say('Draft updated from your words. Check the fields and add any missing details.');fields.exercise.focus();});
+  parse.addEventListener('click',()=>{if(phase!=='idle'||!words.value.trim())return;const ambiguity=applyWords();syncControls();say(ambiguity||'Draft updated from your words. Check the fields and add any missing details.');(ambiguity?words:fields.exercise).focus();});
   fields.unit.addEventListener('change',updateWeight);
   form.addEventListener('input',()=>{reviewed.hidden=true;});
   form.addEventListener('submit',event=>{

@@ -291,3 +291,27 @@ h3{font-size:clamp(24px,2.1vw,29px)}
   .free-card-copy h3{font-size:26px;line-height:1.2}
   .free-card-copy .button{white-space:normal;text-align:center}
 }
+
+/* Feature examples and approved team profiles stay separate from app access. */
+.action-dialog.has-preview{width:min(780px,calc(100% - 32px))}
+.action-dialog .dialog-orb{font-size:38px;margin-bottom:14px}
+.dialog-preview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);align-items:center;gap:28px;margin-top:26px}
+.dialog-preview:not(:has(figure)){grid-template-columns:1fr}
+.dialog-preview figure{margin:0;text-align:center;background:#f4f6fa;border-radius:16px;padding:16px}
+.dialog-preview figure img{display:block;max-width:100%;height:auto;max-height:390px;width:auto;margin:auto;object-fit:contain}
+.dialog-preview figcaption{font-size:12px;color:#5c6677;margin-top:12px}
+.action-dialog h3{font-size:17px;letter-spacing:0;line-height:1.4}
+.dialog-preview ol{margin:18px 0 0;padding-left:22px;font-size:15px;line-height:1.6;color:#465163}
+.dialog-preview li+li{margin-top:12px}
+.dialog-access{padding:18px 20px;margin-top:24px;border-radius:14px;background:#f0f4fa}
+.dialog-access p{font-size:14px;margin-top:7px;color:#465163}
+.dialog-access .text-link{margin-top:8px}
+.dialog-conversation{list-style:none;display:grid;gap:14px;margin:24px 0;padding:0}
+.dialog-conversation li{max-width:90%;padding:16px 18px;background:#f1f4f9;border-radius:16px}
+.dialog-conversation .member{justify-self:end;background:#e8edf5}
+.dialog-conversation strong{font-size:12px;color:#526177}
+.dialog-conversation p{margin-top:6px;line-height:1.5}
+.dialog-profile{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;margin-top:24px}
+.dialog-portrait{width:160px;height:210px;object-fit:cover;border-radius:14px}
+.dialog-profile .button{font-size:14px;min-height:44px;padding:12px 18px;margin-top:20px}
+@media(max-width:600px){.dialog-preview,.dialog-profile{grid-template-columns:1fr;gap:20px}.dialog-preview figure img{max-height:320px}.dialog-profile{justify-items:start}.dialog-portrait{width:120px;height:160px}.action-dialog h2{font-size:26px}.dialog-conversation li{max-width:96%}.dialog-preview ol{margin-top:12px}}

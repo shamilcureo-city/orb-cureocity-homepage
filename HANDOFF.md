@@ -1,5 +1,20 @@
 # Orb annotated correction release
 
+## Action and voice cleanup — 4 November 2026
+
+Six audit fixes are implemented:
+
+1. The former “Ask Orb anything” care misroute now opens its own clearly scripted Orb conversation, with a separate `orbUrl` configuration for future app access.
+2. Each doctor’s “Learn more” opens that doctor’s approved name, role and portrait. Care exploration remains a separate action; no biography, qualification or consultation availability was invented.
+3. Fitness copy accurately describes the optional browser speech-recognition trial and typed fallback, with page-local review only.
+4. Ambiguous workout words (multiple exercises, competing quantities or spoken corrections) leave no misleading review draft. The transcript remains editable; normal single-exercise conjunctions and supported spoken numbers still work.
+5. Health Vault and feature panels show relevant illustrative screens or explanations. Personal-record and plan CTAs now describe an example. If a feature app URL is later configured, the example remains local and a separate “Open in Orb” link appears. Missing app access is explicitly stated.
+6. The ten illustrated capability tiles and five Pro summary items reference a shared catalogue. The unused `enquiryUrl` was removed. Validation separates action wiring from destination availability and allows a genuinely approved future configuration to pass the release guard.
+
+`npm run build`, `npm run check`, configuration/release-gate regression tests, voice parser and simulated-recognition tests, and `git diff --check` pass. Build output contains 67 displayed assets. Local headless Chrome checked all 24 action types, 23 tab states and six viewport sizes (360 × 800, 390 × 844, 768 × 1024, 1024 × 768, 1512 × 982 and 1728 × 1117). No page/dialog horizontal overflow or JavaScript errors were found. Original preview images load, both doctor profiles identify the correct person, dialog focus wraps and returns, Escape/mobile navigation work, and reduced-motion videos remain paused. Typed voice input, rejection of both audited ambiguous phrases, and recovery after correction pass in-browser. Representative desktop/mobile screenshots and browser results are retained outside the published checkout in `orb-homepage/evidence/functional-cleanup/`.
+
+No live microphone/provider session, account access, payment or booking was tested. Twenty-three required destinations remain unconfigured. Commercial release also requires the existing feature, entitlement, tax and integration approvals. The shared catalogue does not establish paid inclusions. This remains a publicly shareable design preview; publishing and GitHub synchronization are verified separately in the release response.
+
 ## MacBook responsive pass — 3 November 2026
 
 The owner reported that the 16:9 monitor composition looked correct but the 16-inch MacBook layout did not. At desktop widths on taller displays, the hero now keeps its wide-screen framing instead of stretching its video to the entire viewport height. Its height can still grow to accommodate copy. The existing 16:9 monitor layout and original assets are preserved.
