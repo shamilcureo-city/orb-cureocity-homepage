@@ -1,5 +1,17 @@
 # Orb annotated correction release
 
+## Core inner pages — 5 November 2026
+
+Nine public information pages now extend the homepage design: `/plans/`, `/care/`, `/blueprint/`, `/hubs/`, `/integrations/`, `/help/`, `/privacy/`, `/terms/` and `/data-requests/`. They reuse the Orb branding, Manrope typography, navy-to-blue-grey palette, original approved artwork, compact navigation, footer and existing accessible dialogs. Homepage navigation, footer links and relevant information CTAs now reach the corresponding pages. App-feature demonstrations remain separate from public information pages.
+
+Plans use the same centrally configured ₹7,999/year preview price and ₹666.58/month annual equivalent as the homepage. Care includes only the two approved professional profiles. Blueprint explains the four information sources and the assessment outputs. Hubs and integrations describe the intended experiences while identifying the missing verified location and compatibility details. Help provides 14 searchable answers, topic navigation, empty results and contact guidance. Privacy, Terms and Data requests are explicit publication-status pages until approved documents and a verified request channel are supplied; they do not invent policy terms or collect personal information.
+
+The static build produces nested page routes, individual titles and descriptions, a branded 404 and root-relative assets. Local routing supports direct URLs with and without trailing slashes, GET/HEAD and existing video range requests. Preview indexing remains disabled. Core-page motion uses the existing once-per-section reveal system, subtle hover transitions and tab feedback, with reduced-motion support.
+
+Verification: `npm run build`, `npm run check`, voice parser and simulated-recognition tests, core route/range tests and `git diff --check` pass. Local headless Chrome checked all nine pages at seven viewport sizes from 360px to 1728px, including 1512 × 982 (63 page/viewport combinations). No horizontal page overflow, clipped cards or JavaScript errors were detected. All 17 unique page action types, help search/clear/empty states, four integration tabs and arrow-key navigation, mobile-menu Escape/focus return, dialog focus wrapping, homepage-to-page navigation, browser back/refresh and unknown routes were checked. Homepage chart rendering and typed workout parsing still pass. Screenshots and browser results are retained outside the checkout in `orb-homepage/evidence/core-pages/`.
+
+The pages complete the public information layer, not the missing app, payment, booking or support connections. All 23 required external destinations remain unconfigured; commercial, entitlement, integration and approved-content gates remain open. No live account, microphone/provider, payment, booking or data-request submission was performed. This is browser viewport emulation, not physical-device or Safari verification. Publication and GitHub synchronization are confirmed separately in the release response.
+
 ## Action and voice cleanup — 4 November 2026
 
 Six audit fixes are implemented:

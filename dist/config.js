@@ -556,5 +556,44 @@ window.ORB_CONFIG={
       "role": "Medical director, Cureocity",
       "image": "assets/optimized/vijesh-portrait.webp"
     }
-  }
+  },
+  "informationPages": {
+    "plans": {
+      "path": "/plans/",
+      "title": "Plans"
+    },
+    "care": {
+      "path": "/care/",
+      "title": "Professional care"
+    },
+    "blueprint": {
+      "path": "/blueprint/",
+      "title": "Blueprint"
+    },
+    "hubs": {
+      "path": "/hubs/",
+      "title": "Our hubs"
+    },
+    "integrations": {
+      "path": "/integrations/",
+      "title": "Supported integrations"
+    },
+    "help": {
+      "path": "/help/",
+      "title": "Help and contact"
+    },
+    "privacy": {
+      "path": "/privacy/",
+      "title": "Privacy policy"
+    },
+    "terms": {
+      "path": "/terms/",
+      "title": "Terms of use"
+    },
+    "data-requests": {
+      "path": "/data-requests/",
+      "title": "Data requests"
+    }
+  },
+  "siteOrigin": "https://orb-cureocity-homepage.shamil4u.chatgpt.site"
 };

@@ -71,10 +71,10 @@
       const profile = config.profiles[action.profileId];
       $('#action-title').textContent = profile.name;
       $('#action-body').textContent = profile.role;
-      const image = element('img', '', 'dialog-portrait'); image.src = profile.image; image.alt = profile.name; image.width = 750; image.height = 1000;
+      const image = element('img', '', 'dialog-portrait'); image.src = profile.image.startsWith('assets/') ? '/' + profile.image : profile.image; image.alt = profile.name; image.width = 750; image.height = 1000;
       const detail = element('div');
       detail.append(element('p', 'Explore professional care separately from your Orb app plan. Consultation availability and booking details are awaiting confirmation.'));
-      const care = element('button', 'Explore care options', 'button'); care.type = 'button'; care.dataset.action = 'care'; detail.append(care);
+      const care = element('a', 'Explore care options', 'button'); care.href = config.informationPages.care.path; detail.append(care);
       const profilePanel = element('div', '', 'dialog-profile'); profilePanel.append(image, detail); content.append(profilePanel);
     } else if (key === 'download') {
       const available = [config.destinations.appStoreUrl, config.destinations.googlePlayUrl].some(safeUrl);
@@ -89,7 +89,7 @@
         row.append(symbol, description); choices.append(row);
       }
       content.append(choices);
-      const link = element('a', 'Explore the free starting points', 'text-link'); link.href = '#free-tools'; link.addEventListener('click', () => actionDialog.close()); content.append(link);
+      const link = element('a', 'Explore the free starting points', 'text-link'); link.href = '/#free-tools'; link.addEventListener('click', () => actionDialog.close()); content.append(link);
     } else if (hasExample) {
       if (action.conversation) {
         const conversation = element('ol', '', 'dialog-conversation');
@@ -103,7 +103,7 @@
         const preview = element('div', '', 'dialog-preview');
         if (action.preview.image) {
           const figure = element('figure'); const image = element('img');
-          image.src = action.preview.image; image.alt = action.preview.alt;
+          image.src = action.preview.image.startsWith('assets/') ? '/' + action.preview.image : action.preview.image; image.alt = action.preview.alt;
           figure.append(image, element('figcaption', 'Illustrative app screen')); preview.append(figure);
         }
         const explanation = element('div'); explanation.append(element('h3', 'What the example shows'));
@@ -378,11 +378,13 @@
   document.addEventListener('orb:motionchange', () => ambientVideos.forEach(syncAmbient));
   document.addEventListener('visibilitychange', () => ambientVideos.forEach(syncAmbient));
 
+  function setupGlucoseChart() {
+  const svg = $('#glucose-chart');
+  if (!svg) return;
   const glucose = config.examples.glucose;
   const values = glucose.readings.map(reading => reading.value);
   const stats = { average: (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1), min: Math.min(...values), max: Math.max(...values) };
   $$('[data-glucose-stat]').forEach(node => node.textContent = stats[node.dataset.glucoseStat]);
-  const svg = $('#glucose-chart');
   const ns = 'http://www.w3.org/2000/svg';
   function svgNode(name, attributes, text) {
     const node = document.createElementNS(ns, name); Object.entries(attributes).forEach(([key,value])=>node.setAttribute(key,value)); if(text)node.textContent=text;svg.append(node);return node;
@@ -406,6 +408,11 @@
     const length = path.getTotalLength(); path.animate([{strokeDasharray:String(length),strokeDashoffset:String(length)},{strokeDasharray:String(length),strokeDashoffset:'0'}],{duration:650,easing:'ease-out'});
   }
   if ('IntersectionObserver' in window) {
+    const chartObserver = new IntersectionObserver(entries => {if(entries.some(e=>e.isIntersecting)){revealChart();chartObserver.disconnect();}},{threshold:.35}); chartObserver.observe(svg);
+  }
+  }
+  setupGlucoseChart();
+  if ('IntersectionObserver' in window) {
     $$('.trust-item,.mid-pro-feature,.mid-vault-benefits article,.nl-support-card,.nl-family-grid figure,.nl-start-card,.nl-footer-main>nav,.mid-voice-heading,.mid-vault-intro,.nl-pro-copy,.nl-pro-gallery').forEach((node, i) => {
       node.classList.add('reveal'); node.style.setProperty('--reveal-delay', `${(i % 3) * 75}ms`);
     });
@@ -413,6 +420,6 @@
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
     }), {threshold:.08,rootMargin:'0px 0px -20px 0px'});
     $$('.reveal').forEach(node => observer.observe(node));
-    const chartObserver = new IntersectionObserver(entries => {if(entries.some(e=>e.isIntersecting)){revealChart();chartObserver.disconnect();}},{threshold:.35}); chartObserver.observe(svg);
+
   } else $$('.reveal').forEach(node=>node.classList.add('is-visible'));
 })();
