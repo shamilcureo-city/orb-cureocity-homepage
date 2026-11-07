@@ -1,0 +1,14 @@
+/* Keep the homepage's existing media frame geometry; replace only its contents. */
+.orb-vimeo{overflow:hidden;isolation:isolate;background:#172132}
+.orb-video-poster{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;z-index:1;opacity:1;transition:opacity .35s ease;pointer-events:none}
+.orb-vimeo[data-video-fit="contain"] .orb-video-poster{object-fit:contain}
+.orb-vimeo-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
+.orb-vimeo-frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;border:0;display:block;max-width:none}
+.orb-vimeo.is-playing .orb-video-poster{opacity:0}
+.orb-vimeo.is-failed .orb-video-poster{opacity:1}
+#testimonial-player{position:relative;overflow:hidden;background:#10151e;aspect-ratio:var(--testimonial-ratio,9/16)}
+#testimonial-player iframe{position:absolute;inset:0;width:100%!important;height:100%!important;border:0;display:block}
+.testimonial-retry{margin:10px 0}
+#testimonial-dialog[data-video-state="failed"] #testimonial-player:empty{min-height:160px}
+@media(prefers-reduced-motion:reduce){.orb-video-poster{transition:none}}
+.reduce-motion .orb-video-poster{transition:none}

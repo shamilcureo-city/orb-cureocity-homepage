@@ -1,0 +1,10 @@
+/* Preserve the homepage composition while the Vimeo layer replaces native videos. */
+.hero-media.orb-vimeo,.connect-backdrop.orb-vimeo{position:absolute;inset:0;width:100%;height:100%;border-radius:0}
+.free-media.orb-vimeo{position:relative;aspect-ratio:var(--video-ratio);width:100%;height:auto;min-height:0;max-height:none;align-self:center}
+.mid-voice-photo.orb-vimeo{position:relative;display:block;aspect-ratio:16/9;height:auto;max-height:none}
+.nl-blueprint-media>.blueprint-video.orb-vimeo{position:relative;width:100%;height:100%;min-height:100%;border-radius:inherit;background:#102034}
+.orb-vimeo[data-video-fit="contain"] .orb-video-poster{object-fit:contain}
+.hero-media.orb-vimeo .orb-video-poster,.connect-backdrop.orb-vimeo .orb-video-poster{object-fit:cover}
+.connect-slide-plan .connect-backdrop.orb-vimeo{transform:scaleX(-1)}
+@media(max-width:900px){.hero-media.orb-vimeo{--video-position-x:62%}.hero-media.orb-vimeo .orb-video-poster{object-position:62% center}}
+@media(max-width:600px){.hero-media.orb-vimeo{--video-position-x:63%}.hero-media.orb-vimeo .orb-video-poster{object-position:63% center}.connect-slide-support .connect-backdrop.orb-vimeo .orb-video-poster{object-position:66% center}}

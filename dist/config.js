@@ -323,7 +323,7 @@ window.ORB_CONFIG={
       "body": "The preview shows how preferences, portions, meal records and feedback can shape a routine. The released planning features and destination are awaiting confirmation.",
       "urlKey": "nutritionUrl",
       "preview": {
-        "image": "assets/original/Frame 2147228749 1.png",
+        "image": "assets/refresh-2026-11-07/food-nutrition.webp",
         "alt": "Illustrative meal planning screen",
         "steps": [
           "Plan around your food preferences and routine.",
@@ -337,7 +337,7 @@ window.ORB_CONFIG={
       "body": "This example connects movement assessment, workout planning and session logging. The optional voice trial on this page uses browser speech recognition after you choose to start, or you can type an entry. It creates a review draft only; it does not save a workout to Orb.",
       "urlKey": "fitnessUrl",
       "preview": {
-        "image": "assets/original/Group 2085666069 1.png",
+        "image": "assets/refresh-2026-11-07/workouts.webp",
         "alt": "Illustrative workout planning screen",
         "steps": [
           "Start with your movement assessment and goals.",
@@ -351,7 +351,7 @@ window.ORB_CONFIG={
       "body": "Explore an illustrative records view. This website cannot open your personal health records or upload a report. Supported formats and sharing controls still need release confirmation.",
       "urlKey": "vaultUrl",
       "preview": {
-        "image": "assets/original/health-vault-complete.png",
+        "image": "assets/refresh-2026-11-07/health-vault-complete.webp",
         "alt": "Illustrative Health Vault screen with reports, dates and sources",
         "steps": [
           "Find a report by its date and source.",
@@ -435,7 +435,7 @@ window.ORB_CONFIG={
       "note": "Upcoming dates are estimates. This preview does not log or store cycle information.",
       "urlKey": "cycleUrl",
       "preview": {
-        "image": "assets/original/Cycle Tracker 1.png",
+        "image": "assets/refresh-2026-11-07/cycle-tracking.webp",
         "alt": "Illustrative cycle tracking screen with estimated dates",
         "steps": [
           "Log periods and symptoms.",
@@ -453,7 +453,7 @@ window.ORB_CONFIG={
       "body": "The illustrative screen shows an estimated biological age, not a diagnosis. The released feature, calculation method, required information and eligibility are awaiting confirmation. This preview does not calculate your biological age.",
       "urlKey": "biologicalAgeUrl",
       "preview": {
-        "image": "assets/original/bioage 1.png",
+        "image": "assets/refresh-2026-11-07/biological-age.webp",
         "alt": "Illustrative biological age screen",
         "steps": [
           "An estimate is different from a diagnosis.",

@@ -83,6 +83,24 @@ for(const key of ['dailyUrl','nutritionUrl','fitnessUrl','vaultUrl','familyUrl',
   assert.ok(url.origin!==origin||!canonicalRoute(url.pathname),`${key} must open the product flow, not this marketing site's public page`);
 }
 if(config.mode!=='public')assert.match(await readFile(new URL('dist/robots.txt',import.meta.url),'utf8'),/Disallow: \/\s*$/,'Preview robots file disallows indexing');
+const media=JSON.parse(await readFile(new URL('media-config.json',import.meta.url),'utf8'));
+assert.equal(Object.keys(media.ambient).length,9,'Nine supplied ambient videos are configured');
+assert.equal(media.testimonials.length,9,'Nine supplied testimonial videos are configured');
+const mediaItems=[...Object.values(media.ambient),...media.testimonials];
+assert.equal(new Set(mediaItems.map(item=>item.id)).size,18,'All supplied video IDs are unique');
+for(const item of mediaItems){
+  assert.match(item.id,/^\d+$/);assert.ok(item.width>0&&item.height>0&&item.title);
+  assert.equal(item.url,`https://vimeo.com/${item.id}`);
+  assert.ok((await stat(new URL(`dist/${item.poster}`,import.meta.url))).size>0);
+}
+assert.ok((await readFile(new URL('dist/media-config.js',import.meta.url),'utf8')).includes(`window.ORB_MEDIA=${JSON.stringify(media,null,2)};`),'Published media configuration matches source');
+const ambientKeys=[...html.matchAll(/data-orb-vimeo="([^"]+)"/g)].map(m=>m[1]);
+assert.equal(ambientKeys.length,12,'Twelve placements use the nine supplied section videos');
+assert.deepEqual([...new Set(ambientKeys)].sort(),Object.keys(media.ambient).sort());
+assert.deepEqual([...html.matchAll(/data-testimonial-id="(\d+)"/g)].map(m=>m[1]),media.testimonials.map(item=>item.id));
+assert.ok(!html.includes('player.vimeo.com/video/'),'Players are loaded on demand, not as eager iframes');
+const mediaTests=spawnSync(process.execPath,[new URL('tests/media.test.mjs',import.meta.url).pathname],{encoding:'utf8'});
+assert.equal(mediaTests.status,0,mediaTests.stderr||mediaTests.stdout);
 const readiness = publicReadiness(config);
 console.log('Passed: homepage, nine core pages, 404, cross-page anchors, accessibility references, action wiring, display assets, distinct metadata, shared price/catalogue, tabs, routing/range tests and release gates.');
 console.log(`Destination status: ${readiness.missingDestinations.length} required destinations missing; ${readiness.ready ? 'configuration passes release gates' : 'preview only; commercial release gates remain blocked'}. URL syntax and wiring checked; remote destinations were not verified.`);

@@ -19,7 +19,7 @@ export function createServicePages(ctx) {
       title: 'The right expertise.<br>For your next step.',
       copy: 'Your appointment is one moment. Your meals, movement and questions fill the days between. Explore how optional care can bring that everyday context into the conversation.',
       actions: link('Find your kind of support', '#care-paths', 'button-white') + link('Explore Blueprint', '/blueprint/', 'core-button-outline'),
-      image: 'assets/optimized/Frame%202147228992.webp',
+      image: 'assets/refresh-2026-11-07/expertise-readiness.webp',
       alt: 'Illustrative professional care concept from the Orb homepage',
       note: 'Illustrative care concept. Professional care is optional and purchased separately.'
     }) + section({
@@ -109,7 +109,7 @@ export function createServicePages(ctx) {
       title: 'Bring your plan<br>into your training.',
       copy: 'Explore in-person assessment and training services that connect with the progress you follow in Orb. Find out what is included before choosing your next step.',
       actions: link('Plan your visit', '#hub-locations', 'button-white') + link('Explore Blueprint', '/blueprint/', 'core-button-outline'),
-      image: 'assets/optimized/Frame%202147228935.webp',
+      image: 'assets/refresh-2026-11-07/hub-scene.webp',
       alt: 'Illustrative Cureocity hub setting from the homepage, not a verified location listing',
       note: 'Illustrative hub setting. Verified locations and local service availability are awaiting confirmation.'
     }) + section({

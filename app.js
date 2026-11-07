@@ -15,7 +15,7 @@
   const menu = $('#mobile-menu');
   const actionDialog = $('#action-dialog');
   const updateLock = () => {
-    document.body.classList.toggle('modal-open', menu.open || actionDialog.open);
+    document.body.classList.toggle('modal-open', menu.open || actionDialog.open || Boolean(document.getElementById('testimonial-dialog')?.open));
     document.dispatchEvent(new Event('orb:panelchange'));
   };
   $('#menu-toggle').addEventListener('click', () => {

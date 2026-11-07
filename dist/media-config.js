@@ -1,0 +1,188 @@
+/* Public supplied Vimeo media. */
+window.ORB_MEDIA={
+  "source": "Video Links _ Vimeo.docx supplied by the owner on 7 November 2026",
+  "ambient": {
+    "hero": {
+      "id": "1243744995",
+      "poster": "assets/vimeo/1243744995.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 30,
+      "sourceTitle": "Hero section video",
+      "url": "https://vimeo.com/1243744995",
+      "title": "Illustrative everyday health routine"
+    },
+    "voice": {
+      "id": "1243744994",
+      "poster": "assets/vimeo/1243744994.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 29,
+      "sourceTitle": "Orb_Daily_Voice_Logging",
+      "url": "https://vimeo.com/1243744994",
+      "title": "Illustrative voice logging scene"
+    },
+    "nutrition": {
+      "id": "1243744996",
+      "poster": "assets/vimeo/1243744996.webp",
+      "width": 1280,
+      "height": 1369,
+      "duration": 10,
+      "sourceTitle": "Food Logging AI",
+      "url": "https://vimeo.com/1243744996",
+      "title": "Illustrative AI food logging"
+    },
+    "fitness": {
+      "id": "1243746044",
+      "poster": "assets/vimeo/1243746044.webp",
+      "width": 1280,
+      "height": 1707,
+      "duration": 15,
+      "sourceTitle": "Fitness assessment",
+      "url": "https://vimeo.com/1243746044",
+      "title": "Illustrative guided fitness assessment"
+    },
+    "connected": {
+      "id": "1243745937",
+      "poster": "assets/vimeo/1243745937.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 8,
+      "sourceTitle": "health-windows-warm-scene",
+      "url": "https://vimeo.com/1243745937",
+      "title": "Illustrative connected health information"
+    },
+    "dailyPlan": {
+      "id": "1243745832",
+      "poster": "assets/vimeo/1243745832.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 10,
+      "sourceTitle": "hf_20261028_152056_e5bd2866-3499-4f4a-a8b7-f07bc8311596",
+      "url": "https://vimeo.com/1243745832",
+      "title": "Illustrative daily action planning"
+    },
+    "professionalSupport": {
+      "id": "1243745143",
+      "poster": "assets/vimeo/1243745143.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 10,
+      "sourceTitle": "hf_20261028_154030_2bb4ff8b-0679-4f88-b099-4b63e6c786e3",
+      "url": "https://vimeo.com/1243745143",
+      "title": "Illustrative AI and professional support"
+    },
+    "blueprintFitness": {
+      "id": "1243745867",
+      "poster": "assets/vimeo/1243745867.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 10,
+      "sourceTitle": "hf_20261028_094844_2d80bc61-eeb9-49bc-973a-8f162ebc4d95",
+      "url": "https://vimeo.com/1243745867",
+      "title": "Illustrative Blueprint fitness assessment"
+    },
+    "blueprintDoctor": {
+      "id": "1243744993",
+      "poster": "assets/vimeo/1243744993.webp",
+      "width": 1280,
+      "height": 720,
+      "duration": 10,
+      "sourceTitle": "hf_20261028_100546_31588fb0-c150-4636-87f2-f88bee14e0d8",
+      "url": "https://vimeo.com/1243744993",
+      "title": "Illustrative professional consultation"
+    }
+  },
+  "testimonials": [
+    {
+      "id": "1243746284",
+      "poster": "assets/vimeo/1243746284.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 114,
+      "sourceTitle": "Video-26405",
+      "url": "https://vimeo.com/1243746284",
+      "title": "Story 01"
+    },
+    {
+      "id": "1243746318",
+      "poster": "assets/vimeo/1243746318.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 129,
+      "sourceTitle": "Video-86015",
+      "url": "https://vimeo.com/1243746318",
+      "title": "Story 02"
+    },
+    {
+      "id": "1243746974",
+      "poster": "assets/vimeo/1243746974.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 108,
+      "sourceTitle": "Vertical Shazal Salam 001_1",
+      "url": "https://vimeo.com/1243746974",
+      "title": "Story 03"
+    },
+    {
+      "id": "1243747176",
+      "poster": "assets/vimeo/1243747176.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 65,
+      "sourceTitle": "Combined Testimonial 001_1 Refined",
+      "url": "https://vimeo.com/1243747176",
+      "title": "Story 04"
+    },
+    {
+      "id": "1243747404",
+      "poster": "assets/vimeo/1243747404.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 58,
+      "sourceTitle": "Combined Testimonial 001",
+      "url": "https://vimeo.com/1243747404",
+      "title": "Story 05"
+    },
+    {
+      "id": "1243747537",
+      "poster": "assets/vimeo/1243747537.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 146,
+      "sourceTitle": "Dhinesh A Advocate Testimonial Final",
+      "url": "https://vimeo.com/1243747537",
+      "title": "Story 06"
+    },
+    {
+      "id": "1243753283",
+      "poster": "assets/vimeo/1243753283.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 129,
+      "sourceTitle": "Tom Portrait 001_2",
+      "url": "https://vimeo.com/1243753283",
+      "title": "Story 07"
+    },
+    {
+      "id": "1243753749",
+      "poster": "assets/vimeo/1243753749.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 70,
+      "sourceTitle": "Sayooj Final For Post",
+      "url": "https://vimeo.com/1243753749",
+      "title": "Story 08"
+    },
+    {
+      "id": "1243756037",
+      "poster": "assets/vimeo/1243756037.webp",
+      "width": 960,
+      "height": 1707,
+      "duration": 103,
+      "sourceTitle": "Neah Nair Final Refinment",
+      "url": "https://vimeo.com/1243756037",
+      "title": "Story 09"
+    }
+  ]
+};

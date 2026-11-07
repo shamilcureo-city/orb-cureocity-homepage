@@ -1,8 +1,11 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {validateContentConfiguration,assertPublicReady,configuredAssets,assetPath} from './site-validation.mjs';
+import {renderTestimonials} from './testimonials.mjs';
+import {renderAmbientMedia} from './media-markup.mjs';
 import {renderCorePages} from './core-pages/index.mjs';
 const root = import.meta.url;
 const content = JSON.parse(await readFile(new URL('site-content.json', root),'utf8'));
+const media = JSON.parse(await readFile(new URL('media-config.json',root),'utf8'));
 const copy = JSON.parse(await readFile(new URL('website-copy.json', root),'utf8'));
 const publicBuild = process.env.ORB_PUBLIC_BUILD === '1' || content.mode === 'public';
 validateContentConfiguration(content);
@@ -18,7 +21,7 @@ const glucoseAlt=`Illustrative glucose readings in ${glucose.unit} on ${glucoseD
 const capabilities = new Map(content.commerce.capabilities.map(feature => [feature.id, feature]));
 const proFeatures = content.commerce.plans.pro.featureIds.map(id => capabilities.get(id));
 const proCapabilities = content.commerce.capabilities.map(feature => `<article class="mid-pro-feature" data-capability="${escape(feature.id)}"><img class="mid-pro-icon mid-original-icon" src="${escape(feature.icon)}" alt="" width="138" height="138" loading="lazy"><div><h3>${escape(feature.title)}</h3><p>${escape(feature.description)}</p></div></article>`).join('\n');
-const replacements={proCapabilities,...copy,annualPrice,monthlyEquivalent,glucosePeriod,glucoseAlt,glucoseAverage:(glucoseValues.reduce((a,b)=>a+b,0)/glucoseValues.length).toFixed(1),glucoseMin:Math.min(...glucoseValues),glucoseMax:Math.max(...glucoseValues),glucoseUnit:glucose.unit,billingCopy:content.commerce.billingCopy.replace('{monthlyEquivalent}',monthlyEquivalent),freeFeatures:content.commerce.plans.free.features.map(f=>`<li>${escape(f)}</li>`).join(''),proFeatures:proFeatures.map(f=>`<li data-plan-capability="${escape(f.id)}">${escape(f.summary || f.title)}</li>`).join('')};
+const replacements={...renderAmbientMedia(media),testimonials:renderTestimonials(media.testimonials),proCapabilities,...copy,annualPrice,monthlyEquivalent,glucosePeriod,glucoseAlt,glucoseAverage:(glucoseValues.reduce((a,b)=>a+b,0)/glucoseValues.length).toFixed(1),glucoseMin:Math.min(...glucoseValues),glucoseMax:Math.max(...glucoseValues),glucoseUnit:glucose.unit,billingCopy:content.commerce.billingCopy.replace('{monthlyEquivalent}',monthlyEquivalent),freeFeatures:content.commerce.plans.free.features.map(f=>`<li>${escape(f)}</li>`).join(''),proFeatures:proFeatures.map(f=>`<li data-plan-capability="${escape(f.id)}">${escape(f.summary || f.title)}</li>`).join('')};
 const partNames=['head','hero','features','voice','lower','footer','end'];
 const parts=await Promise.all(partNames.map(p=>readFile(new URL(`parts/${p}.html`,root),'utf8')));
 let html=parts.join('\n').replace(/\{\{(\w+)\}\}/g,(_,key)=>{if(!(key in replacements))throw new Error(`Unknown content key ${key}`);return replacements[key];});
@@ -34,10 +37,11 @@ for(const page of pages){
   await mkdir(new URL('./',target),{recursive:true});await writeFile(target,page.html);
 }
 await writeFile(new URL('dist/robots.txt',root),publicBuild?'User-agent: *\nAllow: /\n':'User-agent: *\nDisallow: /\n');
+await writeFile(new URL('dist/media-config.js',root),`/* Public supplied Vimeo media. */\nwindow.ORB_MEDIA=${JSON.stringify(media,null,2)};\n`);
 await writeFile(new URL('dist/config.js',root),`/* Generated from site-content.json. No secrets. */\nwindow.ORB_CONFIG=${JSON.stringify(content,null,2)};\n`);
-for(const file of ['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','core-pages.css','app.js','voice.js','core-pages.js','favicon.svg']) await cp(new URL(file,root),new URL(`dist/${file}`,root));
+for(const file of ['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','core-pages.css','media.css','media-layout.css','testimonials.css','media.js','app.js','voice.js','core-pages.js','favicon.svg']) await cp(new URL(file,root),new URL(`dist/${file}`,root));
 // Package only displayed assets; source bundle and unused private report samples stay outside dist.
-const css=await Promise.all(['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','core-pages.css'].map(file=>readFile(new URL(file,root),'utf8')));
+const css=await Promise.all(['styles.css','carousel.css','features.css','lower.css','motion.css','voice.css','core-pages.css','media.css','media-layout.css','testimonials.css'].map(file=>readFile(new URL(file,root),'utf8')));
 const pageHtml=[html,...pages.map(page=>page.html)].join('\n');
 const assetPaths=new Set([...pageHtml.matchAll(/(?:src|poster|href)="\/?(assets\/[^"#]+)"/g)].map(m=>assetPath(m[1])));
 for(const source of css) for(const match of source.matchAll(/url\(['"]?\/?(assets\/[^)'"\n]+)['"]?\)/g)) assetPaths.add(assetPath(match[1]));
